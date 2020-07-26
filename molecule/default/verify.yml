@@ -6,4 +6,4 @@
 
   tasks:
     - name: include distribution specific version
-      include: "{{ ansible_distribution ~ '-' ~ ansible_distribition_major_version }}/verify.yml"
+      include: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/verify.yml"
