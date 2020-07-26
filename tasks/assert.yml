@@ -1,0 +1,12 @@
+---
+- name: test if cis_X is set correctly
+  assert:
+    that:
+      - cis_X is defined
+      - cis_X | length > 0
+      - cis_X is iterable
+      - cis_X | int
+      - cis_X | int >= 0
+      - cis_X | type_debug == "bool"
+      - cis_X in ["a", "b"]
+    quiet: yes

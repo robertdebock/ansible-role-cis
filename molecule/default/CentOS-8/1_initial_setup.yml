@@ -1,0 +1,36 @@
+---
+- name: 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
+  command: modprobe -n -v cramfs
+  register: 1_1_1_1
+  failed_when:
+    - "install /bin/true" not in 1_1_1_1.stdout
+
+- name: 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
+  command: lsmod | grep cramfs
+  register: 1_1_1_1
+  failed_when:
+    - 1_1_1_1.stdout_lines | length > 0
+
+- name: 1.1.1.2 Ensure mounting of vFAT filesystems is disabled (Not Scored)
+  command: modprobe -n -v vfat
+  register: 1_1_1_2
+  failed_when:
+    - "install /bin/true" not in 1_1_1_2.stdout
+
+- name: 1.1.1.2 Ensure mounting of vFAT filesystems is disabled (Not Scored)
+  command: lsmod | grep vfat
+  register: 1_1_1_2
+  failed_when:
+    - 1_1_1_2.stdout_lines | length > 0
+
+- name: 1.1.1.3 Ensure mounting of squashfs filesystems is disabled (Scored)
+  command: modprobe -n -v squashfs
+  register: 1_1_1_3
+  failed_when:
+    - "install /bin/true" not in 1_1_1_3.stdout
+
+- name: 1.1.1.3 Ensure mounting of squashfs filesystems is disabled (Scored)
+  command: lsmod | grep squashfs
+  register: 1_1_1_3
+  failed_when:
+    - 1_1_1_3.stdout_lines | length > 0

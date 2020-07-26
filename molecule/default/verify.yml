@@ -1,0 +1,9 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: include distribution specific version
+      include: "{{ ansible_distribution ~ '-' ~ ansible_distribition_major_version }}/verify.yml"
