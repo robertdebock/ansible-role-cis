@@ -34,6 +34,13 @@
       - cis_tmp_configured | type_debug == "bool"
     quiet: yes
 
+- name: test if cis_tmp_nodev is set correctly
+  assert:
+    that:
+      - cis_tmp_nodev is defined
+      - cis_tmp_nodev | type_debug == "bool"
+    quiet: yes
+
 # - name: test if cis_X is set correctly
 #   assert:
 #     that:

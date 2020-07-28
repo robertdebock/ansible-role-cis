@@ -71,6 +71,18 @@ cis_squashfs_disabled: yes
 
 # 1.1.1.4 Ensure mounting of udf filesystems is disabled (Scored)
 cis_udf_disabled: yes
+
+# 1.1.2 Ensure /tmp is configured (Scored)
+cis_tmp_configured: yes
+
+# 1.1.3 Ensure nodev option set on /tmp partition (Scored)
+cis_tmp_nodev: yes
+
+# 1.1.4 Ensure nosuid option set on /tmp partition (Scored)
+cis_tmp_nosuid: yes
+
+# 1.1.5 Ensure noexec option set on /tmp partition (Scored)
+cis_tmp_noexec: yes
 ```
 
 ## [Requirements](#requirements)
