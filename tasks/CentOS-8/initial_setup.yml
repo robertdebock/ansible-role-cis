@@ -62,7 +62,8 @@
 - name: 1.1.2 Ensure /tmp is configured (Scored)
   systemd:
     name: tmp.mount
-    state: enabled
+    state: started
+    enabled: yes
   when:
     - cis_tmp_configured | bool
 
