@@ -71,6 +71,7 @@
   mount:
     path: /tmp
     opts: nodev
+    state: present
   when:
     - cis_tmp_nodev | bool
 
@@ -78,6 +79,7 @@
   mount:
     path: /tmp
     opts: nosuid
+    state: present
   when:
     - cis_tmp_nosuid | bool
 
@@ -85,5 +87,6 @@
   mount:
     path: /tmp
     opts: noexec
+    state: present
   when:
     - cis_tmp_nosuid | bool
