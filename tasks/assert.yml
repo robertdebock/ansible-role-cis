@@ -1,12 +1,76 @@
 ---
-- name: test if cis_X is set correctly
+- name: test if cis_cramfs_disabled is set correctly
   assert:
     that:
-      - cis_X is defined
-      - cis_X | length > 0
-      - cis_X is iterable
-      - cis_X | int
-      - cis_X | int >= 0
-      - cis_X | type_debug == "bool"
-      - cis_X in ["a", "b"]
+      - cis_cramfs_disabled is defined
+      - cis_cramfs_disabled | type_debug == "bool"
     quiet: yes
+
+- name: test if cis_vfat_disabled is set correctly
+  assert:
+    that:
+      - cis_vfat_disabled is defined
+      - cis_vfat_disabled | type_debug == "bool"
+    quiet: yes
+
+- name: test if cis_squashfs_disabled is set correctly
+  assert:
+    that:
+      - cis_squashfs_disabled is defined
+      - cis_squashfs_disabled | type_debug == "bool"
+    quiet: yes
+
+- name: test if cis_udf_disabled is set correctly
+  assert:
+    that:
+      - cis_udf_disabled is defined
+      - cis_udf_disabled | type_debug == "bool"
+    quiet: yes
+
+# - name: test if cis_X is set correctly
+#   assert:
+#     that:
+#       - cis_X is defined
+#       - cis_X | length > 0
+#       - cis_X is iterable
+#       - cis_X | int
+#       - cis_X | int >= 0
+#       - cis_X | type_debug == "bool"
+#       - cis_X in ["a", "b"]
+#     quiet: yes
+# 
+# - name: test if cis_X is set correctly
+#   assert:
+#     that:
+#       - cis_X is defined
+#       - cis_X | length > 0
+#       - cis_X is iterable
+#       - cis_X | int
+#       - cis_X | int >= 0
+#       - cis_X | type_debug == "bool"
+#       - cis_X in ["a", "b"]
+#     quiet: yes
+# 
+# - name: test if cis_X is set correctly
+#   assert:
+#     that:
+#       - cis_X is defined
+#       - cis_X | length > 0
+#       - cis_X is iterable
+#       - cis_X | int
+#       - cis_X | int >= 0
+#       - cis_X | type_debug == "bool"
+#       - cis_X in ["a", "b"]
+#     quiet: yes
+# 
+# - name: test if cis_X is set correctly
+#   assert:
+#     that:
+#       - cis_X is defined
+#       - cis_X | length > 0
+#       - cis_X is iterable
+#       - cis_X | int
+#       - cis_X | int >= 0
+#       - cis_X | type_debug == "bool"
+#       - cis_X in ["a", "b"]
+#     quiet: yes

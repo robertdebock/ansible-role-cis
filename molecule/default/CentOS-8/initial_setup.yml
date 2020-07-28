@@ -34,3 +34,15 @@
   register: output
   failed_when:
     - output.stdout_lines | length > 0
+
+- name: 1.1.1.3 Ensure mounting of udf filesystems is disabled (Scored)
+  command: modprobe -n -v udf
+  register: output
+  failed_when:
+    - '"install /bin/true" not in output.stdout'
+
+- name: 1.1.1.3 Ensure mounting of udf filesystems is disabled (Scored)
+  command: lsmod | grep udf
+  register: output
+  failed_when:
+    - output.stdout_lines | length > 0

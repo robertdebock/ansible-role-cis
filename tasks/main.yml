@@ -1,3 +1,6 @@
 ---
+- name: include assert.yml
+  include_tasks: assert.yml
+
 - name: include distribution specific version
   include: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/main.yml"
