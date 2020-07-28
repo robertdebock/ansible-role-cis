@@ -46,3 +46,23 @@
   register: output
   failed_when:
     - output.stdout_lines | length > 0
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  command: mount | grep -E '\s/tmp\s'
+  register: output
+  failed_when:
+    - output.stdout_lines | length < 1
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  command: grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'
+  register: output_fstab
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  command: systemctl is-enabled tmp.mount
+  register: output_systemctl
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  assert:
+    that:
+      - output_fstab.stdout_lines | length > 0 or
+        output_systemctl.stdout in ["static", "enabled"]

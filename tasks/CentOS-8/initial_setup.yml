@@ -59,4 +59,9 @@
     - cis_udf_disabled | bool
     - ansible_virtualization_type != "docker"
 
-# - name: 1.1.2 Ensure /tmp is configured (Scored)
+- name: 1.1.2 Ensure /tmp is configured (Scored)
+  systemd:
+    name: tmp.mount
+    state: enabled
+  when:
+    - cis_tmp_configured | bool
