@@ -1,2 +1,20 @@
 ---
 # defaults file for cis
+
+# The CIS guidelines determines many settings of a system. The values used in
+# this file will make a system compliant to the CIS specifications.
+# There are many reasons why you do not want to adhere to one or more specific
+# rules. You can overwrite values in you group_vars, host_vars, inventory or
+# playbook.
+
+# 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
+cis_cramfs_disabled: yes
+
+# 1.1.1.2 Ensure mounting of vFAT filesystems is limited (Not Scored)
+cis_vfat_disabled: yes
+
+# 1.1.1.3 Ensure mounting of squashfs filesystems is disabled (Scored)
+cis_squashfs_disabled: yes
+
+# 1.1.1.4 Ensure mounting of udf filesystems is disabled (Scored)
+cis_udf_disabled: yes
