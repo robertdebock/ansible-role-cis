@@ -54,8 +54,15 @@
     - output.stdout_lines | length < 1
 
 - name: 1.1.2 Ensure /tmp is configured (Scored)
+  stat:
+    path: /etc/fstab
+  register: fstab
+
+- name: 1.1.2 Ensure /tmp is configured (Scored)
   shell: grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'
   register: output_fstab
+  when:
+    - fstab.stat.exists | bool
 
 - name: 1.1.2 Ensure /tmp is configured (Scored)
   command: systemctl is-enabled tmp.mount
