@@ -35,6 +35,8 @@ jobs:
         config:
           - image: "centos"
             tag: "latest"
+          - image: "ubuntu"
+            tag: "latest"
     steps:
       - name: checkout
         uses: actions/checkout@v2

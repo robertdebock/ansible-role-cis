@@ -15,6 +15,7 @@ env:
     namespace="robertdebock"
   matrix:
     - image="centos" tag="latest"
+    - image="ubuntu" tag="latest"
 
 cache:
   - pip
