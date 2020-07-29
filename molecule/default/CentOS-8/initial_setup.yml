@@ -80,16 +80,16 @@
   shell: mount | grep -E '\s/tmp\s' | grep -v nodev
   register: output
   failed_when:
-    - output.stdout_lines | lenghth > 0
+    - output.stdout_lines | length > 0
 
 - name: 1.1.4 Ensure nosuid option set on /tmp partition (Scored)
   shell: mount | grep -E '\s/tmp\s' | grep -v nosuid
   register: output
   failed_when:
-    - output.stdout_lines | lenghth > 0
+    - output.stdout_lines | length > 0
 
 - name: 1.1.5 Ensure noexec option set on /tmp partition (Scored)
   shell: mount | grep -E '\s/tmp\s' | grep -v noexec
   register: output
   failed_when:
-    - output.stdout_lines | lenghth > 0
+    - output.stdout_lines | length > 0
