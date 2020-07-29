@@ -73,6 +73,8 @@
     that:
       - output_fstab.stdout_lines | length > 0 or
         output_systemctl.stdout in ["static", "enabled"]
+  when:
+    - output_fstab.stdout_lines is defined
 
 - name: 1.1.3 Ensure nodev option set on /tmp partition (Scored)
   shell: mount | grep -E '\s/tmp\s' | grep -v nodev
