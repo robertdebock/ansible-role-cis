@@ -4,6 +4,8 @@
   register: output
   failed_when:
     - '"install /bin/true" not in output.stdout'
+  when:
+    - cis_cramfs_disabled | bool
 
 - name: 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
   command: lsmod | grep cramfs
