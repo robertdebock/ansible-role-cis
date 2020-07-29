@@ -74,7 +74,7 @@
     fstype: "{{ item.fstype }}"
     opts: "{{ item.options }},nodev"
     state: present
-  with_items: ansible_mounts
+  loop: "{{ ansible_mounts }}"
   when:
     - cis_tmp_nodev | bool
     - item.mount == "/tmp"
@@ -90,7 +90,7 @@
     fstype: "{{ item.fstype }}"
     opts: "{{ item.options }},nosuid"
     state: present
-  with_items: ansible_mounts
+  loop: "{{ ansible_mounts }}"
   when:
     - cis_tmp_nosuid | bool
     - item.mount == "/tmp"
@@ -106,7 +106,7 @@
     fstype: "{{ item.fstype }}"
     opts: "{{ item.options }},noexec"
     state: present
-  with_items: ansible_mounts
+  loop: "{{ ansible_mounts }}"
   when:
     - cis_tmp_noexec | bool
     - item.mount == "/tmp"
