@@ -75,6 +75,8 @@
     opts: "{{ item.options }},nodev"
     state: present
   loop: "{{ ansible_mounts }}"
+  loop_control:
+    label: "{{ item.mount }}"
   when:
     - cis_tmp_nodev | bool
     - item.mount == "/tmp"
@@ -91,6 +93,8 @@
     opts: "{{ item.options }},nosuid"
     state: present
   loop: "{{ ansible_mounts }}"
+  loop_control:
+    label: "{{ item.mount }}"
   when:
     - cis_tmp_nosuid | bool
     - item.mount == "/tmp"
@@ -107,6 +111,8 @@
     opts: "{{ item.options }},noexec"
     state: present
   loop: "{{ ansible_mounts }}"
+  loop_control:
+    label: "{{ item.mount }}"
   when:
     - cis_tmp_noexec | bool
     - item.mount == "/tmp"
