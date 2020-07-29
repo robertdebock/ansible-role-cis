@@ -1,2 +1,7 @@
 ---
 # handlers file for cis
+- name: remount /tmp
+  mount:
+    path: /tmp
+    state: remounted
+

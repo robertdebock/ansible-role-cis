@@ -80,6 +80,8 @@
     - item.mount == "/tmp"
     - item.options.find(",") >= 0
     - item.options.find("nodev") == -1
+  notify:
+    - remount /tmp
 
 - name: 1.1.4 Ensure nosuid option set on /tmp partition (Scored)
   mount:
@@ -94,6 +96,8 @@
     - item.mount == "/tmp"
     - item.options.find(",") >= 0
     - item.options.find("nosuid") == -1
+  notify:
+    - remount /tmp
 
 - name: 1.1.5 Ensure noexec option set on /tmp partition (Scored)
   mount:
@@ -108,3 +112,5 @@
     - item.mount == "/tmp"
     - item.options.find(",") >= 0
     - item.options.find("noexec") == -1
+  notify:
+    - remount /tmp
