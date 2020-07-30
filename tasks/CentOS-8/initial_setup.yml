@@ -97,7 +97,7 @@
     option: Options
     value: "{{ lookup('ini', 'Options section=mount file=/usr/lib/systemd/system/tmp.mount') }},nodev"
   when:
-    - cis_tmp_nodev.stdout | regex_search('(nodev)') | length < 1
+    - cis_tmp_nodev.stdout | length < 1
 
 - name: 1.1.4 Ensure nosuid option set on /tmp partition (Scored)
   mount:
