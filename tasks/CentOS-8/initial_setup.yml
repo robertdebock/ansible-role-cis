@@ -87,7 +87,7 @@
 
 - name: 1.1.3 Ensure nodev option set on /tmp partition (Scored)
   command: grep nodev /usr/lib/systemd/system/tmp.mount
-  register cis_tmp_nodev
+  register: cis_tmp_nodev
   changed_when: false
 
 - name: 1.1.3 Ensure nodev option set on /tmp partition (Scored)
