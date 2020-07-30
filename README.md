@@ -41,6 +41,9 @@ For verification `molecule/resources/verify.yml` run after the role has been app
   gather_facts: yes
 
   tasks:
+    - name: load defaults/main.yml
+      include_vars: ../../defaults/main.yml
+
     - name: include distribution specific version
       include: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/verify.yml"
 ```
