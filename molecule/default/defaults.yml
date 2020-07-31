@@ -1,0 +1,5 @@
+---
+# Variables for verifier, overwriting variables set in `defaults/main.yml`.
+
+# `noexec` can't be set in a container.
+cis_tmp_noexec: no
