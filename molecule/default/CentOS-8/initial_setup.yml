@@ -123,3 +123,5 @@
     - cis_tmp_noexec | bool
   failed_when:
     - output.stdout_lines | length > 0
+
+- name: 1.1.6 Ensure separate partition exists for /var (Scored)

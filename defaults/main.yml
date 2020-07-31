@@ -30,3 +30,6 @@ cis_tmp_nosuid: yes
 
 # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
 cis_tmp_noexec: yes
+
+# 1.1.6 Ensure separate partition exists for /var (Scored)
+cis_var_partition: yes
