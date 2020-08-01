@@ -33,3 +33,6 @@ cis_tmp_noexec: yes
 
 # 1.1.6 Ensure separate partition exists for /var (Scored)
 cis_var_partition: yes
+
+# 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
+cis_var_tmp_partition: yes

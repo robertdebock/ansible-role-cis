@@ -44,6 +44,9 @@ For verification `molecule/resources/verify.yml` run after the role has been app
     - name: load defaults/main.yml
       include_vars: ../../defaults/main.yml
 
+    - name: load verifier overwrites
+      include_vars: defaults.yml
+
     - name: include distribution specific version
       include: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/verify.yml"
 ```
@@ -86,6 +89,12 @@ cis_tmp_nosuid: yes
 
 # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
 cis_tmp_noexec: yes
+
+# 1.1.6 Ensure separate partition exists for /var (Scored)
+cis_var_partition: yes
+
+# 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
+cis_var_tmp_partition: yes
 ```
 
 ## [Requirements](#requirements)
