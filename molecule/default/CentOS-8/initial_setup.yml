@@ -131,3 +131,13 @@
     - cis_var | length < 1
   when:
     - cis_var_partition | bool
+
+- name: 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
+  shell: mount | grep /var/tmp
+  register: cis_var_tmp
+  failed_when:
+    - cis_var_tmp | length < 1
+  changed_when:
+    - false
+  when:
+    - cis_var_tmp_partition | bool
