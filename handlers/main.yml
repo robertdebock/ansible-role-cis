@@ -5,3 +5,8 @@
     path: /tmp
     state: remounted
 
+- name: remount /var/tmp
+  mount:
+    path: /var/tmp
+    state: remounted
+

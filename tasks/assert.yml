@@ -79,6 +79,14 @@
       - cis_var_tmp_partition | type_debug == "bool"
     quiet: yes
 
+# 1.1.8 Ensure nodev option set on /var/tmp partition (Scored)
+- name: test if cis_var_tmp_nodev is set correctly
+  assert:
+    that:
+      - cis_var_tmp_nodev is defined
+      - cis_var_tmp_nodev | type_debug == "bool"
+    quiet: yes
+
 # - name: test if cis_X is set correctly
 #   assert:
 #     that:

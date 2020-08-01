@@ -36,3 +36,6 @@ cis_var_partition: yes
 
 # 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
 cis_var_tmp_partition: yes
+
+# 1.1.8 Ensure nodev option set on /var/tmp partition (Scored)
+cis_var_tmp_nodev: yes

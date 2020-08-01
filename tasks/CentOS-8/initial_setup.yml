@@ -154,3 +154,21 @@
     - false
   when:
     - cis_var_tmp_partition | bool
+
+- name: 1.1.8 Ensure nodev option set on /var/tmp partition (Scored)
+  mount:
+    name: "{{ item.mount }}"
+    src: "{{ item.device }}"
+    fstype: "{{ item.fstype }}"
+    opts: "{{ item.options }},nodev"
+    state: present
+  loop: "{{ ansible_mounts }}"
+  loop_control:
+    label: "{{ item.mount }}"
+  when:
+    - cis_var_tmp_nodev | bool
+    - item.mount == "/var/tmp"
+    - item.options.find(",") >= 0
+    - item.options.find("nodev") == -1
+  notify:
+    - remount /var/tmp
