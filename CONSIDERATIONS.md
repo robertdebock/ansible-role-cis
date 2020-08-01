@@ -22,6 +22,8 @@ This role make quite some choices, here are the thoughts on why to take a decisi
 1. Fix if the consequences are limited.
 2. Fail if changing has consequences.
 
+If a task needs to fail, add the same task to `tasks/*/*.yml` and to `molecule/default/*/*.yml`.
+
 ### Examples
 
 #### 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
