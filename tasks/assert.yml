@@ -95,6 +95,22 @@
       - cis_var_tmp_nosuid | type_debug == "bool"
     quiet: yes
 
+# 1.1.10 Ensure noexec option set on /var/tmp partition (Scored)
+- name: test if cis_var_tmp_noexec is set correctly
+  assert:
+    that:
+      - cis_var_tmp_noexec is defined
+      - cis_var_tmp_noexec | type_debug == "bool"
+    quiet: yes
+
+# 1.1.11 Ensure separate partition exists for /var/log (Scored)
+- name: test if cis_var_log_partition is set correctly
+  assert:
+    that:
+      - cis_var_log_partition is defined
+      - cis_var_log_partition | type_debug == "bool"
+    quiet: yes
+
 # - name: test if cis_X is set correctly
 #   assert:
 #     that:

@@ -40,5 +40,11 @@ cis_var_tmp_partition: yes
 # 1.1.8 Ensure nodev option set on /var/tmp partition (Scored)
 cis_var_tmp_nodev: yes
 
-1.1.9 Ensure nosuid option set on /var/tmp partition (Scored)
+# 1.1.9 Ensure nosuid option set on /var/tmp partition (Scored)
 cis_var_tmp_nosuid: yes
+
+# 1.1.10 Ensure noexec option set on /var/tmp partition (Scored)
+cis_var_tmp_noexec: yes
+
+# 1.1.11 Ensure separate partition exists for /var/log (Scored)
+cis_var_log_partition: yes
