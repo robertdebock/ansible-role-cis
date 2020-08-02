@@ -139,7 +139,7 @@
   shell: mount | grep -E '\s/var\s'
   register: cis_var
   failed_when:
-    - cis_var | length >= 1
+    - cis_var | length == 1
   changed_when:
     - false
   when:
@@ -149,7 +149,7 @@
   shell: mount | grep /var/tmp
   register: cis_var_tmp
   failed_when:
-    - cis_var_tmp | length >= 1
+    - cis_var_tmp | length == 1
   changed_when:
     - false
   when:
@@ -213,6 +213,6 @@
   shell: mount | grep -E '\s/var/log\s'
   register: cis_var_log
   failed_when:
-    - cis_var_log | length >= 1
+    - cis_var_log | length == 1
   when:
     - cis_var_log_partition | bool
