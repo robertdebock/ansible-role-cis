@@ -304,3 +304,12 @@
     - item.options.find("noexec") == -1
   notify:
     - remount /dev/shm
+
+- name: 1.1.18 Ensure nodev option set on removable media partitions (Not Scored)
+  shell: mount | grep -E '\s{{ item }}\s' | grep -v nodev
+  register: output
+  when:
+    - cis_removable_media_nodev | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+  loop: "{{ cis_removable_media_partition }}"
