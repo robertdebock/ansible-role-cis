@@ -6,3 +6,9 @@
 
   roles:
     - role: ansible-role-cis
+      # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
+      # `noexec` can't be set in a container.
+      cis_tmp_noexec: no
+      # 1.1.6 Ensure separate partition exists for /var (Scored)
+      # Can't create a partition in CI.
+      cis_var_partition: no

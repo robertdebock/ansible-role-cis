@@ -18,6 +18,12 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.cis
+      # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
+      # `noexec` can't be set in a container.
+      cis_tmp_noexec: no
+      # 1.1.6 Ensure separate partition exists for /var (Scored)
+      # Can't create a partition in CI.
+      cis_var_partition: no
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -113,6 +119,21 @@ cis_var_log_audit_partition: yes
 
 # 1.1.13 Ensure separate partition exists for /home (Scored)
 cis_home_partition: yes
+
+# 1.1.14 Ensure nodev option set on /home partition (Scored)
+cis_home_nodev: yes
+
+# 1.1.15 Ensure nodev option set on /dev/shm partition (Scored)
+cis_dev_shm_nodev: yes
+
+# 1.1.16 Ensure nosuid option set on /dev/shm partition (Scored)
+cis_dev_shm_nosuid: yes
+
+# 1.1.17 Ensure noexec option set on /dev/shm partition (Scored)
+cis_dev_shm_noexec: yes
+
+# 1.1.18 Ensure nodev option set on removable media partitions (Not Scored)
+cis_removable_media_nodev: yes
 ```
 
 ## [Requirements](#requirements)
