@@ -188,7 +188,7 @@
   failed_when:
     - cis_home_audit | length != 1
   when:
-    - cis_home_audit_partition | bool
+    - cis_home_partition | bool
 
 - name: 1.1.14 Ensure nodev option set on /home partition (Scored)
   shell: mount | grep -E '\s/home\s' | grep -v nodev

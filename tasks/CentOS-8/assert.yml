@@ -120,11 +120,11 @@
     quiet: yes
 
 # 1.1.13 Ensure separate partition exists for /home (Scored)
-- name: test if cis_home_audit_partition is set correctly
+- name: test if cis_home_partition is set correctly
   assert:
     that:
-      - cis_home_audit_partition is defined
-      - cis_home_audit_partition | type_debug == "bool"
+      - cis_home_partition is defined
+      - cis_home_partition | type_debug == "bool"
     quiet: yes
 
 # 1.1.14 Ensure nodev option set on /home partition (Scored)
