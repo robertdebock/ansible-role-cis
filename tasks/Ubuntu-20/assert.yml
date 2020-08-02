@@ -1,7 +1,4 @@
 ---
-- name: include distribution specific assertions
-  include_tasks: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/assert.yml"
-
 # - name: test if cis_X is set correctly
 #   assert:
 #     that:
