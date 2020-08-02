@@ -57,3 +57,6 @@ cis_home_partition: yes
 
 # 1.1.14 Ensure nodev option set on /home partition (Scored)
 cis_home_nodev: yes
+
+# 1.1.15 Ensure nodev option set on /dev/shm partition (Scored)
+cis_dev_shm_nodev: yes

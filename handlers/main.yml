@@ -14,3 +14,8 @@
   mount:
     path: /home
     state: remounted
+
+- name: remount /dev/shm
+  mount:
+    path: /dev/shm
+    state: remounted
