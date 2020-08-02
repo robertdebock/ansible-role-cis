@@ -10,3 +10,7 @@
     path: /var/tmp
     state: remounted
 
+- name: remount /home
+  mount:
+    path: /home
+    state: remounted

@@ -54,3 +54,6 @@ cis_var_log_audit_partition: yes
 
 # 1.1.13 Ensure separate partition exists for /home (Scored)
 cis_home_partition: yes
+
+# 1.1.14 Ensure nodev option set on /home partition (Scored)
+cis_home_nodev: yes

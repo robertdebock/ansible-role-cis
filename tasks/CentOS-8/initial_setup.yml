@@ -232,3 +232,21 @@
     - cis_home_audit | length != 1
   when:
     - cis_home_audit_partition | bool
+
+- name: 1.1.14 Ensure nodev option set on /home partition (Scored)
+  mount:
+    name: "{{ item.mount }}"
+    src: "{{ item.device }}"
+    fstype: "{{ item.fstype }}"
+    opts: "{{ item.options }},nodev"
+    state: present
+  loop: "{{ ansible_mounts }}"
+  loop_control:
+    label: "{{ item.mount }}"
+  when:
+    - cis_home_nodev | bool
+    - item.mount == "/home"
+    - item.options.find(",") >= 0
+    - item.options.find("nodev") == -1
+  notify:
+    - remount /home
