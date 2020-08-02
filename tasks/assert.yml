@@ -144,6 +144,22 @@
       - cis_dev_shm_nodev | type_debug == "bool"
     quiet: yes
 
+# 1.1.16 Ensure nosuid option set on /dev/shm partition (Scored)
+- name: test if cis_dev_shm_nosuid is set correctly
+  assert:
+    that:
+      - cis_dev_shm_nosuid is defined
+      - cis_dev_shm_nosuid | type_debug == "bool"
+    quiet: yes
+
+# 1.1.17 Ensure noexec option set on /dev/shm partition (Scored)
+- name: test if cis_dev_shm_noexec is set correctly
+  assert:
+    that:
+      - cis_dev_shm_noexec is defined
+      - cis_dev_shm_noexec | type_debug == "bool"
+    quiet: yes
+
 # - name: test if cis_X is set correctly
 #   assert:
 #     that:
