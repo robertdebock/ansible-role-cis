@@ -1,6 +1,6 @@
 # [cis](#cis)
 
-Apply recommendations from the CIS benchmarks.
+Apply and/or check recommendations from the CIS benchmarks.
 
 |Travis|GitHub|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
@@ -95,6 +95,24 @@ cis_var_partition: yes
 
 # 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
 cis_var_tmp_partition: yes
+
+# 1.1.8 Ensure nodev option set on /var/tmp partition (Scored)
+cis_var_tmp_nodev: yes
+
+# 1.1.9 Ensure nosuid option set on /var/tmp partition (Scored)
+cis_var_tmp_nosuid: yes
+
+# 1.1.10 Ensure noexec option set on /var/tmp partition (Scored)
+cis_var_tmp_noexec: yes
+
+# 1.1.11 Ensure separate partition exists for /var/log (Scored)
+cis_var_log_partition: yes
+
+# 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)
+cis_var_log_audit_partition: yes
+
+# 1.1.13 Ensure separate partition exists for /home (Scored)
+cis_home_partition: yes
 ```
 
 ## [Requirements](#requirements)

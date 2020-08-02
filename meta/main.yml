@@ -2,29 +2,20 @@
 galaxy_info:
   author: Robert de Bock
   role_name: cis
-  description: Install and configure cis on your system.
-  description: Apply recommendations from the CIS benchmarks.
+  description: Apply and/or check recommendations from the CIS benchmarks.
   license: Apache-2.0
   company: none
   min_ansible_version: 2.8
 
   platforms:
-    # - name: Debian
-    #   versions:
-    #     - all
     - name: EL
       versions:
         - 8
-    # - name: OpenSUSE
-    #   versions:
-    #     - all
     - name: Ubuntu
       versions:
         - focal
 
   galaxy_tags:
     - cis
-    - centos
-    - redhat
 
 dependencies: []

@@ -3,5 +3,5 @@
 # Ansible managed
 #
 repository:
-  description: Apply recommendations from the CIS benchmarks.
+  description: Apply and/or check recommendations from the CIS benchmarks.
   homepage: https://robertdebock.nl/
