@@ -24,6 +24,9 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # 1.1.6 Ensure separate partition exists for /var (Scored)
       # Can't create a partition in CI.
       cis_var_partition: no
+      # 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
+      # Can't create a partition in CI.
+      cis_var_tmp_partition: no
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
