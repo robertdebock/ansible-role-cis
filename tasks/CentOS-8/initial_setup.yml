@@ -89,6 +89,7 @@
   command: grep nodev /usr/lib/systemd/system/tmp.mount
   register: cis_tmp_nodev
   changed_when: false
+  check_mode: no
 
 - name: 1.1.3 Ensure nodev option set on /tmp partition (Scored)
   ini_file:
@@ -140,8 +141,8 @@
   register: cis_var
   failed_when:
     - cis_var | length != 1
-  changed_when:
-    - false
+  changed_when: false
+  check_mode: no
   when:
     - cis_var_partition | bool
 
@@ -150,8 +151,8 @@
   register: cis_var_tmp
   failed_when:
     - cis_var_tmp | length != 1
-  changed_when:
-    - false
+  changed_when: false
+  check_mode: no
   when:
     - cis_var_tmp_partition | bool
 
@@ -312,4 +313,6 @@
     - cis_removable_media_nodev | bool
   failed_when:
     - output.stdout_lines | length > 0
+  changed_when: false
+  check_mode: no
   loop: "{{ cis_removable_media_partition }}"
