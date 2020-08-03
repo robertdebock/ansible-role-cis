@@ -21,12 +21,26 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
       # `noexec` can't be set in a container.
       cis_tmp_noexec: no
+
       # 1.1.6 Ensure separate partition exists for /var (Scored)
       # Can't create a partition in CI.
       cis_var_partition: no
+
       # 1.1.7 Ensure separate partition exists for /var/tmp (Scored)
       # Can't create a partition in CI.
       cis_var_tmp_partition: no
+
+      # 1.1.11 Ensure separate partition exists for /var/log (Scored)
+      # Can't create a partition in CI.
+      cis_var_log_partition: no
+
+      # 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)
+      # Can't create a partition in CI.
+      cis_var_log_audit_partition: no
+
+      # 1.1.13 Ensure separate partition exists for /home (Scored)
+      # Can't create a partition in CI.
+      cis_home_partition: no
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
