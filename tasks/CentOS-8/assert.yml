@@ -167,3 +167,19 @@
       - cis_removable_media_nodev is defined
       - cis_removable_media_nodev | type_debug == "bool"
     quiet: yes
+
+# 1.1.19 Ensure nosuid option set on removable media partitions (Not Scored)
+- name: test if cis_removable_media_nosuid is set correctly
+  assert:
+    that:
+      - cis_removable_media_nosuid is defined
+      - cis_removable_media_nosuid | type_debug == "bool"
+    quiet: yes
+
+# 1.1.20 Ensure noexec option set on removable media partitions (Not Scored)
+- name: test if cis_removable_media_noexec is set correctly
+  assert:
+    that:
+      - cis_removable_media_noexec is defined
+      - cis_removable_media_noexec | type_debug == "bool"
+    quiet: yes

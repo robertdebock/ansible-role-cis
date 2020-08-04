@@ -316,3 +316,25 @@
   changed_when: false
   check_mode: no
   loop: "{{ cis_removable_media_partitions }}"
+
+- name: 1.1.19 Ensure nosuid option set on removable media partitions (Not Scored)
+  shell: mount | grep -E '\s{{ item }}\s' | grep -v nosuid
+  register: output
+  when:
+    - cis_removable_media_nosuid | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+  changed_when: false
+  check_mode: no
+  loop: "{{ cis_removable_media_partitions }}"
+
+- name: 1.1.20 Ensure noexec option set on removable media partitions (Not Scored)
+  shell: mount | grep -E '\s{{ item }}\s' | grep -v noexec
+  register: output
+  when:
+    - cis_removable_media_noexec | bool
+  failed_when:
+    - output.stdout_lines | length > 0
+  changed_when: false
+  check_mode: no
+  loop: "{{ cis_removable_media_partitions }}"

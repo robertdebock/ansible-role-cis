@@ -69,3 +69,9 @@ cis_dev_shm_noexec: yes
 
 # 1.1.18 Ensure nodev option set on removable media partitions (Not Scored)
 cis_removable_media_nodev: yes
+
+# 1.1.19 Ensure nosuid option set on removable media partitions (Not Scored)
+cis_removable_media_nosuid: yes
+
+# 1.1.20 Ensure noexec option set on removable media partitions (Not Scored)
+cis_removable_media_noexec: yes
