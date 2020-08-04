@@ -315,4 +315,4 @@
     - output.stdout_lines | length > 0
   changed_when: false
   check_mode: no
-  loop: "{{ cis_removable_media_partition }}"
+  loop: "{{ cis_removable_media_partitions }}"

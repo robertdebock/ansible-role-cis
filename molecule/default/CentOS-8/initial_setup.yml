@@ -229,4 +229,4 @@
     - cis_removable_media_nodev | bool
   failed_when:
     - output.stdout_lines | length > 0
-  loop: "{{ cis_removable_media_partition }}"
+  loop: "{{ cis_removable_media_partitions }}"
