@@ -248,3 +248,11 @@
   failed_when:
     - output.stdout_lines | length > 0
   loop: "{{ cis_removable_media_partitions }}"
+
+- name: 1.1.21 Ensure sticky bit is set on all world-writable directories (Scored)
+  shell: df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \( -perm -0002 -a ! -perm -1000 \) 2>/dev/null
+  when:
+    - cis_fix_sticky_bit | bool
+  register: cis_world_writable_directories
+  failed_when:
+    - cis_world_writable_directories | length > 0

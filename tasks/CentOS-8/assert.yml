@@ -183,3 +183,11 @@
       - cis_removable_media_noexec is defined
       - cis_removable_media_noexec | type_debug == "bool"
     quiet: yes
+
+# 1.1.21 Ensure sticky bit is set on all world-writable directories (Scored)
+- name: test if cis_fix_sticky_bit is set correctly
+  assert:
+    that:
+      - cis_fix_sticky_bit is defined
+      - cis_fix_sticky_bit | type_debug == "bool"
+    quiet: yes
