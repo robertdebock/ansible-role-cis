@@ -353,4 +353,5 @@
     mode: "a+t"
   when:
     - cis_fix_sticky_bit | bool
+    - cis_world_writable_directories.stdout | length > 0
   loop: "{{ cis_world_writable_directories.stdout }}"
