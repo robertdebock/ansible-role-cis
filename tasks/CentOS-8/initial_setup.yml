@@ -363,3 +363,4 @@
     enabled: true
   when:
     - cis_disable_automount
+    - services.autofs is defined
