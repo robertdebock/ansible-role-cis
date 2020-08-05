@@ -81,3 +81,6 @@ cis_fix_sticky_bit: yes
 
 # 1.1.22 Disable Automounting
 cis_disable_automount: yes
+
+# 1.1.23 Disable USB Storage (Scored)
+cis_usb_storage_disabled: yes

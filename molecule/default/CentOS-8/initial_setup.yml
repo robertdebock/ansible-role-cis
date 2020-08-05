@@ -267,3 +267,19 @@
     - cis_disable_autofs is changed
   when:
     - cis_disable_automount
+
+- name: 1.1.23 Disable USB Storage (Scored)
+  command: modprobe -n -v usb-storage
+  register: output
+  when:
+    - cis_usb_storage_disabled | bool
+  failed_when:
+    - '"install /bin/true" not in output.stdout'
+
+- name: 1.1.23 Disable USB Storage (Scored)
+  command: lsmod | grep usb-storage
+  register: output
+  when:
+    - cis_usb_storage_disabled | bool
+  failed_when:
+    - output.stdout_lines | length > 0

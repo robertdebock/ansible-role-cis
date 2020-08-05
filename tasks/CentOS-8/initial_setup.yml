@@ -364,3 +364,19 @@
   when:
     - cis_disable_automount
     - services.autofs is defined
+
+- name: 1.1.23 Disable USB Storage (Scored)
+  copy:
+    content: "install usb-storage /bin/true"
+    dest: /etc/modprobe.d/usb-storage.conf
+  when:
+    - cis_usb_storage_disabled | bool
+
+- name: 1.1.23 Disable USB Storage (Scored)
+  modprobe:
+    name: usb-storage
+    state: absent
+  when:
+    - cis_usb_storage_disabled | bool
+    - ansible_virtualization_type != "docker"
+

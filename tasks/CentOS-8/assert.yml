@@ -199,3 +199,11 @@
       - cis_disable_automount is defined
       - cis_disable_automount | type_debug == "bool"
     quiet: yes
+
+# 1.1.23 Disable USB Storage (Scored)
+- name: test if cis_usb_storage_disabled is set correctly
+  assert:
+    that:
+      - cis_usb_storage_disabled is defined
+      - cis_usb_storage_disabled | type_debug == "bool"
+    quiet: yes
