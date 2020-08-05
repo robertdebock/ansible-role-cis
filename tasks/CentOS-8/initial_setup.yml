@@ -379,4 +379,3 @@
   when:
     - cis_usb_storage_disabled | bool
     - ansible_virtualization_type != "docker"
-
