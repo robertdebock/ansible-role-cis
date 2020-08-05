@@ -256,3 +256,14 @@
   register: cis_world_writable_directories
   failed_when:
     - cis_world_writable_directories | length > 0
+
+- name: 1.1.22 Disable Automounting (Scored)
+  service:
+    name: autofs
+    state: stopped
+    enabled: true
+  register: cis_disable_autofs
+  failed_when:
+    - cis_disable_autofs is changed
+  when:
+    - cis_disable_automount

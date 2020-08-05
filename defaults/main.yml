@@ -78,3 +78,6 @@ cis_removable_media_noexec: yes
 
 # 1.1.21 Ensure sticky bit is set on all world-writable directories (Scored)
 cis_fix_sticky_bit: yes
+
+# 1.1.22 Disable Automounting
+cis_disable_automount: yes

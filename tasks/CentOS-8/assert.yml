@@ -191,3 +191,11 @@
       - cis_fix_sticky_bit is defined
       - cis_fix_sticky_bit | type_debug == "bool"
     quiet: yes
+
+# 1.1.22 Disable Automounting (Scored)
+- name: test if cis_disable_automount is set correctly
+  assert:
+    that:
+      - cis_disable_automount is defined
+      - cis_disable_automount | type_debug == "bool"
+    quiet: yes
