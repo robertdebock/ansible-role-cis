@@ -6,4 +6,3 @@
     - cis_gpg_keys.stdout | length < 1
   changed_when: false
   check_mode: no
-  warn: false
