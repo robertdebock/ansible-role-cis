@@ -207,3 +207,11 @@
       - cis_usb_storage_disabled is defined
       - cis_usb_storage_disabled | type_debug == "bool"
     quiet: yes
+
+# 1.2.1 Ensure GPG keys are configured (Not Scored)
+- name: test if cis_gpg_keys_configured is set correctly
+  assert:
+    that:
+      - cis_gpg_keys_configured is defined
+      - cis_gpg_keys_configured | type_debug == "bool"
+    quiet: yes

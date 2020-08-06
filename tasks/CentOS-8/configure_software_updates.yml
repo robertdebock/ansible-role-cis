@@ -1,0 +1,8 @@
+---
+- name: 1.2.1 Ensure GPG keys are configured (Not Scored)
+  command: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+  register: cis_gpg_keys
+  failed_when:
+    - cis_gpg_keys.stdout | length < 1
+  changed_when: false
+  check_more: no
