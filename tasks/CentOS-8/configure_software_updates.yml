@@ -5,4 +5,4 @@
   failed_when:
     - cis_gpg_keys.stdout | length < 1
   changed_when: false
-  check_more: no
+  check_mode: no
