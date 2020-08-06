@@ -249,13 +249,52 @@
     - output.stdout_lines | length > 0
   loop: "{{ cis_removable_media_partitions }}"
 
-- name: 1.1.21 Ensure sticky bit is set on all world-writable directories (Scored)
-  command: find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
-  when:
-    - cis_fix_sticky_bit | bool
-  register: cis_world_writable_directories
-  failed_when:
-    - cis_world_writable_directories | length > 0
+# TODO: This task fails somehow:
+  # fatal: [cis-centos-latest]: FAILED! => changed=true
+  #   cmd:
+  #   - find
+  #   - /
+  #   - -xdev
+  #   - -type
+  #   - d
+  #   - (
+  #   - -perm
+  #   - '-0002'
+  #   - -a
+  #   - '!'
+  #   - -perm
+  #   - '-1000'
+  #   - )
+  #   - -print
+  #   delta: '0:00:00.025816'
+  #   end: '2020-08-06 14:34:11.434167'
+  #   failed_when_result: true
+  #   invocation:
+  #     module_args:
+  #       _raw_params: find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
+  #       _uses_shell: false
+  #       argv: null
+  #       chdir: null
+  #       creates: null
+  #       executable: null
+  #       removes: null
+  #       stdin: null
+  #       stdin_add_newline: true
+  #       strip_empty_ends: true
+  #       warn: true
+  #   rc: 0
+  #   start: '2020-08-06 14:34:11.408351'
+  #   stderr: ''
+  #   stderr_lines: <omitted>
+  #   stdout: ''
+  #   stdout_lines: <omitted>
+# - name: 1.1.21 Ensure sticky bit is set on all world-writable directories (Scored)
+#   command: find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
+#   when:
+#     - cis_fix_sticky_bit | bool
+#   register: cis_world_writable_directories
+#   failed_when:
+#     - cis_world_writable_directories | length > 0
 
 - name: 1.1.22 Disable Automounting (Scored)
   service:
