@@ -4,3 +4,6 @@
 
 - name: include configure_software_updates.yml
   include: configure_software_updates.yml
+
+- name: include configure_sudo.yml
+  include: configure_sudo.yml
