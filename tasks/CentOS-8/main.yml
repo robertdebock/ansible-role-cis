@@ -1,4 +1,9 @@
 ---
+# This task should be moved to `tasks/main.yml`, but due to an issue on Ubuntu
+# it's called here, just for CentOS.
+- name: populate service facts
+  service_facts:
+
 - name: include initial_setup.yml
   include: initial_setup.yml
 
