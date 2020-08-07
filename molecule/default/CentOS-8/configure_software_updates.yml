@@ -4,3 +4,21 @@
   register: cis_gpg_keys
   failed_when:
     - cis_gpg_keys.stdout | length < 1
+  when:
+    - cis_gpg_keys_configured | bool
+
+- name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
+  command: grep ^gpgcheck /etc/yum.conf
+  register: cis_gpgcheck_globally
+  failed_when:
+    - cis_gpgcheck_globally.stdout != "gpgcheck=1"
+  when:
+    - cis_gpgcheck_enabled | bool
+
+- name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
+  command: grep '^gpgcheck=0' /etc/yum.repos.d/*
+  register: cis_gpgcheck_globally_all
+  failed_when:
+    - cis_gpgcheck_globally_all.stdout | length > 0
+  when:
+    - cis_gpgcheck_enabled | bool

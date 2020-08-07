@@ -6,3 +6,30 @@
     - cis_gpg_keys.stdout | length < 1
   changed_when: false
   check_mode: no
+
+- name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
+  lineinfile:
+    path: /etc/yum.conf
+    regexp: '^gpgcheck='
+    line: gpgcheck=1
+  when:
+    - cis_gpgcheck_enabled | bool
+
+- name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
+  find:
+    paths: /etc/yum.repos.d/
+    patterns: '*'
+  register: cis_repos
+  when:
+    - cis_gpgcheck_enabled | bool
+
+- name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
+  lineinfile:
+    path: "{{ item.path }}"
+    regexp: '^gpgcheck='
+    line: gpgcheck=1
+  loop: "{{ cis_repos }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - cis_gpgcheck_enabled | bool

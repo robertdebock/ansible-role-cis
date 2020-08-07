@@ -87,3 +87,6 @@ cis_usb_storage_disabled: yes
 
 # 1.2.1 Ensure GPG keys are configured (Not Scored)
 cis_gpg_keys_configured: yes
+
+# 1.2.2 Ensure gpgcheck is globally activated (Scored)
+cis_gpgcheck_enabled: yes
