@@ -7,7 +7,7 @@
   # For now, only collect service_facts on non-Ubuntu due to:
   # https://github.com/ansible/ansible/issues/71140
   when:
-   - ansible_os_family != "Ubuntu"
+    - ansible_os_family != "Ubuntu"
 
 - name: include distribution specific version
   include: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/main.yml"
