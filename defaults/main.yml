@@ -90,3 +90,6 @@ cis_gpg_keys_configured: yes
 
 # 1.2.2 Ensure gpgcheck is globally activated (Scored)
 cis_gpgcheck_enabled: yes
+
+# 1.2.3 Ensure package manager repositories are configured (Not Scored)
+cis_repositories_configured: yes

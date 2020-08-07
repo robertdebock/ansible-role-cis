@@ -22,3 +22,11 @@
     - cis_gpgcheck_globally_all.stdout | length > 0
   when:
     - cis_gpgcheck_enabled | bool
+
+- name: 1.2.3 Ensure package manager repositories are configured (Not Scored)
+  command: dnf repolist
+  register: cis_repositories
+  failed_when:
+    - cis_repositories.stdout | length < 2
+  when:
+    - cis_repositories_configured | bool

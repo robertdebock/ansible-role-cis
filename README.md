@@ -64,9 +64,16 @@ For verification `molecule/resources/verify.yml` run after the role has been app
   gather_facts: yes
 
   tasks:
+    # Molecules verifier does not load variables in default and vars. These
+    # tasks load the variables explicitly.
+    - name: load vars/main.yml
+      include_vars: ../../vars/main.yml
+
     - name: load defaults/main.yml
       include_vars: ../../defaults/main.yml
 
+    # In verify (in CI), certain overwrites must occur because not all resources
+    # are available in a container, like kernel modules or partitions.
     - name: load verifier overwrites
       include_vars: defaults.yml
 
@@ -151,6 +158,30 @@ cis_dev_shm_noexec: yes
 
 # 1.1.18 Ensure nodev option set on removable media partitions (Not Scored)
 cis_removable_media_nodev: yes
+
+# 1.1.19 Ensure nosuid option set on removable media partitions (Not Scored)
+cis_removable_media_nosuid: yes
+
+# 1.1.20 Ensure noexec option set on removable media partitions (Not Scored)
+cis_removable_media_noexec: yes
+
+# 1.1.21 Ensure sticky bit is set on all world-writable directories (Scored)
+cis_fix_sticky_bit: yes
+
+# 1.1.22 Disable Automounting
+cis_disable_automount: yes
+
+# 1.1.23 Disable USB Storage (Scored)
+cis_usb_storage_disabled: yes
+
+# 1.2.1 Ensure GPG keys are configured (Not Scored)
+cis_gpg_keys_configured: yes
+
+# 1.2.2 Ensure gpgcheck is globally activated (Scored)
+cis_gpgcheck_enabled: yes
+
+# 1.2.3 Ensure package manager repositories are configured (Not Scored)
+cis_repositories_configured: yes
 ```
 
 ## [Requirements](#requirements)
