@@ -28,7 +28,7 @@
     path: "{{ item.path }}"
     regexp: '^gpgcheck='
     line: gpgcheck=1
-  loop: "{{ cis_repos }}"
+  loop: "{{ cis_repos.files }}"
   loop_control:
     label: "{{ item.path }}"
   when:
