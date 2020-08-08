@@ -105,3 +105,6 @@ cis_sudo_logfile: yes
 
 # 1.4.1 Ensure AIDE is installed (Scored)
 cis_aide_installed: yes
+
+# 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
+cis_filesystem_integrity_checked: yes
