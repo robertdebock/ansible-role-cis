@@ -102,3 +102,6 @@ cis_sudo_use_pty: yes
 
 # 1.3.3 Ensure sudo log file exists (Scored)
 cis_sudo_logfile: yes
+
+# 1.4.1 Ensure AIDE is installed (Scored)
+cis_aide_installed: yes

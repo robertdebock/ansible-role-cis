@@ -255,3 +255,11 @@
       - cis_sudo_logfile is defined
       - cis_sudo_logfile | type_debug == "bool"
     quiet: yes
+
+# 1.4.1 Ensure AIDE is installed (Scored)
+- name: test if cis_aide_installed is set correctly
+  assert:
+    that:
+      - cis_aide_installed is defined
+      - cis_aide_installed | type_debug == "bool"
+    quiet: yes

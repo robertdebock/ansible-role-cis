@@ -19,3 +19,9 @@
   mount:
     path: /dev/shm
     state: remounted
+
+- name: copy aide.db.new.gz to aide.db.gz
+  copy:
+    src: /var/lib/aide/aide.db.new.gz
+    dest: /var/lib/aide/aide.db.gz
+    remote_src: yes
