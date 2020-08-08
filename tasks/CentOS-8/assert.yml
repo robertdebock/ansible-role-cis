@@ -239,3 +239,19 @@
       - cis_sudo_installed is defined
       - cis_sudo_installed | type_debug == "bool"
     quiet: yes
+
+# 1.3.2 Ensure sudo commands use pty (Scored)
+- name: test if cis_sudo_use_pty is set correctly
+  assert:
+    that:
+      - cis_sudo_use_pty is defined
+      - cis_sudo_use_pty | type_debug == "bool"
+    quiet: yes
+
+# 1.3.3 Ensure sudo log file exists (Scored)
+- name: test if cis_sudo_logfile is set correctly
+  assert:
+    that:
+      - cis_sudo_logfile is defined
+      - cis_sudo_logfile | type_debug == "bool"
+    quiet: yes

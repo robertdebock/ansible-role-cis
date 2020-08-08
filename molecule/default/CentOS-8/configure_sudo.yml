@@ -3,3 +3,29 @@
   command: rpm -q sudo
   when:
     - cis_sudo_installed | bool
+
+- name: 1.3.2 Ensure sudo commands use pty (Scored)
+  command: grep -Ei '^\s*Defaults\s+(\[^#]+,\s*)?use_pty' /etc/sudoers /etc/sudoers.d/*
+  register: cis_sudo_use_pty_test
+  when:
+    - cis_sudo_use_pty | bool
+
+- name: 1.3.2 Ensure sudo commands use pty (Scored)
+  assert:
+    that:
+      - cis_sudo_use_pty_test.stdout == "Defaults use_pty"
+  when:
+    - cis_sudo_use_pty | bool
+
+- name: 1.3.3 Ensure sudo log file exists (Scored)
+  command: grep -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*
+  register: cis_sudo_logfile_test
+  when:
+    - cis_sudo_logfile | bool
+
+- name: 1.3.3 Ensure sudo log file exists (Scored)
+  assert:
+    that:
+      - cis_sudo_logfile.stdout == 'Defaults logfile="/var/log/sudo.log"'
+  when:
+    - cis_sudo_logfile | bool
