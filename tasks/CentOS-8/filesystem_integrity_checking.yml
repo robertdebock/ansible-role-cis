@@ -19,7 +19,7 @@
 - name: 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
   cron:
     name: "1.4.2 Ensure filesystem integrity is regularly checked (Scored)"
-    hour: 0
-    minute: 5
+    hour: "0"
+    minute: "5"
     job: /usr/sbin/aide --check
     user: root
