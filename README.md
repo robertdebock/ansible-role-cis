@@ -53,6 +53,7 @@ The machine may need to be prepared using `molecule/resources/prepare.yml`:
 
   roles:
     - role: robertdebock.bootstrap
+    - role: robertdebock.cron
 ```
 
 For verification `molecule/resources/verify.yml` run after the role has been applied.
@@ -182,6 +183,21 @@ cis_gpgcheck_enabled: yes
 
 # 1.2.3 Ensure package manager repositories are configured (Not Scored)
 cis_repositories_configured: yes
+
+# 1.3.1 Ensure sudo is installed (Scored)
+cis_sudo_installed: yes
+
+# 1.3.2 Ensure sudo commands use pty (Scored)
+cis_sudo_use_pty: yes
+
+# 1.3.3 Ensure sudo log file exists (Scored)
+cis_sudo_logfile: yes
+
+# 1.4.1 Ensure AIDE is installed (Scored)
+cis_aide_installed: yes
+
+# 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
+cis_filesystem_integrity_checked: yes
 ```
 
 ## [Requirements](#requirements)
@@ -194,6 +210,7 @@ The following roles can be installed to ensure all requirements are met, using `
 ```yaml
 ---
 - robertdebock.bootstrap
+- robertdebock.cron
 
 ```
 

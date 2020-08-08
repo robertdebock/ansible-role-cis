@@ -6,3 +6,4 @@
 
   roles:
     - role: robertdebock.bootstrap
+    - role: robertdebock.cron
