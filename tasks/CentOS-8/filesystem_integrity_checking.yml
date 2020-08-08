@@ -9,8 +9,7 @@
 - name: 1.4.1 Ensure AIDE is installed (Scored)
   command: aide --init
   args:
-    creates:
-      - /var/lib/aide/aide.db.new.gz
+    creates: /var/lib/aide/aide.db.new.gz
   notify:
      - copy aide.db.new.gz to aide.db.gz
   when:
