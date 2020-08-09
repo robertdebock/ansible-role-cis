@@ -5,15 +5,22 @@
     - cis_sudo_installed | bool
 
 - name: 1.3.2 Ensure sudo commands use pty (Scored)
-  command: "grep -Ei '^\\s*Defaults\\s+(\\[^#]+,\\s*)?use_pty' /etc/sudoers /etc/sudoers.d/*"
-  register: cis_sudo_use_pty_test
+  command: "grep -Ei '^\\s*Defaults\\s+(\\[^#]+,\\s*)?use_pty' /etc/sudoers"
+  register: cis_sudo_use_pty_test_one
+  when:
+    - cis_sudo_use_pty | bool
+
+- name: 1.3.2 Ensure sudo commands use pty (Scored)
+  command: "grep -Ei '^\\s*Defaults\\s+(\\[^#]+,\\s*)?use_pty' /etc/sudoers.d/*"
+  register: cis_sudo_use_pty_test_two
   when:
     - cis_sudo_use_pty | bool
 
 - name: 1.3.2 Ensure sudo commands use pty (Scored)
   assert:
     that:
-      - cis_sudo_use_pty_test.stdout == "Defaults use_pty"
+      - cis_sudo_use_pty_test_one.stdout == "Defaults use_pty" or
+        cis_sudo_use_pty_test_two.stdout == "Defaults use_pty"
   when:
     - cis_sudo_use_pty | bool
 
