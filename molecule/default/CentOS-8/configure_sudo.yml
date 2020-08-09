@@ -6,12 +6,14 @@
 
 - name: 1.3.2 Ensure sudo commands use pty (Scored)
   command: "grep -Ei '^\\s*Defaults\\s+(\\[^#]+,\\s*)?use_pty' /etc/sudoers"
+  failed_when: no
   register: cis_sudo_use_pty_test_one
   when:
     - cis_sudo_use_pty | bool
 
 - name: 1.3.2 Ensure sudo commands use pty (Scored)
   command: "grep -Ei '^\\s*Defaults\\s+(\\[^#]+,\\s*)?use_pty' /etc/sudoers.d/*"
+  failed_when: no
   register: cis_sudo_use_pty_test_two
   when:
     - cis_sudo_use_pty | bool
