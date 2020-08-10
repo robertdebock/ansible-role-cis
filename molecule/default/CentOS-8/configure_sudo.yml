@@ -5,36 +5,27 @@
     - cis_sudo_installed | bool
 
 - name: 1.3.2 Ensure sudo commands use pty (Scored)
-  command: "grep -Ei '^\\s*Defaults\\s+(\\[^#]+,\\s*)?use_pty' /etc/sudoers"
-  failed_when: no
-  register: cis_sudo_use_pty_test_one
-  when:
-    - cis_sudo_use_pty | bool
-
-- name: 1.3.2 Ensure sudo commands use pty (Scored)
-  command: "grep -Ei '^\\s*Defaults\\s+(\\[^#]+,\\s*)?use_pty' /etc/sudoers.d/*"
-  failed_when: no
-  register: cis_sudo_use_pty_test_two
-  when:
-    - cis_sudo_use_pty | bool
+  lineinfile:
+    path: /etc/sudoers.d/use_pty.conf
+    line: 'Defaults use_pty'
+    state: present
+  check_mode: yes
+  register: cis_sudo_use_pty
 
 - name: 1.3.2 Ensure sudo commands use pty (Scored)
   assert:
     that:
-      - cis_sudo_use_pty_test_one.stdout == "Defaults use_pty" or
-        cis_sudo_use_pty_test_two.stdout == "Defaults use_pty"
-  when:
-    - cis_sudo_use_pty | bool
+      - cis_sudo_use_pty is not changed
 
 - name: 1.3.3 Ensure sudo log file exists (Scored)
-  command: "grep -Ei '^\\s*Defaults\\s+([^#]+,\\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*"
-  register: cis_sudo_logfile_test
-  when:
-    - cis_sudo_logfile | bool
+  lineinfile:
+    path: /etc/sudoers.d/logfile.conf
+    line: 'Defaults logfile="/var/log/sudo.log"'
+    state: present
+  check_mode: yes
+  register: cis_sudo_logfile
 
 - name: 1.3.3 Ensure sudo log file exists (Scored)
   assert:
     that:
-      - cis_sudo_logfile.stdout == 'Defaults logfile="/var/log/sudo.log"'
-  when:
-    - cis_sudo_logfile | bool
+      - cis_sudo_logfile is not changed

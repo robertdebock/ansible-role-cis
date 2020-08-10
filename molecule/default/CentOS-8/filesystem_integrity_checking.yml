@@ -20,6 +20,6 @@
 
 - name: 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
   assert:
-    than:
+    that:
       - cis_filesystem_integrity_checked_test_one | length > 0
         or cis_filesystem_integrity_checked_test_two | length > 0
