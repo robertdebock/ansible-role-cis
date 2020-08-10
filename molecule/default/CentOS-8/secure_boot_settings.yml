@@ -1,0 +1,25 @@
+---
+- name: 1.5.1 Ensure permissions on bootloader config are configured (Scored)
+  stat:
+    path: "{{ item }}"
+  register: cis_permissions_bootloader_test
+  loop:
+    - /boot/grub2/grub.cfg
+    - /boot/grub2/grubenv
+
+- name: 1.5.1 Ensure permissions on bootloader config are configured (Scored)
+  assert:
+    that:
+      - item.stat.uid == 0
+      - item.stat.gid == 0
+      - not item.stat.wgrp == no
+      - not item.stat.rgrp == no
+      - not item.stat.xgrp == no
+      - not item.stat.woth == no
+      - not item.stat.roth == no
+      - not item.stat.xoth == no
+  when:
+    - item.stat.exists | bool
+  loop: "{{ cis_permissions_bootloader_test.results }}"
+  loop_control:
+    label: "{{ item.item }}"

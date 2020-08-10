@@ -29,3 +29,7 @@
       # 1.1.13 Ensure separate partition exists for /home (Scored)
       # Can't create a partition in CI.
       cis_home_partition: no
+
+      # 1.5.1 Ensure permissions on bootloader config are configured (Scored)
+      # No bootloaders in a container.
+      cis_permissions_bootloader: yes

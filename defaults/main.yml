@@ -108,3 +108,6 @@ cis_aide_installed: yes
 
 # 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
 cis_filesystem_integrity_checked: yes
+
+# 1.5.1 Ensure permissions on bootloader config are configured (Scored)
+cis_permissions_bootloader: yes

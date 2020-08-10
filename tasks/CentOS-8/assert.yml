@@ -271,3 +271,11 @@
       - cis_filesystem_integrity_checked is defined
       - cis_filesystem_integrity_checked | type_debug == "bool"
     quiet: yes
+
+# 1.5.1 Ensure permissions on bootloader config are configured (Scored)
+- name: test if cis_permissions_bootloader is set correctly
+  assert:
+    that:
+      - cis_permissions_bootloader is defined
+      - cis_permissions_bootloader | type_debug == "bool"
+    quiet: yes

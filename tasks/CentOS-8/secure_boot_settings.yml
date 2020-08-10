@@ -1,0 +1,23 @@
+---
+- name: 1.5.1 Ensure permissions on bootloader config are configured (Scored)
+  stat:
+    path: "{{ item }}"
+  register: cis_bootloader_files
+  loop:
+    - /boot/grub2/grub.cfg
+    - /boot/grub2/grubenv
+  when:
+    - cis_permissions_bootloader | bool
+  
+- name: 1.5.1 Ensure permissions on bootloader config are configured (Scored)
+  file:
+    path: "{{ item.path }}"
+    owner: root
+    group: root
+    mode: g-rwx,o-rwx
+  loop: "{{ cis_bootloader_files.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - cis_bootloader_files.files is defined
+    - cis_permissions_bootloader | bool

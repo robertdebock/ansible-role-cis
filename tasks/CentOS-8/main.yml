@@ -15,3 +15,6 @@
 
 - name: include filesystem_integrity_checking.yml
   include: filesystem_integrity_checking.yml
+
+- name: include secure_boot_settings.yml
+  include: secure_boot_settings.yml
