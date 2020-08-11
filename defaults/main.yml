@@ -115,3 +115,6 @@ cis_permissions_bootloader: yes
 # 1.5.2 Ensure bootloader password is set (Scored)
 cis_bootloader_password_set: yes
 cis_bootloader_password: changeme
+
+# 1.5.3 Ensure authentication required for single user mode (Scored)
+cis_authentication_single_user_mode: yes

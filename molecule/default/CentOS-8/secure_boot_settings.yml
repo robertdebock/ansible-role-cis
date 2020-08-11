@@ -46,3 +46,18 @@
       - '"GRUB2_PASSWORD=" in cis_bootloader_password_test_two.stdout'
   when:
     - cis_bootloader_password_set | bool
+
+- name: 1.5.3 Ensure authentication required for single user mode (Scored)
+  lineinfile:
+    path: "{{ item.path }}"
+    line: "{{ item.line }}"
+  check_mode: yes
+  loop:
+    - path: /usr/lib/systemd/system/rescue.service
+      line: ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue
+    - path: /usr/lib/systemd/system/emergency.service
+      line: ExecStart=-/usr/lib/systemd/systemd-sulogin-shell emergency
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - cis_authentication_single_user_mode | bool

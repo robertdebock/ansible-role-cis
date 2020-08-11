@@ -297,3 +297,11 @@
     quiet: yes
   when:
     - cis_bootloader_password_set | bool
+
+# 1.5.3 Ensure authentication required for single user mode (Scored)
+- name: test if cis_authentication_single_user_mode is set correctly
+  assert:
+    that:
+      - cis_authentication_single_user_mode is defined
+      - cis_authentication_single_user_mode | bool
+    quiet: yes

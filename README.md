@@ -41,6 +41,10 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # 1.1.13 Ensure separate partition exists for /home (Scored)
       # Can't create a partition in CI.
       cis_home_partition: no
+
+      # 1.5.1 Ensure permissions on bootloader config are configured (Scored)
+      # No bootloaders in a container.
+      cis_permissions_bootloader: yes
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -198,6 +202,16 @@ cis_aide_installed: yes
 
 # 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
 cis_filesystem_integrity_checked: yes
+
+# 1.5.1 Ensure permissions on bootloader config are configured (Scored)
+cis_permissions_bootloader: yes
+
+# 1.5.2 Ensure bootloader password is set (Scored)
+cis_bootloader_password_set: yes
+cis_bootloader_password: changeme
+
+# 1.5.3 Ensure authentication required for single user mode (Scored)
+cis_authentication_single_user_mode: yes
 ```
 
 ## [Requirements](#requirements)
@@ -276,6 +290,11 @@ image="debian" tag="stable" tox
 
 Apache-2.0
 
+## [Contributors](#contributors)
+
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
+
+- [arturmartins](https://github.com/arturmartins)
 
 ## [Author Information](#author-information)
 

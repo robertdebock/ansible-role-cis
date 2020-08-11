@@ -8,7 +8,7 @@
     - /boot/grub2/grubenv
   when:
     - cis_permissions_bootloader | bool
-  
+
 - name: 1.5.1 Ensure permissions on bootloader config are configured (Scored)
   file:
     path: "{{ item.path }}"
@@ -46,8 +46,27 @@
       "Enter password: ": "{{ cis_bootloader_password }}"
       "Confirm password: ": "{{ cis_bootloader_password }}"
     creates: /boot/grub2/user.cfg
-  # no_log: true
+  no_log: true
   when:
     - cis_bootloader_password_set | bool
   notify:
     - run grub2-mkconfig
+
+- name: 1.5.3 Ensure authentication required for single user mode (Scored)
+  ini_file:
+    section: Service
+    path: "{{ item.path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: yes
+  loop:
+    - path: /usr/lib/systemd/system/rescue.service
+      option: ExecStart
+      value: "-/usr/lib/systemd/systemd-sulogin-shell rescue"
+    - path: /usr/lib/systemd/system/emergency.service
+      option: ExecStart
+      value: "-/usr/lib/systemd/systemd-sulogin-shell emergency"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - cis_authentication_single_user_mode | bool
