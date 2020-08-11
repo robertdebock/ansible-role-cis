@@ -14,3 +14,16 @@
       - cis_selinux_installed_test is not changed
   when:
     - cis_selinux_installed
+
+- name: 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
+  command: grep -E 'kernelopts=(\S+\s+)*(selinux=0|enforcing=0)+\b' /boot/grub2/grubenv
+  register: cis_selinux_not_disabled_test
+  when:
+    - cis_selinux_not_disabled
+
+- name: 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
+  assert:
+    that:
+      - cis_selinux_not_disabled_test.stdout | length == 0
+  when:
+    - cis_selinux_not_disabled

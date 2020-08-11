@@ -127,3 +127,6 @@ cis_aslr_enabled: yes
 
 # 1.7.1.1 Ensure SELinux is installed (Scored)
 cis_selinux_installed: yes
+
+# 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
+cis_selinux_not_disabled: yes

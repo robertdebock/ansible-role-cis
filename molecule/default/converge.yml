@@ -33,3 +33,7 @@
       # 1.5.2 Ensure bootloader password is set (Scored)
       # No bootloaders in a container.
       cis_bootloader_password_set: no
+
+      # 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
+      # No bootloaders in a container.
+      cis_selinux_not_disabled: no
