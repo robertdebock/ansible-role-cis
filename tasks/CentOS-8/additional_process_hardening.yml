@@ -9,16 +9,7 @@
 - name: 1.6.1 Ensure core dumps are restricted (Scored)
   sysctl:
     name: fs.suid_dumpable
-    value: 0
-  when:
-    - cis_core_dumps_restricted
-
-- name: 1.6.1 Ensure core dumps are restricted (Scored)
-  package:
-    name: systemd-coredump
-    state: present
-  check_mode: yes
-  register: cis_core_dumps_restricted_test
+    value: "0"
   when:
     - cis_core_dumps_restricted
 
@@ -33,9 +24,8 @@
     - option: Storage
       value: none
     - option: ProcessSizeMax
-      value: 0
+      value: "0"
   when:
     - cis_core_dumps_restricted
-    - cis_core_dumps_restricted_test is not changed
   notify:
     - systemctl daemon-reload
