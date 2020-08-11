@@ -118,3 +118,6 @@ cis_bootloader_password: changeme
 
 # 1.5.3 Ensure authentication required for single user mode (Scored)
 cis_authentication_single_user_mode: yes
+
+# 1.6.1 Ensure core dumps are restricted (Scored)
+cis_core_dumps_restricted: yes

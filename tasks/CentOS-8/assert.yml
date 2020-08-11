@@ -305,3 +305,11 @@
       - cis_authentication_single_user_mode is defined
       - cis_authentication_single_user_mode | bool
     quiet: yes
+
+# 1.6.1 Ensure core dumps are restricted (Scored)
+- name: test if cis_core_dumps_restricted is set correctly
+  assert:
+    that:
+      - cis_core_dumps_restricted is defined
+      - cis_core_dumps_restricted | bool
+    quiet: yes
