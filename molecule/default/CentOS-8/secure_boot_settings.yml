@@ -51,6 +51,7 @@
   lineinfile:
     path: "{{ item.path }}"
     line: "{{ item.line }}"
+  register: cis_authentication_single_user_mode_test
   check_mode: yes
   loop:
     - path: /usr/lib/systemd/system/rescue.service
@@ -59,5 +60,12 @@
       line: ExecStart=-/usr/lib/systemd/systemd-sulogin-shell emergency
   loop_control:
     label: "{{ item.path }}"
+  when:
+    - cis_authentication_single_user_mode | bool
+
+- name: 1.5.3 Ensure authentication required for single user mode (Scored)
+  assert:
+    that:
+      - cis_authentication_single_user_mode_test is not changed
   when:
     - cis_authentication_single_user_mode | bool
