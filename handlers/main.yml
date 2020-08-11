@@ -25,3 +25,6 @@
     src: /var/lib/aide/aide.db.new.gz
     dest: /var/lib/aide/aide.db.gz
     remote_src: yes
+
+- name: run grub2-mkconfig
+  command: grub2-mkconfig -o /boot/grub2/grub.cfg

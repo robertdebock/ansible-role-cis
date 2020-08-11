@@ -23,3 +23,26 @@
   loop: "{{ cis_permissions_bootloader_test.results }}"
   loop_control:
     label: "{{ item.item }}"
+
+- name: 1.5.2 Ensure bootloader password is set (Scored)
+  stat:
+    path: /boot/grub2/user.cfg
+  register: cis_bootloader_password_test_one
+  when:
+    - cis_bootloader_password_set | bool
+
+- name: 1.5.2 Ensure bootloader password is set (Scored)
+  command: grep "^\\s*GRUB2_PASSWORD" /boot/grub2/user.cfg
+  failed_when: no
+  register: cis_bootloader_password_test_two
+  when:
+    - cis_bootloader_password_set | bool
+    - cis_bootloader_password_test_one.stat.exists
+
+- name: 1.5.2 Ensure bootloader password is set (Scored)
+  assert:
+    that:
+      - cis_bootloader_password_test_one.stat.exists
+      - '"GRUB2_PASSWORD=" in cis_bootloader_password_test_two.stdout'
+  when:
+    - cis_bootloader_password_set | bool

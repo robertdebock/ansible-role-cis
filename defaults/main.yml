@@ -111,3 +111,7 @@ cis_filesystem_integrity_checked: yes
 
 # 1.5.1 Ensure permissions on bootloader config are configured (Scored)
 cis_permissions_bootloader: yes
+
+# 1.5.2 Ensure bootloader password is set (Scored)
+cis_bootloader_password_set: yes
+cis_bootloader_password: changeme
