@@ -28,3 +28,13 @@
     - cis_selinux_not_disabled
   notify:
     - run grub2-mkconfig
+
+- name: 1.7.1.3 Ensure SELinux policy is configured (Scored)
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUXTYPE='
+    line: "SELINUXTYPE={{ cis_selinux_policy }}"
+  when:
+    - cis_selinux_policy_configured
+  notify:
+    - reboot
