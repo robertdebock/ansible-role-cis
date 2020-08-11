@@ -32,4 +32,3 @@ cis_home_partition: no
 # 1.5.2 Ensure bootloader password is set (Scored)
 # No bootloaders in a container.
 cis_bootloader_password_set: no
-
