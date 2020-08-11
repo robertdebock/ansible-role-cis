@@ -37,6 +37,7 @@
   register: cis_bootloader_password_test_two
   when:
     - cis_bootloader_password_set | bool
+    - cis_bootloader_password_test_one is defined
     - cis_bootloader_password_test_one.stat.exists
 
 - name: 1.5.2 Ensure bootloader password is set (Scored)
