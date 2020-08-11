@@ -321,3 +321,11 @@
       - cis_aslr_enabled is defined
       - cis_aslr_enabled | bool
     quiet: yes
+
+# 1.7.1.1 Ensure SELinux is installed (Scored)
+- name: test if cis_selinux_installed is set correctly
+  assert:
+    that:
+      - cis_selinux_installed is defined
+      - cis_selinux_installed | bool
+    quiet: yes

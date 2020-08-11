@@ -21,3 +21,6 @@
 
 - name: include additional_process_hardening.yml
   include: additional_process_hardening.yml
+
+- name: include mandatory_access_control.yml
+  include: mandatory_access_control.yml

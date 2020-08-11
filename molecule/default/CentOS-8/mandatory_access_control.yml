@@ -1,0 +1,16 @@
+---
+- name: 1.7.1.1 Ensure SELinux is installed (Scored)
+  package:
+    name: libselinux
+    state: present
+  register: cis_selinux_installed_test
+  check_mode: yes
+  when:
+    - cis_selinux_installed
+
+- name: 1.7.1.1 Ensure SELinux is installed (Scored)
+  assert:
+    that:
+      - cis_selinux_installed_test is not changed
+  when:
+    - cis_selinux_installed

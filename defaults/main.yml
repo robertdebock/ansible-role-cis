@@ -124,3 +124,6 @@ cis_core_dumps_restricted: yes
 
 # 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
 cis_aslr_enabled: yes
+
+# 1.7.1.1 Ensure SELinux is installed (Scored)
+cis_selinux_installed: yes

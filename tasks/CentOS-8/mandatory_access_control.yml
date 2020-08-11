@@ -1,0 +1,8 @@
+---
+- name: 1.7.1.1 Ensure SELinux is installed (Scored)
+  package:
+    name: libselinux
+    state: present
+  register: cis_selinux_installed_test
+  when:
+    - cis_selinux_installed
