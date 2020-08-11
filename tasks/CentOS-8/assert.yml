@@ -296,14 +296,14 @@
       - cis_bootloader_password | length > 0
     quiet: yes
   when:
-    - cis_bootloader_password_set | bool
+    - cis_bootloader_password_set
 
 # 1.5.3 Ensure authentication required for single user mode (Scored)
 - name: test if cis_authentication_single_user_mode is set correctly
   assert:
     that:
       - cis_authentication_single_user_mode is defined
-      - cis_authentication_single_user_mode | bool
+      - cis_authentication_single_user_mode | type_debug == "bool"
     quiet: yes
 
 # 1.6.1 Ensure core dumps are restricted (Scored)
@@ -311,7 +311,7 @@
   assert:
     that:
       - cis_core_dumps_restricted is defined
-      - cis_core_dumps_restricted | bool
+      - cis_core_dumps_restricted | type_debug == "bool"
     quiet: yes
 
 # 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
@@ -319,7 +319,7 @@
   assert:
     that:
       - cis_aslr_enabled is defined
-      - cis_aslr_enabled | bool
+      - cis_aslr_enabled | type_debug == "bool"
     quiet: yes
 
 # 1.7.1.1 Ensure SELinux is installed (Scored)
@@ -327,5 +327,13 @@
   assert:
     that:
       - cis_selinux_installed is defined
-      - cis_selinux_installed | bool
+      - cis_selinux_installed | type_debug == "bool"
+    quiet: yes
+
+# 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
+- name: test if cis_selinux_not_disabled is set correctly
+  assert:
+    that:
+      - cis_selinux_not_disabled is defined
+      - cis_selinux_not_disabled | type_debug == "bool"
     quiet: yes
