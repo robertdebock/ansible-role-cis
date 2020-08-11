@@ -30,10 +30,6 @@
       # Can't create a partition in CI.
       cis_home_partition: no
 
-      # 1.5.1 Ensure permissions on bootloader config are configured (Scored)
-      # No bootloaders in a container.
-      # cis_permissions_bootloader: yes
-
       # 1.5.2 Ensure bootloader password is set (Scored)
       # No bootloaders in a container.
       cis_bootloader_password_set: no
