@@ -313,3 +313,11 @@
       - cis_core_dumps_restricted is defined
       - cis_core_dumps_restricted | bool
     quiet: yes
+
+# 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
+- name: test if cis_aslr_enabled is set correctly
+  assert:
+    that:
+      - cis_aslr_enabled is defined
+      - cis_aslr_enabled | bool
+    quiet: yes

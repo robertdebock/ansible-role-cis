@@ -29,3 +29,10 @@
     - cis_core_dumps_restricted
   notify:
     - systemctl daemon-reload
+
+- name: 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
+  sysctl:
+    name:  kernel.randomize_va_space
+    value: "2"
+  when:
+    - cis_aslr_enabled

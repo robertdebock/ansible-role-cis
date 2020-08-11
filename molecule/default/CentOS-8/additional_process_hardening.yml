@@ -57,3 +57,16 @@
       - cis_core_dumps_restricted_test_three is not changed
   when:
     - cis_core_dumps_restricted
+
+- name: 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
+  command: sysctl kernel.randomize_va_space
+  register: cis_aslr_enabled_test
+  when:
+   - cis_aslr_enabled
+
+- name: 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
+  assert:
+    that:
+      - cis_aslr_enabled_test.stdout == "kernel.randomize_va_space = 2"
+  when:
+   - cis_aslr_enabled
