@@ -20,6 +20,7 @@
   assert:
     that:
       - item.stdout == "* hard core 0"
+    quiet: yes
   loop: "{{ cis_core_dumps_restricted_test_one.results }}"
   loop_control:
     label: "{{ item.cmd }}"
@@ -39,6 +40,7 @@
   assert:
     that:
       - cis_core_dumps_restricted_test_two is not changed
+    quiet: yes
   when:
     - cis_core_dumps_restricted
 
@@ -55,6 +57,7 @@
   assert:
     that:
       - cis_core_dumps_restricted_test_three is not changed
+    quiet: yes
   when:
     - cis_core_dumps_restricted
 
@@ -68,5 +71,6 @@
   assert:
     that:
       - cis_aslr_enabled_test.stdout == "kernel.randomize_va_space = 2"
+    quiet: yes
   when:
    - cis_aslr_enabled

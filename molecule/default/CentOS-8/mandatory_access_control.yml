@@ -12,6 +12,7 @@
   assert:
     that:
       - cis_selinux_installed_test is not changed
+    quiet: yes
   when:
     - cis_selinux_installed
 
@@ -25,6 +26,7 @@
   assert:
     that:
       - cis_selinux_not_disabled_test.stdout | length == 0
+    quiet: yes
   when:
     - cis_selinux_not_disabled
 
@@ -37,8 +39,8 @@
 - name: 1.7.1.3 Ensure SELinux policy is configured (Scored)
   assert:
     that:
-      - cis_selinux_policy_configured_test_one.stdout == "SELINUXTYPE=targeted" or
-        s_selinux_policy_configured_test_one.stdout == "SELINUXTYPE=mls"
+      - cis_selinux_policy_configured_test_one.stdout in ["SELINUXTYPE=targeted", "SELINUXTYPE=mls"]
+    quiet: yes
   when:
     - cis_selinux_policy_configured
 
@@ -51,7 +53,7 @@
 - name: 1.7.1.3 Ensure SELinux policy is configured (Scored)
   assert:
     that:
-      - '"targeted" in cis_selinux_policy_configured_test_two.stdout' or
-        '"mls" in cis_selinux_policy_configured_test_two.stdout'
+      - cis_selinux_policy_configured_test_two.stdout in ["targeted", "mls"]
+    quiet: yes
   when:
     - cis_selinux_policy_configured
