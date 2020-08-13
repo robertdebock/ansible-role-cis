@@ -361,3 +361,11 @@
       - cis_selinux_state_enforcing is defined
       - cis_selinux_state_enforcing | type_debug == "bool"
     quiet: yes
+
+# 1.7.1.5 Ensure no unconfined services exist (Scored)
+- name: test if cis_no_unconfined_services is set correctly
+  assert:
+    that:
+      - cis_no_unconfined_services is defined
+      - cis_no_unconfined_services | type_debug == "bool"
+    quiet: yes

@@ -137,3 +137,6 @@ cis_selinux_policy: targeted
 
 # 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
 cis_selinux_state_enforcing: yes
+
+# 1.7.1.5 Ensure no unconfined services exist (Scored)
+cis_no_unconfined_services: yes
