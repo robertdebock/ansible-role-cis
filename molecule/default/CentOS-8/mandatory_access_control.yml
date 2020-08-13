@@ -96,7 +96,7 @@
   command: rpm -q setroubleshoot
   register: cis_setroubleshoot_not_installed_test
   failed_when:
-    - cis_setroubleshoot_not_installed_test | length > 0
+    - cis_setroubleshoot_not_installed_test.rc == 0
   when:
    -  cis_setroubleshoot_not_installed
 
@@ -104,7 +104,6 @@
   command: rpm -q mcstrans
   register: cis_mcs_translation_service_not_installed_test
   failed_when:
-    - cis_mcs_translation_service_not_installed_test | length > 0
+    - cis_mcs_translation_service_not_installed_test.rc == 0
   when:
     - cis_mcs_translation_service_not_installed
-
