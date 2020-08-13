@@ -28,6 +28,5 @@
   include: mandatory_access_control.yml
 
 # 1.8 Warning Banners
-- name: include mandatory_access_control.yml
-  include: mandatory_access_control.yml
-
+- name: include warning_banners.yml
+  include: warning_banners.yml
