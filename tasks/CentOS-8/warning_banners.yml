@@ -4,7 +4,5 @@
     content: "{{ cis_message_of_the_day }}"
     dest: /etc/motd
   register: cis_message_of_the_day_configured_test
-  failed_when:
-    - cis_message_of_the_day_configured_test is changed
   when:
     - cis_message_of_the_day_configured
