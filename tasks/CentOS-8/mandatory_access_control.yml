@@ -49,3 +49,9 @@
   when:
     - cis_no_unconfined_services
 
+- name: 1.7.1.6 Ensure SETroubleshoot is not installed (Scored)
+  package:
+    name: setroubleshoot
+    state: absent
+  when:
+   -  cis_setroubleshoot_not_installed

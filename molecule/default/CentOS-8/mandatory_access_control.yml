@@ -91,3 +91,11 @@
     - cis_no_unconfined_services_test.stdout | length > 0
   when:
     - cis_no_unconfined_services
+
+- name: 1.7.1.6 Ensure SETroubleshoot is not installed (Scored)
+  command: rpm -q setroubleshoot
+  register: cis_setroubleshoot_not_installed_test
+  failed_when:
+    - cis_setroubleshoot_not_installed_test | length > 0
+  when:
+   -  cis_setroubleshoot_not_installed
