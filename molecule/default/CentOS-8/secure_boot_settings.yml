@@ -12,12 +12,13 @@
     that:
       - item.stat.uid == 0
       - item.stat.gid == 0
-      - not item.stat.wgrp == no
-      - not item.stat.rgrp == no
-      - not item.stat.xgrp == no
-      - not item.stat.woth == no
-      - not item.stat.roth == no
-      - not item.stat.xoth == no
+      - not item.stat.wgrp
+      - not item.stat.rgrp
+      - not item.stat.xgrp
+      - not item.stat.woth
+      - not item.stat.roth
+      - not item.stat.xoth
+    quiet: yes
   when:
     - item.stat.exists | bool
   loop: "{{ cis_permissions_bootloader_test.results }}"
@@ -45,6 +46,7 @@
     that:
       - cis_bootloader_password_test_one.stat.exists
       - '"GRUB2_PASSWORD=" in cis_bootloader_password_test_two.stdout'
+    quiet: yes
   when:
     - cis_bootloader_password_set | bool
 
@@ -68,5 +70,6 @@
   assert:
     that:
       - cis_authentication_single_user_mode_test is not changed
+    quiet: yes
   when:
     - cis_authentication_single_user_mode | bool
