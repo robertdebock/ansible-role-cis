@@ -361,7 +361,7 @@
     state: stopped
     enabled: true
   when:
-    - cis_disable_automount
+    - cis_disable_automount | bool
     - services.autofs is defined
 
 - name: 1.1.23 Disable USB Storage (Scored)

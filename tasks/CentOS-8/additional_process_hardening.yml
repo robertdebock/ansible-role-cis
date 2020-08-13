@@ -4,14 +4,14 @@
     dest: /etc/security/limits.d/coredumps.conf
     content: "* hard core 0"
   when:
-    - cis_core_dumps_restricted
+    - cis_core_dumps_restricted | bool
 
 - name: 1.6.1 Ensure core dumps are restricted (Scored)
   sysctl:
     name: fs.suid_dumpable
     value: "0"
   when:
-    - cis_core_dumps_restricted
+    - cis_core_dumps_restricted | bool
 
 - name: 1.6.1 Ensure core dumps are restricted (Scored)
   ini_file:
@@ -26,7 +26,7 @@
     - option: ProcessSizeMax
       value: "0"
   when:
-    - cis_core_dumps_restricted
+    - cis_core_dumps_restricted | bool
   notify:
     - systemctl daemon-reload
 
@@ -35,4 +35,4 @@
     name:  kernel.randomize_va_space
     value: "2"
   when:
-    - cis_aslr_enabled
+    - cis_aslr_enabled | bool
