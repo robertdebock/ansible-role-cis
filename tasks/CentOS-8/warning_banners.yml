@@ -3,6 +3,13 @@
   copy:
     content: "{{ cis_message_of_the_day }}"
     dest: /etc/motd
-  register: cis_message_of_the_day_configured_test
   when:
     - cis_message_of_the_day_configured
+
+- name: 1.8.1.2 Ensure local login warning banner is configured properly (Scored)
+  copy:
+    content: "{{ cis_message_of_the_day }}"
+    dest: /etc/issue
+  when:
+    - cis_local_login_banner_configured | bool
+
