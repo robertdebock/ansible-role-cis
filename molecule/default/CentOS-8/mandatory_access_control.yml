@@ -99,3 +99,12 @@
     - cis_setroubleshoot_not_installed_test | length > 0
   when:
    -  cis_setroubleshoot_not_installed
+
+- name: 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
+  command: rpm -q mcstrans
+  register: cis_mcs_translation_service_not_installed_test
+  failed_when:
+    - cis_mcs_translation_service_not_installed_test | length > 0
+  when:
+    - cis_mcs_translation_service_not_installed
+

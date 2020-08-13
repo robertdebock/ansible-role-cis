@@ -143,3 +143,6 @@ cis_no_unconfined_services: yes
 
 # 1.7.1.6 Ensure SETroubleshoot is not installed (Scored)
 cis_setroubleshoot_not_installed: yes
+
+# 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
+cis_mcs_translation_service_not_installed: yes

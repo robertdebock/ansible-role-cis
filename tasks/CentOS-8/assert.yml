@@ -378,3 +378,10 @@
       - cis_setroubleshoot_not_installed | type_debug == "bool"
     quiet: yes
 
+# 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
+- name: test if cis_mcs_translation_service_not_installed is set correctly
+  assert:
+    that:
+      - cis_mcs_translation_service_not_installed is defined
+      - cis_mcs_translation_service_not_installed | type_debug == "bool"
+    quiet: yes

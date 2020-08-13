@@ -55,3 +55,10 @@
     state: absent
   when:
    -  cis_setroubleshoot_not_installed
+
+- name: 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
+  package:
+    name: mcstrans
+    state: absent
+  when:
+    - cis_mcs_translation_service_not_installed
