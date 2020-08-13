@@ -146,3 +146,9 @@ cis_setroubleshoot_not_installed: yes
 
 # 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
 cis_mcs_translation_service_not_installed: yes
+
+# 1.8.1.1 Ensure message of the day is configured properly (Scored)
+cis_message_of_the_day_configured: yes
+cis_message_of_the_day: |
+  UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
+  You must have explicit, authorized permission to access or configure this device. Unauthorized attempts and actions to access or use this system may result in civil and/or criminal penalties. All activities performed on this device are logged and monitored.
