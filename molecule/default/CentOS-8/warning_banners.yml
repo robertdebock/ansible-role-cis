@@ -4,9 +4,15 @@
     content: "{{ cis_message_of_the_day }}"
     dest: /etc/motd
   check_mode: yes
-  register: cis_message_of_the_day_configured_test
+  register: cis_message_of_the_day_configured_test_one
   failed_when:
-    - cis_message_of_the_day_configured_test is changed
+    - cis_message_of_the_day_configured_test_one is changed
   when:
     - cis_message_of_the_day_configured
 
+- name: 1.8.1.1 Ensure message of the day is configured properly (Scored)
+  command: grep -E -i "(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= -f2 | sed -e 's/"//g'))" /etc/motd
+  check_mode: yes
+  register: cis_message_of_the_day_configured_test_two
+  failed_when:
+    - cis_message_of_the_day_configured_test_two.stdout | length > 0
