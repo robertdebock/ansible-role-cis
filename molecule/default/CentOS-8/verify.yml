@@ -1,21 +1,33 @@
 ---
-- name: include initial_setup.yml
-  include: initial_setup.yml
+# 1.1 Filesystem Configuration
+- name: include filesystem_configuration.yml
+  include: filesystem_configuration.yml
 
+# 1.2 Configure Software Updates
 - name: include configure_software_updates.yml
   include: configure_software_updates.yml
 
+# 1.3 Configure sudo
 - name: include configure_sudo.yml
   include: configure_sudo.yml
 
+# 1.4 Filesystem Integrity Checking
 - name: include filesystem_integrity_checking.yml
   include: filesystem_integrity_checking.yml
 
+# 1.5 Secure Boot Settings
 - name: include secure_boot_settings.yml
   include: secure_boot_settings.yml
 
+# 1.6 Additional Process Hardening
 - name: include additional_process_hardening.yml
   include: additional_process_hardening.yml
 
+# 1.7 Mandatory Access Control
 - name: include mandatory_access_control.yml
   include: mandatory_access_control.yml
+
+# 1.8 Warning Banners
+- name: include mandatory_access_control.yml
+  include: mandatory_access_control.yml
+
