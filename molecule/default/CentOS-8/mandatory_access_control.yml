@@ -57,3 +57,29 @@
     quiet: yes
   when:
     - cis_selinux_policy_configured
+
+- name: 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
+  command: grep -E '^\s*SELINUX=enforcing' /etc/selinux/config
+  register: cis_selinux_state_enforcing_test_one
+  when:
+    - cis_selinux_state_enforcing
+
+- name: 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
+  assert:
+    that:
+      - cis_selinux_state_enforcing_test_one.stdout == "SELINUX=enforcing"
+  when:
+    - cis_selinux_state_enforcing
+
+- name: 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
+  command: sestatus | grep "SELinux status:"
+  register: cis_selinux_state_enforcing_test_two
+  when:
+    - cis_selinux_state_enforcing
+
+- name: 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
+  assert:
+    that:
+      - cis_selinux_state_enforcing_test_two.stdout == "SELinux status: enabled"
+  when:
+    - cis_selinux_state_enforcing
