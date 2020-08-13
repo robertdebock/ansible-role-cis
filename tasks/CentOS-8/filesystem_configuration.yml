@@ -127,8 +127,6 @@
     regexp: '^Options=(.*)'
     line: 'Options=\1,noexec'
     backrefs: yes
-  notify:
-    - remount /tmp
   when:
     - cis_tmp_noexec | bool
     - cis_tmp_noexec_output.stdout | length < 1
