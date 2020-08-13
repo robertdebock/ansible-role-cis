@@ -80,6 +80,8 @@
 
 - name: 1.1.2 Ensure /tmp is configured (Scored)
   shell: grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'
+  failed_when:
+    - no
   register: output_fstab
   when:
     - cis_tmp_configured | bool
