@@ -38,3 +38,14 @@
 #     - cis_local_login_banner_configured_test_two.stdout | length > 0
 #   when:
 #     - cis_local_login_banner_configured | bool
+
+- name: 1.8.1.3 Ensure remote login warning banner is configured properly (Scored)
+  copy:
+    content: "{{ cis_message_of_the_day }}"
+    dest: /etc/issue.net
+  check_mode: yes
+  register: cis_remote_login_banner_configured_test_one
+  failed_when:
+    - cis_remote_login_banner_configured_test_one is changed
+  when:
+    - cis_remote_login_banner_configured | bool
