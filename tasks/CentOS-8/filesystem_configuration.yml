@@ -250,58 +250,67 @@
     - remount /home
 
 - name: 1.1.15 Ensure nodev option set on /dev/shm partition (Scored)
-  mount:
-    name: "{{ item.mount }}"
-    src: "{{ item.device }}"
-    fstype: "{{ item.fstype }}"
-    opts: "{{ item.options }},nodev"
-    state: present
-  loop: "{{ ansible_mounts }}"
-  loop_control:
-    label: "{{ item.mount }}"
+  command: awk '$2 == "/dev/shm" { print $4 }' /proc/mounts
+  changed_when: no
+  check_mode: no
+  register: cis_dev_shm_nodev_test
   when:
     - cis_dev_shm_nodev | bool
-    - item.mount == "/dev/shm"
-    - item.options.find(",") >= 0
-    - item.options.find("nodev") == -1
+
+- name: 1.1.15 Ensure nodev option set on /dev/shm partition (Scored)
+  mount:
+    name: /dev/shm
+    src: tmpfs
+    fstype: tmpfs
+    opts: "{{ cis_dev_shm_nodev_test.stdout }},nodev"
+    state: present
+  when:
+    - cis_dev_shm_nodev | bool
+    - '"nodev" not in cis_dev_shm_nodev_test'
   notify:
-    - remount /dev/shm
+    - remount /dev/shm with nodev
+
+- name: 1.1.16 Ensure nosuid option set on /dev/shm partition (Scored)
+  command: awk '$2 == "/dev/shm" { print $4 }' /proc/mounts
+  changed_when: no
+  check_mode: no
+  register: cis_dev_shm_nosuid_test
+  when:
+    - cis_dev_shm_nosuid | bool
 
 - name: 1.1.16 Ensure nosuid option set on /dev/shm partition (Scored)
   mount:
-    name: "{{ item.mount }}"
-    src: "{{ item.device }}"
-    fstype: "{{ item.fstype }}"
-    opts: "{{ item.options }},nosuid"
+    name: /dev/shm
+    src: tmpfs
+    fstype: tmpfs
+    opts: "{{ cis_dev_shm_nosuid_test.stdout }},nosuid"
     state: present
-  loop: "{{ ansible_mounts }}"
-  loop_control:
-    label: "{{ item.mount }}"
   when:
     - cis_dev_shm_nosuid | bool
-    - item.mount == "/dev/shm"
-    - item.options.find(",") >= 0
-    - item.options.find("nosuid") == -1
+    - '"nosuid" not in cis_dev_shm_nosuid_test'
   notify:
-    - remount /dev/shm
+    - remount /dev/shm with nosuid
+
+- name: 1.1.17 Ensure noexec option set on /dev/shm partition (Scored)
+  command: awk '$2 == "/dev/shm" { print $4 }' /proc/mounts
+  changed_when: no
+  check_mode: no
+  register: cis_dev_shm_noexec_test
+  when:
+    - cis_dev_shm_noexec | bool
 
 - name: 1.1.17 Ensure noexec option set on /dev/shm partition (Scored)
   mount:
-    name: "{{ item.mount }}"
-    src: "{{ item.device }}"
-    fstype: "{{ item.fstype }}"
-    opts: "{{ item.options }},noexec"
+    name: /dev/shm
+    src: tmpfs
+    fstype: tmpfs
+    opts: "{{ cis_dev_shm_noexec_test.stdout }},noexec"
     state: present
-  loop: "{{ ansible_mounts }}"
-  loop_control:
-    label: "{{ item.mount }}"
   when:
     - cis_dev_shm_noexec | bool
-    - item.mount == "/dev/shm"
-    - item.options.find(",") >= 0
-    - item.options.find("noexec") == -1
+    - '"noexec" not in cis_dev_shm_noexec_test'
   notify:
-    - remount /dev/shm
+    - remount /dev/shm with noexec
 
 - name: 1.1.18 Ensure nodev option set on removable media partitions (Not Scored)
   shell: set -o pipefail && mount | grep -E '\s{{ item }}\s' | grep -v nodev

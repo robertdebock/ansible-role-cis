@@ -15,10 +15,14 @@
     path: /home
     state: remounted
 
-- name: remount /dev/shm
-  mount:
-    path: /dev/shm
-    state: remounted
+- name: remount /dev/shm with nodev
+  command: mount -o remount,nodev /dev/shm
+
+- name: remount /dev/shm with nosuid
+  command: mount -o remount,nosuid /dev/shm
+
+- name: remount /dev/shm with noexec
+  command: mount -o remount,noexec /dev/shm
 
 - name: copy aide.db.new.gz to aide.db.gz
   copy:
