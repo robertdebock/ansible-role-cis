@@ -171,3 +171,6 @@ cis_permissions_etc_issue_net: yes
 
 # 1.8.2 Ensure GDM login banner is configured (Scored)
 cis_gdm_login_banner_configured: yes
+
+# 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
+cis_updates_installed: yes
