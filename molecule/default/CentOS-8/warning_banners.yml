@@ -97,3 +97,28 @@
       - cis_permissions_etc_issue_net_test.stat.uid == "0"
   when:
     - cis_permissions_etc_issue_net | bool
+
+- name: 1.8.2 Ensure GDM login banner is configured (Scored)
+  lineinfile:
+    path: /etc/gdm3/greeter.dconf-defaults
+    section: org/gnome/login-screen
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  check_mode: yes
+  register: cis_gdm_login_banner_configured_test
+  loop:
+    - option: banner-message-enable
+      value: "true"
+    - option: banner-message-text
+      value: "{{ cis_message_of_the_day }}"
+  loop_control:
+    label: "{{ item.option }}"
+  when:
+    - cis_gdm_login_banner_configured is set correctly
+    - "'gdm' in ansible_facts.packages"
+
+- name: 1.8.2 Ensure GDM login banner is configured (Scored)
+  assert:
+    that:
+      - item is not changed
+  loop: "{{ cis_gdm_login_banner_configured_test.results }}"

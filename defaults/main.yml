@@ -168,3 +168,6 @@ cis_permissions_etc_issue: yes
 
 # 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
 cis_permissions_etc_issue_net: yes
+
+# 1.8.2 Ensure GDM login banner is configured (Scored)
+cis_gdm_login_banner_configured: yes

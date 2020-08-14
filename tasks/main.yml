@@ -7,5 +7,8 @@
 # - name: populate service facts
 #   service_facts:
 
+- name: gather the rpm package facts
+  package_facts:
+
 - name: include distribution specific version
   include: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/main.yml"
