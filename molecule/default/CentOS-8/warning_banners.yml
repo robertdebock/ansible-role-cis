@@ -118,7 +118,14 @@
     - "'gdm' in ansible_facts.packages"
 
 - name: 1.8.2 Ensure GDM login banner is configured (Scored)
+  package_facts:
+  when:
+    - cis_gdm_login_banner_configured | bool
+
+- name: 1.8.2 Ensure GDM login banner is configured (Scored)
   assert:
     that:
       - item is not changed
   loop: "{{ cis_gdm_login_banner_configured_test.results }}"
+  when:
+    - cis_gdm_login_banner_configured | bool
