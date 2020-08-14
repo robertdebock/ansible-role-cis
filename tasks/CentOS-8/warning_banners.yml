@@ -62,5 +62,5 @@
   loop_control:
     label: "{{ item.option }}"
   when:
-    - cis_gdm_login_banner_configured is set correctly
+    - cis_gdm_login_banner_configured | bool
     - "'gdm' in ansible_facts.packages"
