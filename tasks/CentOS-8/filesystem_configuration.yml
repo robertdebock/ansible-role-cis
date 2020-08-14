@@ -60,7 +60,7 @@
     - ansible_virtualization_type != "docker"
 
 - name: 1.1.2 Ensure /tmp is configured (Scored)
-  systemd:
+  service:
     name: tmp.mount
     state: started
     enabled: yes
