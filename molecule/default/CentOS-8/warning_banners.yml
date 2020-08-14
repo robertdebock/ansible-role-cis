@@ -61,8 +61,8 @@
   assert:
     that:
       - cis_permissions_etc_motd_test.stat.mode == "0644"
-      - cis_permissions_etc_motd_test.stat.gid == "0"
-      - cis_permissions_etc_motd_test.stat.uid == "0"
+      - cis_permissions_etc_motd_test.stat.gid == 0
+      - cis_permissions_etc_motd_test.stat.uid == 0
   when:
     - cis_permissions_etc_motd | bool
 
@@ -77,8 +77,8 @@
   assert:
     that:
       - cis_permissions_etc_issue_test.stat.mode == "0644"
-      - cis_permissions_etc_issue_test.stat.gid == "0"
-      - cis_permissions_etc_issue_test.stat.uid == "0"
+      - cis_permissions_etc_issue_test.stat.gid == 0
+      - cis_permissions_etc_issue_test.stat.uid == 0
   when:
    - cis_permissions_etc_issue | bool
 
@@ -93,8 +93,8 @@
   assert:
     that:
       - cis_permissions_etc_issue_net_test.stat.mode == "0644"
-      - cis_permissions_etc_issue_net_test.stat.gid == "0"
-      - cis_permissions_etc_issue_net_test.stat.uid == "0"
+      - cis_permissions_etc_issue_net_test.stat.gid == 0
+      - cis_permissions_etc_issue_net_test.stat.uid == 0
   when:
     - cis_permissions_etc_issue_net | bool
 
@@ -114,7 +114,7 @@
   loop_control:
     label: "{{ item.option }}"
   when:
-    - cis_gdm_login_banner_configured is set correctly
+    - cis_gdm_login_banner_configured | bool
     - "'gdm' in ansible_facts.packages"
 
 - name: 1.8.2 Ensure GDM login banner is configured (Scored)
