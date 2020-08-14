@@ -21,3 +21,30 @@
   when:
     - cis_remote_login_banner_configured | bool
 
+- name: 1.8.1.4 Ensure permissions on /etc/motd are configured (Scored)
+  file:
+    path: /etc/motd
+    mode: "0644"
+    group: root
+    owner: root
+  when:
+    - cis_permissions_etc_motd | bool
+
+- name: 1.8.1.5 Ensure permissions on /etc/issue are configured (Scored)
+  file:
+    path: /etc/issue
+    mode: "0644"
+    group: root
+    owner: root
+  when:
+   - cis_permissions_etc_issue | bool
+
+- name: 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
+  file:
+    path: /etc/issue.net
+    mode: "0644"
+    group: root
+    owner: root
+  when:
+    - cis_permissions_etc_issue_net | bool
+

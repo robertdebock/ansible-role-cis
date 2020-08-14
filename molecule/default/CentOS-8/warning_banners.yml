@@ -49,3 +49,51 @@
     - cis_remote_login_banner_configured_test_one is changed
   when:
     - cis_remote_login_banner_configured | bool
+
+- name: 1.8.1.4 Ensure permissions on /etc/motd are configured (Scored)
+  stat:
+    path: /etc/motd
+  register: cis_permissions_etc_motd_test
+  when:
+    - cis_permissions_etc_motd | bool
+
+- name: 1.8.1.4 Ensure permissions on /etc/motd are configured (Scored)
+  assert:
+    that:
+      - cis_permissions_etc_motd_test.stat.mode == "0644"
+      - cis_permissions_etc_motd_test.stat.gid == "0"
+      - cis_permissions_etc_motd_test.stat.uid == "0"
+  when:
+    - cis_permissions_etc_motd | bool
+
+- name: 1.8.1.5 Ensure permissions on /etc/issue are configured (Scored)
+  stat:
+    path: /etc/issue
+  register: cis_permissions_etc_issue_test
+  when:
+   - cis_permissions_etc_issue | bool
+
+- name: 1.8.1.5 Ensure permissions on /etc/issue are configured (Scored)
+  assert:
+    that:
+      - cis_permissions_etc_issue_test.stat.mode == "0644"
+      - cis_permissions_etc_issue_test.stat.gid == "0"
+      - cis_permissions_etc_issue_test.stat.uid == "0"
+  when:
+   - cis_permissions_etc_issue | bool
+
+- name: 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
+  stat:
+    path: /etc/issue.net
+  register: cis_permissions_etc_issue_net_test
+  when:
+    - cis_permissions_etc_issue_net | bool
+
+- name: 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
+  assert:
+    that:
+      - cis_permissions_etc_issue_net_test.stat.mode == "0644"
+      - cis_permissions_etc_issue_net_test.stat.gid == "0"
+      - cis_permissions_etc_issue_net_test.stat.uid == "0"
+  when:
+    - cis_permissions_etc_issue_net | bool

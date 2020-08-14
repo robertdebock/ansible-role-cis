@@ -417,3 +417,27 @@
       - cis_remote_login_banner_configured is defined
       - cis_remote_login_banner_configured | type_debug == "bool"
     quiet: yes
+
+# 1.8.1.4 Ensure permissions on /etc/motd are configured (Scored)
+- name: test if cis_permissions_etc_motd is set correctly
+  assert:
+    that:
+      - cis_permissions_etc_motd is defined
+      - cis_permissions_etc_motd | type_debug == "bool"
+    quiet: yes
+
+# 1.8.1.5 Ensure permissions on /etc/issue are configured (Scored)
+- name: test if cis_permissions_etc_issue is set correctly
+  assert:
+    that:
+      - cis_permissions_etc_issue is defined
+      - cis_permissions_etc_issue | type_debug == "bool"
+    quiet: yes
+
+# 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
+- name: test if cis_permissions_etc_issue_net is set correctly
+  assert:
+    that:
+      - cis_permissions_etc_issue_net is defined
+      - cis_permissions_etc_issue_net | type_debug == "bool"
+    quiet: yes

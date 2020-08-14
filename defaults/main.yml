@@ -159,3 +159,12 @@ cis_local_login_banner_configured: yes
 
 # 1.8.1.3 Ensure remote login warning banner is configured properly (Scored)
 cis_remote_login_banner_configured: yes
+
+# 1.8.1.4 Ensure permissions on /etc/motd are configured (Scored)
+cis_permissions_etc_motd: yes
+
+# 1.8.1.5 Ensure permissions on /etc/issue are configured (Scored)
+cis_permissions_etc_issue: yes
+
+# 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
+cis_permissions_etc_issue_net: yes
