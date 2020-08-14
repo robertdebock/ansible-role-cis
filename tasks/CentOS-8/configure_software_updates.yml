@@ -19,6 +19,7 @@
   find:
     paths: /etc/yum.repos.d/
     patterns: '*'
+    excludes: CentOS-Vault.repo
   register: cis_repos
   when:
     - cis_gpgcheck_enabled | bool
