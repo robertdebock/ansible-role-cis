@@ -9,3 +9,6 @@
     - update-crypto-policies
   when:
     - cis_crypto_policy_not_legacy | bool
+
+# 1.11 Ensure system-wide crypto policy is FUTURE or FIPS (Scored)
+# The commands to set FUTURE is similar to 1.10.

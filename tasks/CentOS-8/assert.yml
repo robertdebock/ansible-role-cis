@@ -473,3 +473,11 @@
       - cis_crypto_policy is defined
       - cis_crypto_policy in ["LEGACY", "DEFAULT", "FUTURE", "FIPS", "EMPTY"]
     quiet: yes
+
+# 1.11 Ensure system-wide crypto policy is FUTURE or FIPS (Scored)
+- name: test if cis_ensure_crypto_policy is set correctly
+  assert:
+    that:
+      - cis_ensure_crypto_policy is defined
+      - cis_ensure_crypto_policy in ["LEGACY", "DEFAULT", "FUTURE", "FIPS", "EMPTY"]
+    quiet: yes

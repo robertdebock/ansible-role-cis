@@ -177,4 +177,7 @@ cis_updates_installed: yes
 
 # 1.10 Ensure system-wide crypto policy is not legacy (Scored)
 cis_crypto_policy_not_legacy: yes
-cis_crypto_policy: DEFAULT
+cis_crypto_policy: FIPS
+
+# 1.11 Ensure system-wide crypto policy is FUTURE or FIPS (Scored)
+cis_ensure_crypto_policy: yes
