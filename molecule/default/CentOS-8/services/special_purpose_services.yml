@@ -1,0 +1,8 @@
+---
+- name: 2.2.1.1 Ensure time synchronization is in use (Not Scored)
+  command: rpm -q chrony
+  register: cis_time_synchronization_test
+  failed_when:
+    - cis_time_synchronization_test.rc != 0
+  when: 
+    - cis_time_synchronization | bool

@@ -489,3 +489,11 @@
       - cis_xinet_not_installed is defined
       - cis_xinet_not_installed | type_debug == "bool"
     quiet: yes
+
+# 2.2.1.1 Ensure time synchronization is in use (Not Scored)
+- name: test if cis_time_synchronization is set correctly
+  assert:
+    that:
+      - cis_time_synchronization is defined
+      - cis_time_synchronization | type_debug == "bool"
+    quiet: yes

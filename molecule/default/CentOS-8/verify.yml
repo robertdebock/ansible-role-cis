@@ -39,6 +39,10 @@
 - name: include system_wide_crypto_policy.yml
   include: initial_setup/system_wide_crypto_policy.yml
 
-# 2.1.1 Ensure xinetd is not installed (Scored)
+# 2.1 inetd Services
 - name: include inetd_services.yml
   include: services/inetd_services.yml
+
+# 2.2 Special Purpose Services
+- name: include special_purpose_services.yml
+  include: services/special_purpose_services.yml
