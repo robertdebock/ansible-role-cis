@@ -479,5 +479,5 @@
   assert:
     that:
       - cis_ensure_crypto_policy is defined
-      - cis_ensure_crypto_policy in ["FUTURE", "FIPS"]
+      - cis_ensure_crypto_policy | type_debug == "bool"
     quiet: yes
