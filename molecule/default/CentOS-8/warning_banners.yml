@@ -63,7 +63,7 @@
       - cis_permissions_etc_motd_test.stat.mode == "0644"
       - cis_permissions_etc_motd_test.stat.gid == 0
       - cis_permissions_etc_motd_test.stat.uid == 0
-  quiet: yes
+    quiet: yes
   when:
     - cis_permissions_etc_motd | bool
 
@@ -80,7 +80,7 @@
       - cis_permissions_etc_issue_test.stat.mode == "0644"
       - cis_permissions_etc_issue_test.stat.gid == 0
       - cis_permissions_etc_issue_test.stat.uid == 0
-  quiet: yes
+    quiet: yes
   when:
    - cis_permissions_etc_issue | bool
 
@@ -97,7 +97,7 @@
       - cis_permissions_etc_issue_net_test.stat.mode == "0644"
       - cis_permissions_etc_issue_net_test.stat.gid == 0
       - cis_permissions_etc_issue_net_test.stat.uid == 0
-  quiet: yes
+    quiet: yes
   when:
     - cis_permissions_etc_issue_net | bool
 
@@ -129,7 +129,7 @@
   assert:
     that:
       - item is not changed
+    quiet: yes
   loop: "{{ cis_gdm_login_banner_configured_test.results }}"
-  quiet: yes
   when:
     - cis_gdm_login_banner_configured | bool
