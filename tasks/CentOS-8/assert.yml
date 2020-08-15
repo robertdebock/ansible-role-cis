@@ -457,3 +457,19 @@
       - cis_updates_installed is defined
       - cis_updates_installed | type_debug == "bool"
     quiet: yes
+
+# 1.10 Ensure system-wide crypto policy is not legacy (Scored)
+- name: test if cis_crypto_policy_not_legacy is set correctly
+  assert:
+    that:
+      - cis_crypto_policy_not_legacy is defined
+      - cis_crypto_policy_not_legacy | type_debug == "bool"
+    quiet: yes
+
+# 1.10 Ensure system-wide crypto policy is not legacy (Scored)
+- name: test if cis_crypto_policy is set correctly
+  assert:
+    that:
+      - cis_crypto_policy is defined
+      - cis_crypto_policy in ["LEGACY", "DEFAULT", "FUTURE", "FIPS", "EMPTY"]
+    quiet: yes

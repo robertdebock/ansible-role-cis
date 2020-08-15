@@ -174,3 +174,7 @@ cis_gdm_login_banner_configured: yes
 
 # 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
 cis_updates_installed: yes
+
+# 1.10 Ensure system-wide crypto policy is not legacy (Scored)
+cis_crypto_policy_not_legacy: yes
+cis_crypto_policy: DEFAULT

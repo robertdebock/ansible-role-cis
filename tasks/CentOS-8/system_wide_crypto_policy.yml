@@ -1,0 +1,11 @@
+---
+- name: 1.10 Ensure system-wide crypto policy is not legacy (Scored)
+  lineinfile:
+    path: /etc/crypto-policies/config
+    regexp: '^(?!#)(\S+)$'
+    line: '{{ cis_crypto_policy }}'
+    create: true
+  notify:
+    - update-crypto-policies
+  when:
+    - cis_crypto_policy_not_legacy | bool

@@ -41,3 +41,6 @@
   reboot:
   when:
     - ansible_connection != "docker"
+
+- name: update-crypto-policies
+  command: update-crypto-policies

@@ -34,3 +34,7 @@
 # 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
 - name: include updates_installed.yml
   include: updates_installed.yml
+
+# name: 1.10 Ensure system-wide crypto policy is not legacy (Scored)
+- name: include system_wide_crypto_policy.yml
+  include: system_wide_crypto_policy.yml
