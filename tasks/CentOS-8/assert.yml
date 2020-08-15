@@ -479,5 +479,5 @@
   assert:
     that:
       - cis_ensure_crypto_policy is defined
-      - cis_ensure_crypto_policy in ["LEGACY", "DEFAULT", "FUTURE", "FIPS", "EMPTY"]
+      - cis_ensure_crypto_policy in ["FUTURE", "FIPS"]
     quiet: yes
