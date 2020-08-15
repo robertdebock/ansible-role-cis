@@ -1,0 +1,8 @@
+---
+- name: 2.1.1 Ensure xinetd is not installed (Scored)
+  command: rpm -q xinetd
+  register: cis_xinet_not_installed_test
+  failed_when:
+    - cis_xinet_not_installed_test.rc != 0
+  when:
+    - cis_xinet_not_installed | bool

@@ -481,3 +481,11 @@
       - cis_ensure_crypto_policy is defined
       - cis_ensure_crypto_policy | type_debug == "bool"
     quiet: yes
+
+# 2.1.1 Ensure xinetd is not installed (Scored)
+- name: test if cis_xinet_not_installed is set correctly
+  assert:
+    that:
+      - cis_xinet_not_installed is defined
+      - cis_xinet_not_installed | type_debug == "bool"
+    quiet: yes

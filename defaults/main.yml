@@ -181,3 +181,6 @@ cis_crypto_policy: FIPS
 
 # 1.11 Ensure system-wide crypto policy is FUTURE or FIPS (Scored)
 cis_ensure_crypto_policy: yes
+
+# 2.1.1 Ensure xinetd is not installed (Scored)
+cis_xinet_not_installed: yes
