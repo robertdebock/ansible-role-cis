@@ -529,3 +529,11 @@
       - cis_chrony_servers | length > 0 or
         cis_chrony_pools | length > 0
     quiet: yes
+
+# 2.2.2 Ensure X Window System is not installed (Scored)
+- name: test if cis_x_windows_system_not_installed is set correctly
+  assert:
+    that:
+      - cis_x_windows_system_not_installed is defined
+      - cis_x_windows_system_not_installed | type_debug == "bool"
+    quiet: yes

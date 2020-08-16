@@ -22,3 +22,11 @@
     cis_chrony_configured_test_one.stdout | length == 0
   when:
     - cis_chrony_configured | bool
+
+- name: 2.2.2 Ensure X Window System is not installed (Scored)
+  command: rpm -qa xorg-x11*
+  register: cis_x_windows_system_not_installed_test
+  failed_when:
+    - cis_x_windows_system_not_installed_test | length > 0
+  when:
+    - cis_x_windows_system_not_installed | bool

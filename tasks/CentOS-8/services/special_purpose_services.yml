@@ -27,3 +27,10 @@
   when:
     - cis_time_synchronization | bool
     - cis_chrony_pools | length > 0
+
+- name: 2.2.2 Ensure X Window System is not installed (Scored)
+  package:
+    name: xorg-x11*
+    state: absent
+  when:
+    - cis_x_windows_system_not_installed | bool
