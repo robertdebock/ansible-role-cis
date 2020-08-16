@@ -32,6 +32,9 @@
   command: rpm -qa --qf '%{NAME}\n' xorg-x11*
   args:
     warn: no
+  changed_when:
+    - no
+  check_mode: no
   register: cis_x_windows_system_not_installed_test_one
   when:
     - cis_x_windows_system_not_installed | bool
@@ -44,3 +47,11 @@
   when:
     - cis_x_windows_system_not_installed | bool
 
+- name: 2.2.3 Ensure rsync service is not enabled (Scored)
+  service:
+    name: rsycnd
+    state: stopped
+    enabled: no
+  when:
+    -  cis_rsync_service_not_enabled
+    - "'rsyncd' in services"

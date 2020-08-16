@@ -197,3 +197,6 @@ cis_chrony_pools:
 
 # 2.2.2 Ensure X Window System is not installed (Scored)
 cis_x_windows_system_not_installed: yes
+
+# 2.2.3 Ensure rsync service is not enabled (Scored)
+cis_rsync_service_not_enabled: yes

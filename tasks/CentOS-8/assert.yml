@@ -537,3 +537,11 @@
       - cis_x_windows_system_not_installed is defined
       - cis_x_windows_system_not_installed | type_debug == "bool"
     quiet: yes
+
+# 2.2.3 Ensure rsync service is not enabled (Scored)
+- name: test if cis_rsync_service_not_enabled is set correctly
+  assert:
+    that:
+      - cis_rsync_service_not_enabled is defined
+      - cis_rsync_service_not_enabled | type_debug == "bool"
+    quiet: yes

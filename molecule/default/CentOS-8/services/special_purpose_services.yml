@@ -44,3 +44,16 @@
     cis_x_windows_system_not_installed_test_two is changed
   when:
     - cis_x_windows_system_not_installed | bool
+
+- name: 2.2.3 Ensure rsync service is not enabled (Scored)
+  service:
+    name: rsycnd
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_rsync_service_not_enabled_test
+  failed_when:
+    - cis_rsync_service_not_enabled_test is changed
+  when:
+    -  cis_rsync_service_not_enabled
+    - "'rsyncd' in services"
