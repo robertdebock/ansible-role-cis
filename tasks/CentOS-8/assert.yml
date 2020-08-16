@@ -545,3 +545,123 @@
       - cis_rsync_service_not_enabled is defined
       - cis_rsync_service_not_enabled | type_debug == "bool"
     quiet: yes
+
+# 2.2.4 Ensure Avahi Server is not enabled (Scored)
+- name: test if cis_avahi_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_avahi_server_not_enabled is defined
+      - cis_avahi_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.5 Ensure SNMP Server is not enabled (Scored)
+- name: test if cis_snmp_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_snmp_server_not_enabled is defined
+      - cis_snmp_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.6 Ensure HTTP Proxy Server is not enabled (Scored)
+- name: test if cis_http_proxy_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_http_proxy_server_not_enabled is defined
+      - cis_http_proxy_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.7 Ensure Samba is not enabled (Scored)
+- name: test if cis_samba_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_samba_server_not_enabled is defined
+      - cis_samba_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.8 Ensure IMAP and POP3 server is not enabled (Scored)
+- name: test if cis_imap_and_pop3_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_imap_and_pop3_server_not_enabled is defined
+      - cis_imap_and_pop3_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.9 Ensure HTTP server is not enabled (Scored)
+- name: test if cis_http_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_http_server_not_enabled is defined
+      - cis_http_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.10 Ensure FTP Server is not enabled (Scored)
+- name: test if cis_ftp_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_ftp_server_not_enabled is defined
+      - cis_ftp_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.11 Ensure DNS Server is not enabled (Scored)
+- name: test if cis_dns_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_dns_server_not_enabled is defined
+      - cis_dns_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.12 Ensure NFS is not enabled (Scored)
+- name: test if cis_nfs_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_nfs_server_not_enabled is defined
+      - cis_nfs_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.13 Ensure RPC is not enabled (Scored)
+- name: test if cis_rpc_not_enabled is set correctly
+  assert:
+    that:
+      - cis_rpc_not_enabled is defined
+      - cis_rpc_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.14 Ensure LDAP server is not enabled (Scored)
+- name: test if cis_ldap_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_ldap_server_not_enabled is defined
+      - cis_ldap_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.15 Ensure DHCP Server is not enabled (Scored)
+- name: test if cis_dhcp_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_dhcp_server_not_enabled is defined
+      - cis_dhcp_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.16 Ensure CUPS is not enabled (Scored)
+- name: test if cis_cups_not_enabled is set correctly
+  assert:
+    that:
+      - cis_cups_not_enabled is defined
+      - cis_cups_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.17 Ensure NIS Server is not enabled (Scored)
+- name: test if cis_nis_server_not_enabled is set correctly
+  assert:
+    that:
+      - cis_nis_server_not_enabled is defined
+      - cis_nis_server_not_enabled | type_debug == "bool"
+    quiet: yes
+
+# 2.2.18 Ensure mail transfer agent is configured for local-only mode (Scored)
+- name: test if cis_mta_local_only_mode is set correctly
+  assert:
+    that:
+      - cis_mta_local_only_mode is defined
+      - cis_mta_local_only_mode | type_debug == "bool"
+    quiet: yes

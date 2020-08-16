@@ -200,3 +200,48 @@ cis_x_windows_system_not_installed: yes
 
 # 2.2.3 Ensure rsync service is not enabled (Scored)
 cis_rsync_service_not_enabled: yes
+
+# 2.2.4 Ensure Avahi Server is not enabled (Scored)
+cis_avahi_server_not_enabled: yes
+
+# 2.2.5 Ensure SNMP Server is not enabled (Scored)
+cis_snmp_server_not_enabled: yes
+
+# 2.2.6 Ensure HTTP Proxy Server is not enabled (Scored)
+cis_http_proxy_server_not_enabled: yes
+
+# 2.2.7 Ensure Samba is not enabled (Scored)
+cis_samba_server_not_enabled: yes
+
+# 2.2.8 Ensure IMAP and POP3 server is not enabled (Scored)
+cis_imap_and_pop3_server_not_enabled: yes
+
+# 2.2.9 Ensure HTTP server is not enabled (Scored)
+cis_http_server_not_enabled: yes
+
+# 2.2.10 Ensure FTP Server is not enabled (Scored)
+cis_ftp_server_not_enabled: yes
+
+# 2.2.11 Ensure DNS Server is not enabled (Scored)
+cis_dns_server_not_enabled: yes
+
+# 2.2.12 Ensure NFS is not enabled (Scored)
+cis_nfs_server_not_enabled: yes
+
+# 2.2.13 Ensure RPC is not enabled (Scored)
+cis_rpc_not_enabled: yes
+
+# 2.2.14 Ensure LDAP server is not enabled (Scored)
+cis_ldap_server_not_enabled: yes
+
+# 2.2.15 Ensure DHCP Server is not enabled (Scored)
+cis_dhcp_server_not_enabled: yes
+
+# 2.2.16 Ensure CUPS is not enabled (Scored)
+cis_cups_not_enabled: yes
+
+# 2.2.17 Ensure NIS Server is not enabled (Scored)
+cis_nis_server_not_enabled: yes
+
+# 2.2.18 Ensure mail transfer agent is configured for local-only mode (Scored)
+cis_mta_local_only_mode: yes

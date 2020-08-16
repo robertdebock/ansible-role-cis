@@ -55,5 +55,200 @@
   failed_when:
     - cis_rsync_service_not_enabled_test is changed
   when:
-    -  cis_rsync_service_not_enabled
+    - cis_rsync_service_not_enabled | bool
     - "'rsyncd' in services"
+
+- name: 2.2.4 Ensure Avahi Server is not enabled (Scored)
+  service:
+    name: avahi-daemon
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_avahi_server_not_enabled_test
+  failed_when:
+    - cis_avahi_server_not_enabled_test is changed
+  when:
+    - cis_avahi_server_not_enabled | bool
+    - "'avahi-daemon' in services"
+
+- name: 2.2.5 Ensure SNMP Server is not enabled (Scored)
+  service:
+    name: snmpd
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_snmp_server_not_enabled_test
+  failed_when:
+    - cis_snmp_server_not_enabled_test is changed
+  when:
+    - cis_snmp_server_not_enabled | bool
+    - "'snmpd' in services"
+
+- name: 2.2.6 Ensure HTTP Proxy Server is not enabled (Scored)
+  service:
+    name: squid
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_http_proxy_server_not_enabled_test
+  failed_when:
+    - cis_http_proxy_server_not_enabled_test is changed
+  when:
+    - cis_http_proxy_server_not_enabled | bool
+    - "'squid' in services"
+
+- name: 2.2.7 Ensure Samba is not enabled (Scored)
+  service:
+    name: smb
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_samba_server_not_enabled_test
+  failed_when:
+    - cis_samba_server_not_enabled_test is changed
+  when:
+    - cis_samba_server_not_enabled | bool
+    - "'smb' in services"
+
+- name: 2.2.8 Ensure IMAP and POP3 server is not enabled (Scored)
+  service:
+    name: dovecot
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_imap_and_pop3_server_not_enabled_test
+  failed_when:
+    - cis_imap_and_pop3_server_not_enabled_test is changed
+  when:
+    - cis_imap_and_pop3_server_not_enabled | bool
+    - "'dovecot' in services"
+
+- name: 2.2.9 Ensure HTTP server is not enabled (Scored)
+  service:
+    name: httpd
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_http_server_not_enabled_test
+  failed_when:
+    - cis_http_server_not_enabled_test is changed
+  when:
+    - cis_http_server_not_enabled | bool
+    - "'httpd' in services"
+
+- name: 2.2.10 Ensure FTP Server is not enabled (Scored)
+  service:
+    name: vsftpd
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_ftp_server_not_enabled_test
+  failed_when:
+    - cis_ftp_server_not_enabled_test is changed
+  when:
+    - cis_ftp_server_not_enabled | bool
+    - "'vsftpd' in services"
+
+- name: 2.2.11 Ensure DNS Server is not enabled (Scored)
+  service:
+    name: named
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_dns_server_not_enabled_test
+  failed_when:
+    - cis_dns_server_not_enabled_test is changed
+  when:
+    - cis_dns_server_not_enabled | bool
+    - "'named' in services"
+
+- name: 2.2.12 Ensure NFS is not enabled (Scored)
+  service:
+    name: nfs
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_nfs_server_not_enabled_test
+  failed_when:
+    - cis_nfs_server_not_enabled_test is changed
+  when:
+    - cis_nfs_server_not_enabled | bool
+    - "'nfs' in services"
+
+- name: 2.2.13 Ensure RPC is not enabled (Scored)
+  service:
+    name: rpcbind
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_rpc_not_enabled_test
+  failed_when:
+    - cis_rpc_not_enabled_test is changed
+  when:
+    - cis_rpc_not_enabled | bool
+    - "'rpcbind' in services"
+
+- name: 2.2.14 Ensure LDAP server is not enabled (Scored)
+  service:
+    name: slapd
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_ldap_server_not_enabled_test
+  failed_when:
+    - cis_ldap_server_not_enabled_test is changed
+  when:
+    - cis_ldap_server_not_enabled | bool
+    - "'slapd' in services"
+
+- name: 2.2.15 Ensure DHCP Server is not enabled (Scored)
+  service:
+    name: dhcpd
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_dhcp_server_not_enabled_test
+  failed_when:
+    - cis_dhcp_server_not_enabled_test is changed
+  when:
+    - cis_dhcp_server_not_enabled | bool
+    - "'dhcpd' in services"
+
+- name: 2.2.16 Ensure CUPS is not enabled (Scored)
+  service:
+    name: cups
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_cups_not_enabled_test
+  failed_when:
+    - cis_cups_not_enabled_test is changed
+  when:
+    - cis_cups_not_enabled | bool
+    - "'cups' in services"
+
+- name: 2.2.17 Ensure NIS Server is not enabled (Scored)
+  service:
+    name: ypserv
+    state: stopped
+    enabled: no
+  check_mode: yes
+  register: cis_nis_server_not_enabled_tets
+  failed_when:
+    - cis_nis_server_not_enabled_tets is changed
+  when:
+    - cis_nis_server_not_enabled | bool
+    - "'ypserv' in services"
+
+- name: 2.2.18 Ensure mail transfer agent is configured for local-only mode (Scored)
+  lineinfile:
+    path: /etc/postfix/main.cf
+    line: "inet_interfaces = loopback-only"
+    regexp: '^inet_interfaces'
+  check_mode: yes
+  register: cis_mta_local_only_mode_test
+  failed_when:
+    - cis_mta_local_only_mode_test is changed
+  when:
+    - cis_mta_local_only_mode | bool
+    - "'postfix' in services"
