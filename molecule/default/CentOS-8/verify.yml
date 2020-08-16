@@ -1,4 +1,7 @@
 ---
+- name: populate service facts
+  service_facts:
+
 # 1.1 Filesystem Configuration
 - name: include filesystem_configuration.yml
   include: initial_setup/filesystem_configuration.yml
