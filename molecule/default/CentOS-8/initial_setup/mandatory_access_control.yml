@@ -86,6 +86,8 @@
 
 - name: 1.7.1.5 Ensure no unconfined services exist (Scored)
   command: ps -eZ | grep unconfined_service_t
+  args:
+    warn: no
   register: cis_no_unconfined_services_test
   failed_when:
     - cis_no_unconfined_services_test.stdout | length > 0
@@ -94,6 +96,8 @@
 
 - name: 1.7.1.6 Ensure SETroubleshoot is not installed (Scored)
   command: rpm -q setroubleshoot
+  args:
+    warn: no
   register: cis_setroubleshoot_not_installed_test
   failed_when:
     - cis_setroubleshoot_not_installed_test.rc == 0
@@ -102,6 +106,8 @@
 
 - name: 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
   command: rpm -q mcstrans
+  args:
+    warn: no
   register: cis_mcs_translation_service_not_installed_test
   failed_when:
     - cis_mcs_translation_service_not_installed_test.rc == 0

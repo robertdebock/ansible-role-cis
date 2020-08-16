@@ -30,7 +30,7 @@
 - name: 1.6.1 Ensure core dumps are restricted (Scored)
   sysctl:
     name: fs.suid_dumpable
-    value: 0
+    value: "0"
   register: cis_core_dumps_restricted_test_two
   check_mode: yes
   when:

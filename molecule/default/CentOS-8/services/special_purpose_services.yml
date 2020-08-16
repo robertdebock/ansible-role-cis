@@ -1,6 +1,8 @@
 ---
 - name: 2.2.1.1 Ensure time synchronization is in use (Not Scored)
   command: rpm -q chrony
+  args:
+    warn: no
   register: cis_time_synchronization_test
   failed_when:
     - cis_time_synchronization_test.rc != 0
@@ -25,8 +27,10 @@
 
 - name: 2.2.2 Ensure X Window System is not installed (Scored)
   command: rpm -qa xorg-x11*
+  args:
+    warn: no
   register: cis_x_windows_system_not_installed_test
   failed_when:
-    - cis_x_windows_system_not_installed_test | length > 0
+    - cis_x_windows_system_not_installed_test | length != 0
   when:
     - cis_x_windows_system_not_installed | bool

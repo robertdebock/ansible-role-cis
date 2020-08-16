@@ -1,6 +1,8 @@
 ---
 - name: 1.2.1 Ensure GPG keys are configured (Not Scored)
   command: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+  args:
+    warn: no
   register: cis_gpg_keys
   failed_when:
     - cis_gpg_keys.stdout | length < 1
@@ -25,6 +27,8 @@
 
 - name: 1.2.3 Ensure package manager repositories are configured (Not Scored)
   command: dnf repolist
+  args:
+    warn: no
   register: cis_repositories
   failed_when:
     - cis_repositories.stdout | length < 2
