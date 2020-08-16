@@ -56,7 +56,7 @@
     - cis_rsync_service_not_enabled_test is changed
   when:
     - cis_rsync_service_not_enabled | bool
-    - "'rsyncd' in services"
+    - services["rsyncd.service"] is defined
 
 - name: 2.2.4 Ensure Avahi Server is not enabled (Scored)
   service:
@@ -69,7 +69,7 @@
     - cis_avahi_server_not_enabled_test is changed
   when:
     - cis_avahi_server_not_enabled | bool
-    - "'avahi-daemon' in services"
+    - services["avahi-daemon.service"] is defined
 
 - name: 2.2.5 Ensure SNMP Server is not enabled (Scored)
   service:
@@ -82,7 +82,7 @@
     - cis_snmp_server_not_enabled_test is changed
   when:
     - cis_snmp_server_not_enabled | bool
-    - "'snmpd' in services"
+    - services["snmpd.service"] is defined
 
 - name: 2.2.6 Ensure HTTP Proxy Server is not enabled (Scored)
   service:
@@ -95,7 +95,7 @@
     - cis_http_proxy_server_not_enabled_test is changed
   when:
     - cis_http_proxy_server_not_enabled | bool
-    - "'squid' in services"
+    - services["squid.service"] is defined
 
 - name: 2.2.7 Ensure Samba is not enabled (Scored)
   service:
@@ -108,7 +108,7 @@
     - cis_samba_server_not_enabled_test is changed
   when:
     - cis_samba_server_not_enabled | bool
-    - "'smb' in services"
+    - services["smb.service"] is defined
 
 - name: 2.2.8 Ensure IMAP and POP3 server is not enabled (Scored)
   service:
@@ -121,7 +121,7 @@
     - cis_imap_and_pop3_server_not_enabled_test is changed
   when:
     - cis_imap_and_pop3_server_not_enabled | bool
-    - "'dovecot' in services"
+    - services["dovecot.service"] is defined
 
 - name: 2.2.9 Ensure HTTP server is not enabled (Scored)
   service:
@@ -134,7 +134,7 @@
     - cis_http_server_not_enabled_test is changed
   when:
     - cis_http_server_not_enabled | bool
-    - "'httpd' in services"
+    - services["httpd.service"] is defined
 
 - name: 2.2.10 Ensure FTP Server is not enabled (Scored)
   service:
@@ -147,7 +147,7 @@
     - cis_ftp_server_not_enabled_test is changed
   when:
     - cis_ftp_server_not_enabled | bool
-    - "'vsftpd' in services"
+    - services["vsftpd.service"] is defined
 
 - name: 2.2.11 Ensure DNS Server is not enabled (Scored)
   service:
@@ -160,7 +160,7 @@
     - cis_dns_server_not_enabled_test is changed
   when:
     - cis_dns_server_not_enabled | bool
-    - "'named' in services"
+    - services["named.service"] is defined
 
 - name: 2.2.12 Ensure NFS is not enabled (Scored)
   service:
@@ -173,7 +173,7 @@
     - cis_nfs_server_not_enabled_test is changed
   when:
     - cis_nfs_server_not_enabled | bool
-    - "'nfs' in services"
+    - services["nfs.service"] is defined
 
 - name: 2.2.13 Ensure RPC is not enabled (Scored)
   service:
@@ -186,7 +186,7 @@
     - cis_rpc_not_enabled_test is changed
   when:
     - cis_rpc_not_enabled | bool
-    - "'rpcbind' in services"
+    - services["rpcbind.service"] is defined
 
 - name: 2.2.14 Ensure LDAP server is not enabled (Scored)
   service:
@@ -199,7 +199,7 @@
     - cis_ldap_server_not_enabled_test is changed
   when:
     - cis_ldap_server_not_enabled | bool
-    - "'slapd' in services"
+    - services["slapd.service"] is defined
 
 - name: 2.2.15 Ensure DHCP Server is not enabled (Scored)
   service:
@@ -212,7 +212,7 @@
     - cis_dhcp_server_not_enabled_test is changed
   when:
     - cis_dhcp_server_not_enabled | bool
-    - "'dhcpd' in services"
+    - services["dhcpd.service"] is defined
 
 - name: 2.2.16 Ensure CUPS is not enabled (Scored)
   service:
@@ -225,7 +225,7 @@
     - cis_cups_not_enabled_test is changed
   when:
     - cis_cups_not_enabled | bool
-    - "'cups' in services"
+    - services["cups.service"] is defined
 
 - name: 2.2.17 Ensure NIS Server is not enabled (Scored)
   service:
@@ -238,7 +238,7 @@
     - cis_nis_server_not_enabled_tets is changed
   when:
     - cis_nis_server_not_enabled | bool
-    - "'ypserv' in services"
+    - services["ypserv.service"] is defined
 
 - name: 2.2.18 Ensure mail transfer agent is configured for local-only mode (Scored)
   lineinfile:
@@ -251,4 +251,4 @@
     - cis_mta_local_only_mode_test is changed
   when:
     - cis_mta_local_only_mode | bool
-    - "'postfix' in services"
+    - services["postfix.service"] is defined
