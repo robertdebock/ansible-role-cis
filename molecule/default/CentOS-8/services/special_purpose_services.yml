@@ -6,3 +6,19 @@
     - cis_time_synchronization_test.rc != 0
   when: 
     - cis_time_synchronization | bool
+
+- name: 2.2.1.2 Ensure chrony is configured (Scored)
+  command: grep -E "^(server|pool)" /etc/chrony.conf
+  register: cis_chrony_configured_test_one
+  failed_when:
+    cis_chrony_configured_test_one.stdout | length == 0
+  when:
+    - cis_chrony_configured | bool
+
+- name: 2.2.1.2 Ensure chrony is configured (Scored)
+  command: ps -ef | grep chrony[d]
+  register: cis_chrony_configured_test_two
+  failed_when:
+    cis_chrony_configured_test_one.stdout | length == 0
+  when:
+    - cis_chrony_configured | bool

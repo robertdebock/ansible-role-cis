@@ -5,3 +5,25 @@
     state: present
   when:
     - cis_time_synchronization | bool
+
+- name: 2.2.1.2 Ensure chrony is configured (Scored)
+  lineinfile:
+    path: /etc/chrony.conf
+    line: server {{ item }}
+  notify: restart chronyd
+  loop: "{{ cis_chrony_servers }}"
+  when:
+    - cis_time_synchronization | bool
+    - cis_chrony_servers | length > 0
+
+- name: 2.2.1.2 Ensure chrony is configured (Scored)
+  lineinfile:
+    path: /etc/chrony.conf
+    line: pool {{ item.name }} {{ item.options }}
+  notify: restart chronyd
+  loop: "{{ cis_chrony_pools }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - cis_time_synchronization | bool
+    - cis_chrony_pools | length > 0

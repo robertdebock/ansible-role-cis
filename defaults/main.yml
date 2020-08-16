@@ -187,3 +187,10 @@ cis_xinet_not_installed: yes
 
 # 2.2.1.1 Ensure time synchronization is in use (Not Scored)
 cis_time_synchronization: yes
+
+# 2.2.1.2 Ensure chrony is configured (Scored)
+cis_chrony_configured: yes
+cis_chrony_servers: []
+cis_chrony_pools:
+  - name: 2.fedora.pool.ntp.org
+    options: iburst
