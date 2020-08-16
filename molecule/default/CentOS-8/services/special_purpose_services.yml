@@ -26,11 +26,21 @@
     - cis_chrony_configured | bool
 
 - name: 2.2.2 Ensure X Window System is not installed (Scored)
-  command: rpm -qa xorg-x11*
+  command: rpm -qa --qf '%{NAME}\n' xorg-x11*
   args:
     warn: no
-  register: cis_x_windows_system_not_installed_test
+  register: cis_x_windows_system_not_installed_test_one
+  when:
+    - cis_x_windows_system_not_installed | bool
+
+- name: 2.2.2 Ensure X Window System is not installed (Scored)
+  package:
+    name: "{{ item }}"
+    state: absent
+  check_mode: yes
+  register: cis_x_windows_system_not_installed_test_two
+  loop: "{{ cis_x_windows_system_not_installed_test_one.stdout_lines }}"
   failed_when:
-    - cis_x_windows_system_not_installed_test | length != 0
+    cis_x_windows_system_not_installed_test_two is changed
   when:
     - cis_x_windows_system_not_installed | bool
