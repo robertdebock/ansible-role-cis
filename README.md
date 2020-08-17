@@ -65,6 +65,11 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # 3.1.1 Ensure IP forwarding is disabled (Scored)
       # No /proc in containers.
       cis_ip_forwarding_disabled: no
+
+      # 3.1.2 Ensure packet redirect sending is disabled (Scored)
+      # No /proc in containers.
+      cis_packet_redirect_sending_disabled: no
+
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -371,6 +376,9 @@ cis_ldap_client_not_installed: yes
 
 # 3.1.1 Ensure IP forwarding is disabled (Scored)
 cis_ip_forwarding_disabled: yes
+
+# 3.1.2 Ensure packet redirect sending is disabled (Scored)
+cis_packet_redirect_sending_disabled: yes
 ```
 
 ## [Requirements](#requirements)

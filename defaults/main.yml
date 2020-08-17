@@ -257,3 +257,6 @@ cis_ldap_client_not_installed: yes
 
 # 3.1.1 Ensure IP forwarding is disabled (Scored)
 cis_ip_forwarding_disabled: yes
+
+# 3.1.2 Ensure packet redirect sending is disabled (Scored)
+cis_packet_redirect_sending_disabled: yes

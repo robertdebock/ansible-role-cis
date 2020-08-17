@@ -697,3 +697,11 @@
       - cis_ip_forwarding_disabled is defined
       - cis_ip_forwarding_disabled | type_debug == "bool"
     quiet: yes
+
+# 3.1.2 Ensure packet redirect sending is disabled (Scored)
+- name: test if cis_packet_redirect_sending_disabled is set correctly
+  assert:
+    that:
+      - cis_packet_redirect_sending_disabled is defined
+      - cis_packet_redirect_sending_disabled | type_debug == "bool"
+    quiet: yes
