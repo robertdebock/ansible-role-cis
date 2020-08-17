@@ -1,0 +1,22 @@
+---
+- name: 3.1.1 Ensure IP forwarding is disabled (Scored)
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: "0"
+    state: present
+  check_mode: yes
+  register: cis_ip_forwarding_disabled_test_one
+  failed_when:
+    - cis_ip_forwarding_disabled_test_one is changed
+  when: cis_ip_forwarding_disabled | bool
+
+- name: 3.1.1 Ensure IP forwarding is disabled (Scored)
+  sysctl:
+    name: net.ipv6.ip_forward
+    value: "0"
+    state: present
+  check_mode: yes
+  register: cis_ip_forwarding_disabled_test_one
+  failed_when:
+    - cis_ip_forwarding_disabled_test_one is changed
+  when: cis_ip_forwarding_disabled | bool

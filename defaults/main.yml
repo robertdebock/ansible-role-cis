@@ -254,3 +254,6 @@ cis_telnet_client_not_installed: yes
 
 # 2.3.3 Ensure LDAP client is not installed (Scored)
 cis_ldap_client_not_installed: yes
+
+# 3.1.1 Ensure IP forwarding is disabled (Scored)
+cis_ip_forwarding_disabled: yes

@@ -689,3 +689,11 @@
       - cis_ldap_client_not_installed is defined
       - cis_ldap_client_not_installed | type_debug == "bool"
     quiet: yes
+
+# 3.1.1 Ensure IP forwarding is disabled (Scored)
+- name: test if cis_ip_forwarding_disabled is set correctly
+  assert:
+    that:
+      - cis_ip_forwarding_disabled is defined
+      - cis_ip_forwarding_disabled | type_debug == "bool"
+    quiet: yes
