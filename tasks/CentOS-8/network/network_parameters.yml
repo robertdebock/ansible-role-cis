@@ -30,4 +30,3 @@
     state: present
   when:
     - cis_packet_redirect_sending_disabled | bool
-

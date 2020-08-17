@@ -53,7 +53,7 @@
     state: stopped
     enabled: no
   when:
-    -  cis_rsync_service_not_enabled
+    - cis_rsync_service_not_enabled
     - "'rsyncd' in services"
 
 - name: 2.2.4 Ensure Avahi Server is not enabled (Scored)
