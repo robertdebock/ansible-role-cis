@@ -49,3 +49,13 @@
   service:
     name: chronyd
     state: restarted
+
+- name: net.ipv4.route.flush
+  sysct:
+    name: net.ipv4.route.flush
+    value: 1
+
+- name: net.ipv6.route.flush
+  sysct:
+    name: net.ipv6.route.flush
+    value: 1
