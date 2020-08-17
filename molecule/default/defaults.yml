@@ -47,4 +47,4 @@ cis_selinux_state_enforcing: no
 
 # 3.1.1 Ensure IP forwarding is disabled (Scored)
 # No /proc in containers.
-cis_ip_forwarding_disabled: yes
+cis_ip_forwarding_disabled: no
