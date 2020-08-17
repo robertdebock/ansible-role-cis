@@ -49,3 +49,7 @@
 # 2.2 Special Purpose Services
 - name: include special_purpose_services.yml
   include: services/special_purpose_services.yml
+
+# 2.2 Service Clients
+- name: include service_clients.yml
+  include: services/service_clients.yml

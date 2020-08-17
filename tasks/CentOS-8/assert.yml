@@ -665,3 +665,27 @@
       - cis_mta_local_only_mode is defined
       - cis_mta_local_only_mode | type_debug == "bool"
     quiet: yes
+
+# 2.3.1 Ensure NIS Client is not installed (Scored)
+- name: test if cis_nis_client_not_installed is set correctly
+  assert:
+    that:
+      - cis_nis_client_not_installed is defined
+      - cis_nis_client_not_installed | type_debug == "bool"
+    quiet: yes
+
+# 2.3.2 Ensure telnet client is not installed (Scored)
+- name: test if cis_telnet_client_not_installed is set correctly
+  assert:
+    that:
+      - cis_telnet_client_not_installed is defined
+      - cis_telnet_client_not_installed | type_debug == "bool"
+    quiet: yes
+
+# 2.3.3 Ensure LDAP client is not installed (Scored)
+- name: test if cis_ldap_client_not_installed is set correctly
+  assert:
+    that:
+      - cis_ldap_client_not_installed is defined
+      - cis_ldap_client_not_installed | type_debug == "bool"
+    quiet: yes
