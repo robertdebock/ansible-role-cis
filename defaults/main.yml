@@ -260,3 +260,6 @@ cis_ip_forwarding_disabled: yes
 
 # 3.1.2 Ensure packet redirect sending is disabled (Scored)
 cis_packet_redirect_sending_disabled: yes
+
+# 3.2.1 Ensure source routed packets are not accepted (Scored)
+cis_source_routed_packets_not_accepted: yes

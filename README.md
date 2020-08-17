@@ -70,6 +70,9 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # No /proc in containers.
       cis_packet_redirect_sending_disabled: no
 
+      # 3.2.1 Ensure source routed packets are not accepted (Scored)
+      # No /proc in containers.
+      cis_source_routed_packets_not_accepted: no
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -379,6 +382,9 @@ cis_ip_forwarding_disabled: yes
 
 # 3.1.2 Ensure packet redirect sending is disabled (Scored)
 cis_packet_redirect_sending_disabled: yes
+
+# 3.2.1 Ensure source routed packets are not accepted (Scored)
+cis_source_routed_packets_not_accepted: yes
 ```
 
 ## [Requirements](#requirements)

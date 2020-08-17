@@ -57,3 +57,7 @@
 # 3.1 Network Parameters
 - name: include network_parameters.yml
   include: network/network_parameters.yml
+
+# 3.2 Network Parameters (Host and Router)
+- name: include network_parameters_host_and_router.yml 
+  include: network/network_parameters_host_and_router.yml 
