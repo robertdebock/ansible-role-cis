@@ -44,7 +44,27 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
       # 1.5.1 Ensure permissions on bootloader config are configured (Scored)
       # No bootloaders in a container.
-      cis_permissions_bootloader: yes
+      cis_permissions_bootloader: no
+
+      # 1.5.2 Ensure bootloader password is set (Scored)
+      # No bootloaders in a container.
+      cis_bootloader_password_set: no
+
+      # 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
+      # No bootloaders in a container.
+      cis_selinux_not_disabled: no
+
+      # 1.7.1.3 Ensure SELinux policy is configured (Scored)
+      # Can't change an SELinux policy in a container.
+      cis_selinux_policy_configured: no
+
+      # 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
+      # Can't change an SELinux state in a container.
+      cis_selinux_state_enforcing: no
+
+      # 3.1.1 Ensure IP forwarding is disabled (Scored)
+      # No /proc in containers.
+      cis_ip_forwarding_disabled: no
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -212,6 +232,145 @@ cis_bootloader_password: changeme
 
 # 1.5.3 Ensure authentication required for single user mode (Scored)
 cis_authentication_single_user_mode: yes
+
+# 1.6.1 Ensure core dumps are restricted (Scored)
+cis_core_dumps_restricted: yes
+
+# 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
+cis_aslr_enabled: yes
+
+# 1.7.1.1 Ensure SELinux is installed (Scored)
+cis_selinux_installed: yes
+
+# 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
+cis_selinux_not_disabled: yes
+
+# 1.7.1.3 Ensure SELinux policy is configured (Scored)
+cis_selinux_policy_configured: yes
+cis_selinux_policy: targeted
+
+# 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
+cis_selinux_state_enforcing: yes
+
+# 1.7.1.5 Ensure no unconfined services exist (Scored)
+cis_no_unconfined_services: yes
+
+# 1.7.1.6 Ensure SETroubleshoot is not installed (Scored)
+cis_setroubleshoot_not_installed: yes
+
+# 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
+cis_mcs_translation_service_not_installed: yes
+
+# 1.8.1.1 Ensure message of the day is configured properly (Scored)
+cis_message_of_the_day_configured: yes
+cis_message_of_the_day: |
+  UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
+  
+  You must have explicit, authorized permission to access or configure this device. Unauthorized attempts and actions to access or use this system may result in civil and/or criminal penalties. All activities performed on this device are logged and monitored.
+
+# 1.8.1.2 Ensure local login warning banner is configured properly (Scored)
+cis_local_login_banner_configured: yes
+
+# 1.8.1.3 Ensure remote login warning banner is configured properly (Scored)
+cis_remote_login_banner_configured: yes
+
+# 1.8.1.4 Ensure permissions on /etc/motd are configured (Scored)
+cis_permissions_etc_motd: yes
+
+# 1.8.1.5 Ensure permissions on /etc/issue are configured (Scored)
+cis_permissions_etc_issue: yes
+
+# 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
+cis_permissions_etc_issue_net: yes
+
+# 1.8.2 Ensure GDM login banner is configured (Scored)
+cis_gdm_login_banner_configured: yes
+
+# 1.9 Ensure updates, patches, and additional security software are installed (Not Scored)
+cis_updates_installed: yes
+
+# 1.10 Ensure system-wide crypto policy is not legacy (Scored)
+cis_crypto_policy_not_legacy: yes
+cis_crypto_policy: FIPS
+
+# 1.11 Ensure system-wide crypto policy is FUTURE or FIPS (Scored)
+cis_ensure_crypto_policy: yes
+
+# 2.1.1 Ensure xinetd is not installed (Scored)
+cis_xinet_not_installed: yes
+
+# 2.2.1.1 Ensure time synchronization is in use (Not Scored)
+cis_time_synchronization: yes
+
+# 2.2.1.2 Ensure chrony is configured (Scored)
+cis_chrony_configured: yes
+cis_chrony_servers: []
+cis_chrony_pools:
+  - name: 2.fedora.pool.ntp.org
+    options: iburst
+
+# 2.2.2 Ensure X Window System is not installed (Scored)
+cis_x_windows_system_not_installed: yes
+
+# 2.2.3 Ensure rsync service is not enabled (Scored)
+cis_rsync_service_not_enabled: yes
+
+# 2.2.4 Ensure Avahi Server is not enabled (Scored)
+cis_avahi_server_not_enabled: yes
+
+# 2.2.5 Ensure SNMP Server is not enabled (Scored)
+cis_snmp_server_not_enabled: yes
+
+# 2.2.6 Ensure HTTP Proxy Server is not enabled (Scored)
+cis_http_proxy_server_not_enabled: yes
+
+# 2.2.7 Ensure Samba is not enabled (Scored)
+cis_samba_server_not_enabled: yes
+
+# 2.2.8 Ensure IMAP and POP3 server is not enabled (Scored)
+cis_imap_and_pop3_server_not_enabled: yes
+
+# 2.2.9 Ensure HTTP server is not enabled (Scored)
+cis_http_server_not_enabled: yes
+
+# 2.2.10 Ensure FTP Server is not enabled (Scored)
+cis_ftp_server_not_enabled: yes
+
+# 2.2.11 Ensure DNS Server is not enabled (Scored)
+cis_dns_server_not_enabled: yes
+
+# 2.2.12 Ensure NFS is not enabled (Scored)
+cis_nfs_server_not_enabled: yes
+
+# 2.2.13 Ensure RPC is not enabled (Scored)
+cis_rpc_not_enabled: yes
+
+# 2.2.14 Ensure LDAP server is not enabled (Scored)
+cis_ldap_server_not_enabled: yes
+
+# 2.2.15 Ensure DHCP Server is not enabled (Scored)
+cis_dhcp_server_not_enabled: yes
+
+# 2.2.16 Ensure CUPS is not enabled (Scored)
+cis_cups_not_enabled: yes
+
+# 2.2.17 Ensure NIS Server is not enabled (Scored)
+cis_nis_server_not_enabled: yes
+
+# 2.2.18 Ensure mail transfer agent is configured for local-only mode (Scored)
+cis_mta_local_only_mode: yes
+
+# 2.3.1 Ensure NIS Client is not installed (Scored)
+cis_nis_client_not_installed: yes
+
+# 2.3.2 Ensure telnet client is not installed (Scored)
+cis_telnet_client_not_installed: yes
+
+# 2.3.3 Ensure LDAP client is not installed (Scored)
+cis_ldap_client_not_installed: yes
+
+# 3.1.1 Ensure IP forwarding is disabled (Scored)
+cis_ip_forwarding_disabled: yes
 ```
 
 ## [Requirements](#requirements)
