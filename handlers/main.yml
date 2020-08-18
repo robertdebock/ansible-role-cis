@@ -1,9 +1,10 @@
 ---
 # handlers file for cis
 - name: remount /tmp
-  mount:
-    path: /tmp
-    state: remounted
+  service:
+    name: tmp.mount 
+    state: restarted
+    daemon_reload: yes
 
 - name: remount /var/tmp
   mount:

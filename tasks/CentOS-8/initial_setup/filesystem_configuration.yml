@@ -64,6 +64,7 @@
     name: tmp.mount
     state: started
     enabled: yes
+    daemon_reload: yes
   when:
     - cis_tmp_configured | bool
 
