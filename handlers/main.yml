@@ -29,6 +29,7 @@
   copy:
     src: /var/lib/aide/aide.db.new.gz
     dest: /var/lib/aide/aide.db.gz
+    mode: "0600"
     remote_src: yes
 
 - name: run grub2-mkconfig

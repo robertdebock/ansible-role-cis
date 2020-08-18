@@ -10,6 +10,7 @@
 - name: 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
   lineinfile:
     path: /etc/default/grub
+    mode: "0644"
     regexp: '^(.*)(selinux=0)(.*)'
     line: '\1 \3'
     backrefs: true
@@ -21,6 +22,7 @@
 - name: 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
   lineinfile:
     path: /etc/default/grub
+    mode: "0644"
     regexp: '^(.*)(enforcing=0)(.*)'
     line: '\1 \3'
     backrefs: true
@@ -32,6 +34,7 @@
 - name: 1.7.1.3 Ensure SELinux policy is configured (Scored)
   lineinfile:
     path: /etc/selinux/config
+    mode: "0644"
     regexp: '^SELINUXTYPE='
     line: "SELINUXTYPE={{ cis_selinux_policy }}"
   when:

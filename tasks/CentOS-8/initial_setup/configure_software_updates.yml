@@ -12,6 +12,7 @@
 - name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
   lineinfile:
     path: /etc/yum.conf
+    mode: "0644"
     regexp: '^gpgcheck='
     line: gpgcheck=1
   when:
@@ -29,6 +30,7 @@
 - name: 1.2.2 Ensure gpgcheck is globally activated (Scored)
   lineinfile:
     path: "{{ item.path }}"
+    mode: "0644"
     regexp: '^gpgcheck='
     line: gpgcheck=1
   loop: "{{ cis_repos.files }}"

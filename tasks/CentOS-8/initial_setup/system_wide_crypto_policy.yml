@@ -2,6 +2,7 @@
 - name: 1.10 Ensure system-wide crypto policy is not legacy (Scored)
   lineinfile:
     path: /etc/crypto-policies/config
+    mode: "0644"
     regexp: '^(?!#)(\S+)$'
     line: '{{ cis_crypto_policy }}'
     create: true

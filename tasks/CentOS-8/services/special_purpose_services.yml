@@ -9,6 +9,7 @@
 - name: 2.2.1.2 Ensure chrony is configured (Scored)
   lineinfile:
     path: /etc/chrony.conf
+    mode: "0644"
     line: server {{ item }}
   notify: restart chronyd
   loop: "{{ cis_chrony_servers }}"
@@ -19,6 +20,7 @@
 - name: 2.2.1.2 Ensure chrony is configured (Scored)
   lineinfile:
     path: /etc/chrony.conf
+    mode: "0644"
     line: pool {{ item.name }} {{ item.options }}
   notify: restart chronyd
   loop: "{{ cis_chrony_pools }}"
@@ -185,6 +187,7 @@
 - name: 2.2.18 Ensure mail transfer agent is configured for local-only mode (Scored)
   lineinfile:
     path: /etc/postfix/main.cf
+    mode: "0644"
     line: "inet_interfaces = loopback-only"
     regexp: '^inet_interfaces'
   when:

@@ -45,6 +45,7 @@
   ini_file:
     section: Service
     path: "{{ item.path }}"
+    mode: "0644"
     option: "{{ item.option }}"
     value: "{{ item.value }}"
     no_extra_spaces: yes

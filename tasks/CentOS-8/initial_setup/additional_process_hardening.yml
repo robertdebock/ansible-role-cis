@@ -3,6 +3,7 @@
   copy:
     dest: /etc/security/limits.d/coredumps.conf
     content: "* hard core 0"
+    mode: "0600"
   when:
     - cis_core_dumps_restricted | bool
 
@@ -16,6 +17,7 @@
 - name: 1.6.1 Ensure core dumps are restricted (Scored)
   ini_file:
     path: /etc/systemd/coredump.conf
+    mode: "0644"
     section: Coredump
     option: "{{ item.option }}"
     value: "{{ item.value }}"
