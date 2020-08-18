@@ -86,6 +86,7 @@ The machine may need to be prepared using `molecule/resources/prepare.yml`:
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.cron
+    - role: robertdebock.update
 ```
 
 For verification `molecule/resources/verify.yml` run after the role has been applied.
@@ -385,6 +386,12 @@ cis_packet_redirect_sending_disabled: yes
 
 # 3.2.1 Ensure source routed packets are not accepted (Scored)
 cis_source_routed_packets_not_accepted: yes
+
+# 3.2.2 Ensure ICMP redirects are not accepted (Scored)
+cis_icmp_redirects_not_accepted: yes
+
+# 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
+cis_secure_icmp_redirects_not_accepted: yes
 ```
 
 ## [Requirements](#requirements)
@@ -398,6 +405,7 @@ The following roles can be installed to ensure all requirements are met, using `
 ---
 - robertdebock.bootstrap
 - robertdebock.cron
+- robertdebock.update
 
 ```
 

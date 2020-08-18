@@ -84,6 +84,7 @@
     line: 'Options=\1,nodev'
     backrefs: yes
   notify:
+    - systemctl daemon-reload
     - remount /tmp
   when:
     - cis_tmp_nodev | bool
@@ -106,6 +107,7 @@
     line: 'Options=\1,nosuid'
     backrefs: yes
   notify:
+    - systemctl daemon-reload
     - remount /tmp
   when:
     - cis_tmp_nosuid | bool
@@ -131,6 +133,7 @@
     - cis_tmp_noexec | bool
     - cis_tmp_noexec_output.stdout | length < 1
   notify:
+    - systemctl daemon-reload
     - remount /tmp
 
 - name: 1.1.6 Ensure separate partition exists for /var (Scored)
@@ -169,6 +172,7 @@
     - item.options.find(",") >= 0
     - item.options.find("nodev") == -1
   notify:
+    - systemctl daemon-reload
     - remount /var/tmp
 
 - name: 1.1.9 Ensure nosuid option set on /var/tmp partition (Scored)
@@ -187,6 +191,7 @@
     - item.options.find(",") >= 0
     - item.options.find("nosuid") == -1
   notify:
+    - systemctl daemon-reload
     - remount /var/tmp
 
 - name: 1.1.10 Ensure noexec option set on /var/tmp partition (Scored)
@@ -205,6 +210,7 @@
     - item.options.find(",") >= 0
     - item.options.find("noexec") == -1
   notify:
+    - systemctl daemon-reload
     - remount /var/tmp
 
 - name: 1.1.11 Ensure separate partition exists for /var/log (Scored)
@@ -247,6 +253,7 @@
     - item.options.find(",") >= 0
     - item.options.find("nodev") == -1
   notify:
+    - systemctl daemon-reload
     - remount /home
 
 - name: 1.1.15 Ensure nodev option set on /dev/shm partition (Scored)
@@ -268,6 +275,7 @@
     - cis_dev_shm_nodev | bool
     - '"nodev" not in cis_dev_shm_nodev_test.stdout'
   notify:
+    - systemctl daemon-reload
     - remount /dev/shm with nodev
 
 - name: 1.1.16 Ensure nosuid option set on /dev/shm partition (Scored)
@@ -289,6 +297,7 @@
     - cis_dev_shm_nosuid | bool
     - '"nosuid" not in cis_dev_shm_nosuid_test.stdout'
   notify:
+    - systemctl daemon-reload
     - remount /dev/shm with nosuid
 
 - name: 1.1.17 Ensure noexec option set on /dev/shm partition (Scored)
@@ -310,6 +319,7 @@
     - cis_dev_shm_noexec | bool
     - '"noexec" not in cis_dev_shm_noexec_test.stdout'
   notify:
+    - systemctl daemon-reload
     - remount /dev/shm with noexec
 
 - name: 1.1.18 Ensure nodev option set on removable media partitions (Not Scored)
