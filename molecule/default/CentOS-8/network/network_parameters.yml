@@ -12,7 +12,7 @@
 
 - name: 3.1.1 Ensure IP forwarding is disabled (Scored)
   sysctl:
-    name: net.ipv6.ip_forward
+    name: net.ipv6.conf.all.forwarding
     value: "0"
     state: present
   check_mode: yes
