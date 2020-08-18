@@ -49,15 +49,3 @@
       # 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
       # Can't change an SELinux state in a container.
       cis_selinux_state_enforcing: no
-
-      # 3.1.1 Ensure IP forwarding is disabled (Scored)
-      # No /proc in containers.
-      cis_ip_forwarding_disabled: no
-
-      # 3.1.2 Ensure packet redirect sending is disabled (Scored)
-      # No /proc in containers.
-      cis_packet_redirect_sending_disabled: no
-
-      # 3.2.1 Ensure source routed packets are not accepted (Scored)
-      # No /proc in containers.
-      cis_source_routed_packets_not_accepted: no

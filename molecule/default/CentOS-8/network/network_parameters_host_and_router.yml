@@ -118,3 +118,75 @@
     - cis_secure_icmp_redirects_not_accepted_test_two is changed
   when:
     - cis_secure_icmp_redirects_not_accepted | bool
+
+- name: 3.2.4 Ensure suspicious packets are logged (Scored)
+  sysctl:
+    name: net.ipv4.conf.all.log_martians
+    value: "1"
+    state: present
+  check_mode: yes
+  register: cis_suspicious_packets_logged_test_one
+  failed_when:
+    - cis_suspicious_packets_logged_test_one is changed
+  when:
+    - cis_suspicious_packets_logged | bool
+
+- name: 3.2.4 Ensure suspicious packets are logged (Scored)
+  sysctl:
+    name: net.ipv4.conf.default.log_martians
+    value: "1"
+    state: present
+  check_mode: yes
+  register: cis_suspicious_packets_logged_test_two
+  failed_when:
+    - cis_suspicious_packets_logged_test_two is changed
+  when:
+    - cis_suspicious_packets_logged | bool
+
+- name: 3.2.5 Ensure broadcast ICMP requests are ignored (Scored)
+  sysctl:
+    name: net.ipv4.icmp_echo_ignore_broadcasts
+    value: "1"
+    state: present
+  check_mode: yes
+  register: cis_broadcast_icmp_requests_ignored_test
+  failed_when:
+    - cis_broadcast_icmp_requests_ignored_test is changed
+  when:
+    - cis_broadcast_icmp_requests_ignored | bool
+
+- name: 3.2.6 Ensure bogus ICMP responses are ignored (Scored)
+  sysctl:
+    name: net.ipv4.icmp_ignore_bogus_error_responses
+    value: "1"
+    state: present
+  check_mode: yes
+  register: cis_bogus_icmp_responses_ignored
+  failed_when:
+    - cis_bogus_icmp_responses_ignored is changed
+  when:
+    - cis_bogus_icmp_responses_ignored | bool
+
+- name: 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
+  sysctl:
+    name: net.ipv4.conf.all.rp_filter
+    value: "1"
+    state: present
+  check_mode: yes
+  register: cis_reverse_path_filtering_test_one
+  failed_when:
+    - cis_reverse_path_filtering_test_one is changed
+  when:
+    - cis_reverse_path_filtering | bool
+
+- name: 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
+  sysctl:
+    name: net.ipv4.conf.default.rp_filter
+    value: "1"
+    state: present
+  check_mode: yes
+  register: cis_reverse_path_filtering_test_two
+  failed_when:
+    - cis_reverse_path_filtering_test_two is changed
+  when:
+    - cis_reverse_path_filtering | bool

@@ -729,3 +729,35 @@
       - cis_secure_icmp_redirects_not_accepted is defined
       - cis_secure_icmp_redirects_not_accepted | type_debug == "bool"
     quiet: yes
+
+# 3.2.4 Ensure suspicious packets are logged (Scored)
+- name: test if cis_suspicious_packets_logged is set correctly
+  assert:
+    that:
+      - cis_suspicious_packets_logged is defined
+      - cis_suspicious_packets_logged | type_debug == "bool"
+    quiet: yes
+
+# 3.2.5 Ensure broadcast ICMP requests are ignored (Scored)
+- name: test if cis_broadcast_icmp_requests_ignored is set correctly
+  assert:
+    that:
+      - cis_broadcast_icmp_requests_ignored is defined
+      - cis_broadcast_icmp_requests_ignored | type_debug == "bool"
+    quiet: yes
+
+# 3.2.6 Ensure bogus ICMP responses are ignored (Scored)
+- name: test if cis_bogus_icmp_responses_ignored is set correctly
+  assert:
+    that:
+      - cis_bogus_icmp_responses_ignored is defined
+      - cis_bogus_icmp_responses_ignored | type_debug == "bool"
+    quiet: yes
+
+# 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
+- name: test if cis_reverse_path_filtering is set correctly
+  assert:
+    that:
+      - cis_reverse_path_filtering is defined
+      - cis_reverse_path_filtering | type_debug == "bool"
+    quiet: yes

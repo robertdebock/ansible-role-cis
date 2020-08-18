@@ -269,3 +269,15 @@ cis_icmp_redirects_not_accepted: yes
 
 # 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
 cis_secure_icmp_redirects_not_accepted: yes
+
+# 3.2.4 Ensure suspicious packets are logged (Scored)
+cis_suspicious_packets_logged: yes
+
+# 3.2.5 Ensure broadcast ICMP requests are ignored (Scored)
+cis_broadcast_icmp_requests_ignored: yes
+
+# 3.2.6 Ensure bogus ICMP responses are ignored (Scored)
+cis_bogus_icmp_responses_ignored: yes
+
+# 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
+cis_reverse_path_filtering: yes
