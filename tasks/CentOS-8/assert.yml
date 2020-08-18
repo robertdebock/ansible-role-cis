@@ -721,3 +721,11 @@
       - cis_icmp_redirects_not_accepted is defined
       - cis_icmp_redirects_not_accepted | type_debug == "bool"
     quiet: yes
+
+# 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
+- name: test if cis_secure_icmp_redirects_not_accepted is set correctly
+  assert:
+    that:
+      - cis_secure_icmp_redirects_not_accepted is defined
+      - cis_secure_icmp_redirects_not_accepted | type_debug == "bool"
+    quiet: yes

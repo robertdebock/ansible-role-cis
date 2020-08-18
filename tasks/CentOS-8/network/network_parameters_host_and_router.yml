@@ -78,3 +78,23 @@
     - net.ipv6.route.flush
   when:
     - cis_icmp_redirects_not_accepted | bool
+
+- name: 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
+  sysctl:
+    name: net.ipv4.conf.all.secure_redirects
+    value: "0"
+    state: present
+  notity:
+    - net.ipv4.route.flush
+  when:
+    - cis_secure_icmp_redirects_not_accepted | bool
+
+- name: 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
+  sysctl:
+    name: net.ipv4.conf.default.secure_redirects
+    value: "0"
+    state: present
+  notity:
+    - net.ipv4.route.flush
+  when:
+    - cis_secure_icmp_redirects_not_accepted | bool

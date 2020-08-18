@@ -266,3 +266,6 @@ cis_source_routed_packets_not_accepted: yes
 
 # 3.2.2 Ensure ICMP redirects are not accepted (Scored)
 cis_icmp_redirects_not_accepted: yes
+
+# 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
+cis_secure_icmp_redirects_not_accepted: yes

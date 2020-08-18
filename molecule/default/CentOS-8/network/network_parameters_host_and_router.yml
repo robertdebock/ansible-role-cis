@@ -94,3 +94,27 @@
     - cis_icmp_redirects_not_accepted_test_four is changed
   when:
     - cis_icmp_redirects_not_accepted | bool
+
+- name: 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
+  sysctl:
+    name: net.ipv4.conf.all.secure_redirects
+    value: "0"
+    state: present
+  check_mode: yes
+  register: cis_secure_icmp_redirects_not_accepted_test_one
+  failed_when:
+    - cis_secure_icmp_redirects_not_accepted_test_one is changed
+  when:
+    - cis_secure_icmp_redirects_not_accepted | bool
+
+- name: 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
+  sysctl:
+    name: net.ipv4.conf.default.secure_redirects
+    value: "0"
+    state: present
+  check_mode: yes
+  register: cis_secure_icmp_redirects_not_accepted_test_two
+  failed_when:
+    - cis_secure_icmp_redirects_not_accepted_test_two is changed
+  when:
+    - cis_secure_icmp_redirects_not_accepted | bool
