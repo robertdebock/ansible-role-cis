@@ -144,6 +144,8 @@
     name: net.ipv4.conf.all.rp_filter
     value: "1"
     state: present
+  notify:
+    - net.ipv4.route.flush
   when:
     - cis_reverse_path_filtering | bool
 
@@ -152,5 +154,28 @@
     name: net.ipv4.conf.default.rp_filter
     value: "1"
     state: present
+  notify:
+    - net.ipv4.route.flush
   when:
     - cis_reverse_path_filtering | bool
+
+- name: 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
+  sysctl:
+    name: net.ipv6.conf.all.accept_ra
+    value: "0"
+    state: present
+  notify:
+    - net.ipv4.route.flush
+  when:
+    - cis_ipv6_router_advertisements_not_accepted | bool
+
+- name: 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
+  sysctl:
+    name: net.ipv6.conf.default.accept_ra
+    value: "0"
+    state: present
+  notify:
+    - net.ipv4.route.flush
+  when:
+    - cis_ipv6_router_advertisements_not_accepted | bool
+

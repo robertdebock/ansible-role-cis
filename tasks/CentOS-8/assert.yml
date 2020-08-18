@@ -761,3 +761,19 @@
       - cis_reverse_path_filtering is defined
       - cis_reverse_path_filtering | type_debug == "bool"
     quiet: yes
+
+# 3.2.8 Ensure TCP SYN Cookies is enabled (Scored)
+- name: test if cis_tcp_syn_cookies_enabled is set correctly
+  assert:
+    that:
+      - cis_tcp_syn_cookies_enabled is defined
+      - cis_tcp_syn_cookies_enabled | type_debug == "bool"
+    quiet: yes
+
+# 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
+- name: test if cis_ipv6_router_advertisements_not_accepted is set correctly
+  assert:
+    that:
+      - cis_ipv6_router_advertisements_not_accepted is defined
+      - cis_ipv6_router_advertisements_not_accepted | type_debug == "bool"
+    quiet: yes

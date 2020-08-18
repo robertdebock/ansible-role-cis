@@ -190,3 +190,39 @@
     - cis_reverse_path_filtering_test_two is changed
   when:
     - cis_reverse_path_filtering | bool
+
+- name: 3.2.8 Ensure TCP SYN Cookies is enabled (Scored)
+  sysctl:
+    name: net.ipv4.tcp_syncookies
+    value: "1"
+    state: present
+  check_mode: yes
+  register: cis_tcp_syn_cookies_enabled_test
+  failed_when:
+    - cis_tcp_syn_cookies_enabled_test is changed
+  when:
+    - cis_tcp_syn_cookies_enabled | bool
+
+- name: 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
+  sysctl:
+    name: net.ipv6.conf.all.accept_ra
+    value: "0"
+    state: present
+  check_mode: yes
+  register: cis_ipv6_router_advertisements_not_accepted_test_one
+  failed_when:
+    - cis_ipv6_router_advertisements_not_accepted_test_one is changed
+  when:
+    - cis_ipv6_router_advertisements_not_accepted | bool
+
+- name: 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
+  sysctl:
+    name: net.ipv6.conf.default.accept_ra
+    value: "0"
+    state: present
+  check_mode: yes
+  register: cis_ipv6_router_advertisements_not_accepted_test_two
+  failed_when:
+    - cis_ipv6_router_advertisements_not_accepted_test_two is changed
+  when:
+    - cis_ipv6_router_advertisements_not_accepted | bool

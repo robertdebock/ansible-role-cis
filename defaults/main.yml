@@ -281,3 +281,9 @@ cis_bogus_icmp_responses_ignored: yes
 
 # 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
 cis_reverse_path_filtering: yes
+
+# 3.2.8 Ensure TCP SYN Cookies is enabled (Scored)
+cis_tcp_syn_cookies_enabled: yes
+
+# 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
+cis_ipv6_router_advertisements_not_accepted: yes
