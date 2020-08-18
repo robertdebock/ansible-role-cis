@@ -4,7 +4,7 @@
     name: net.ipv4.conf.all.accept_source_route
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv4.route.flush
   when:
    - cis_source_routed_packets_not_accepted | bool
@@ -14,7 +14,7 @@
     name: net.ipv4.conf.default.accept_source_route
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv4.route.flush
   when:
    - cis_source_routed_packets_not_accepted | bool
@@ -24,7 +24,7 @@
     name: net.ipv6.conf.all.accept_source_route
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv6.route.flush
   when:
    - cis_source_routed_packets_not_accepted | bool
@@ -34,7 +34,7 @@
     name: net.ipv6.conf.default.accept_source_route
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv6.route.flush
   when:
    - cis_source_routed_packets_not_accepted | bool
@@ -44,7 +44,7 @@
     name: net.ipv4.conf.all.accept_redirects
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv4.route.flush
   when:
     - cis_icmp_redirects_not_accepted | bool
@@ -54,7 +54,7 @@
     name: net.ipv4.conf.default.accept_redirects
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv4.route.flush
   when:
     - cis_icmp_redirects_not_accepted | bool
@@ -64,7 +64,7 @@
     name: net.ipv6.conf.all.accept_redirects
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv6.route.flush
   when:
     - cis_icmp_redirects_not_accepted | bool
@@ -74,7 +74,7 @@
     name: net.ipv6.conf.default.accept_redirects
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv6.route.flush
   when:
     - cis_icmp_redirects_not_accepted | bool
@@ -84,7 +84,7 @@
     name: net.ipv4.conf.all.secure_redirects
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv4.route.flush
   when:
     - cis_secure_icmp_redirects_not_accepted | bool
@@ -94,7 +94,7 @@
     name: net.ipv4.conf.default.secure_redirects
     value: "0"
     state: present
-  notity:
+  notify:
     - net.ipv4.route.flush
   when:
     - cis_secure_icmp_redirects_not_accepted | bool
