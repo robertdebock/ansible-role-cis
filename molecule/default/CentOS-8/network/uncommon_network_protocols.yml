@@ -1,0 +1,16 @@
+---
+- name: 3.3.1 Ensure DCCP is disabled (Scored)
+  command: modprobe -n -v usb-storage
+  register: cis_dccp_disabled_test_one
+  failed_when:
+    - '"install /bin/true" not in cis_dccp_disabled_test_one.stdout'
+  when:
+    - cis_dccp_disabled | bool
+
+- name: 3.3.1 Ensure DCCP is disabled (Scored)
+  command: lsmod | grep dccp
+  register: cis_dccp_disabled_test_two
+  failed_when:
+    - cis_dccp_disabled_test_two.stdout_lines | length > 0
+  when:
+    - cis_dccp_disabled | bool

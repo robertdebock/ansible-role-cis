@@ -287,3 +287,6 @@ cis_tcp_syn_cookies_enabled: yes
 
 # 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
 cis_ipv6_router_advertisements_not_accepted: yes
+
+# 3.3.1 Ensure DCCP is disabled (Scored)
+cis_dccp_disabled: yes

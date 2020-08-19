@@ -48,3 +48,7 @@ cis_selinux_policy_configured: no
 # 1.7.1.4 Ensure the SELinux state is enforcing (Scored)
 # Can't change an SELinux state in a container.
 cis_selinux_state_enforcing: no
+
+# 3.3.1 Ensure DCCP is disabled (Scored)
+# can't load modules in a container.
+cis_dccp_disabled: no
