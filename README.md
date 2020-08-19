@@ -42,6 +42,10 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # Can't create a partition in CI.
       cis_home_partition: no
 
+      # 1.1.23 Disable USB Storage (Scored)
+      # Modprobe does not work in containers.
+      cis_usb_storage_disabled: no
+
       # 1.5.1 Ensure permissions on bootloader config are configured (Scored)
       # No bootloaders in a container.
       cis_permissions_bootloader: no
@@ -62,17 +66,10 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # Can't change an SELinux state in a container.
       cis_selinux_state_enforcing: no
 
-      # 3.1.1 Ensure IP forwarding is disabled (Scored)
-      # No /proc in containers.
-      cis_ip_forwarding_disabled: no
+      # 3.3.1 Ensure DCCP is disabled (Scored)
+      # can't load modules in a container.
+      cis_dccp_disabled: no
 
-      # 3.1.2 Ensure packet redirect sending is disabled (Scored)
-      # No /proc in containers.
-      cis_packet_redirect_sending_disabled: no
-
-      # 3.2.1 Ensure source routed packets are not accepted (Scored)
-      # No /proc in containers.
-      cis_source_routed_packets_not_accepted: no
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -392,6 +389,36 @@ cis_icmp_redirects_not_accepted: yes
 
 # 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
 cis_secure_icmp_redirects_not_accepted: yes
+
+# 3.2.4 Ensure suspicious packets are logged (Scored)
+cis_suspicious_packets_logged: yes
+
+# 3.2.5 Ensure broadcast ICMP requests are ignored (Scored)
+cis_broadcast_icmp_requests_ignored: yes
+
+# 3.2.6 Ensure bogus ICMP responses are ignored (Scored)
+cis_bogus_icmp_responses_ignored: yes
+
+# 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
+cis_reverse_path_filtering: yes
+
+# 3.2.8 Ensure TCP SYN Cookies is enabled (Scored)
+cis_tcp_syn_cookies_enabled: yes
+
+# 3.2.9 Ensure IPv6 router advertisements are not accepted (Scored)
+cis_ipv6_router_advertisements_not_accepted: yes
+
+# 3.3.1 Ensure DCCP is disabled (Scored)
+cis_dccp_disabled: yes
+
+# 3.3.2 Ensure SCTP is disabled (Scored)
+cis_sctp_disabled: yes
+
+# 3.3.3 Ensure RDS is disabled (Scored)
+cis_rds_disabled: yes
+
+# 3.3.4 Ensure TIPC is disabled (Scored)
+cis_tipc_disabled: yes
 ```
 
 ## [Requirements](#requirements)

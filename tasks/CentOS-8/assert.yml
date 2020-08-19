@@ -785,3 +785,28 @@
       - cis_dccp_disabled is defined
       - cis_dccp_disabled | type_debug == "bool"
     quiet: yes
+
+# 3.3.2 Ensure SCTP is disabled (Scored)
+- name: test if cis_sctp_disabled is set correctly
+  assert:
+    that:
+      - cis_sctp_disabled is defined
+      - cis_sctp_disabled | type_debug == "bool"
+    quiet: yes
+
+# 3.3.3 Ensure RDS is disabled (Scored)
+- name: test if cis_rds_disabled is set correctly
+  assert:
+    that:
+      - cis_rds_disabled is defined
+      - cis_rds_disabled | type_debug == "bool"
+    quiet: yes
+
+# 3.3.4 Ensure TIPC is disabled (Scored)
+- name: test if cis_tipc_disabled is set correctly
+  assert:
+    that:
+      - cis_tipc_disabled is defined
+      - cis_tipc_disabled | type_debug == "bool"
+    quiet: yes
+

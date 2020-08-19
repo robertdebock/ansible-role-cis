@@ -290,3 +290,12 @@ cis_ipv6_router_advertisements_not_accepted: yes
 
 # 3.3.1 Ensure DCCP is disabled (Scored)
 cis_dccp_disabled: yes
+
+# 3.3.2 Ensure SCTP is disabled (Scored)
+cis_sctp_disabled: yes
+
+# 3.3.3 Ensure RDS is disabled (Scored)
+cis_rds_disabled: yes
+
+# 3.3.4 Ensure TIPC is disabled (Scored)
+cis_tipc_disabled: yes
