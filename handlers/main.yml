@@ -24,6 +24,8 @@
 
 - name: remount /dev/shm with noexec
   command: mount -o remount,noexec /dev/shm # noqa 303
+  args:
+    warn: no
 
 - name: copy aide.db.new.gz to aide.db.gz
   copy:
