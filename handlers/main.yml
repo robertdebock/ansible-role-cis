@@ -55,9 +55,9 @@
 - name: net.ipv4.route.flush
   sysctl:
     name: net.ipv4.route.flush
-    value: 1
+    value: "1"
 
 - name: net.ipv6.route.flush
   sysctl:
     name: net.ipv6.route.flush
-    value: 1
+    value: "1"
