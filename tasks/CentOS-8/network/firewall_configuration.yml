@@ -4,5 +4,5 @@
     name: "{{ cis_firewall_package }}"
     state: present
   when:
-    - cis_firewall_package_installed: yes
+    - cis_firewall_package_installed | bool
 
