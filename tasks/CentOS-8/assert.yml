@@ -842,3 +842,20 @@
       - cis_nftables_not_enabled is defined
       - cis_nftables_not_enabled | type_debug == "bool"
     quiet: yes
+
+# 3.4.2.3 Ensure default zone is set (Scored)
+- name: test if cis_default_zone_set is set correctly
+  assert:
+    that:
+      - cis_default_zone_set is defined
+      - cis_default_zone_set | type_debug == "bool"
+    quiet: yes
+
+# 3.4.2.3 Ensure default zone is set (Scored)
+- name: test if cis_default_zone is set correctly
+  assert:
+    that:
+      - cis_default_zone is defined
+      - cis_default_zone | length > 0
+      - cis_default_zone in ["block", "dmz", "drop", "external", "home", "internal", "public", "trusted", "work"]
+    quiet: yes

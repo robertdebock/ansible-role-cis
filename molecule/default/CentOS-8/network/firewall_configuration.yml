@@ -74,3 +74,11 @@
     - cis_nftables_not_enabled_test_two is changed
   when:
     - cis_nftables_not_enabled | bool
+
+- name: 3.4.2.3 Ensure default zone is set (Scored)
+  command: firewall-cmd --get-default-zone
+  register: cis_default_zone_set_test
+  failed_when:
+    - cis_default_zone not in cis_default_zone_set_test.stdout
+  when:
+    - cis_default_zone_set | bool

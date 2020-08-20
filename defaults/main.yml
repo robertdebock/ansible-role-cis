@@ -309,3 +309,7 @@ cis_firewalld_enabled_and_running: yes
 
 # 3.4.2.2 Ensure nftables is not enabled (Scored)
 cis_nftables_not_enabled: yes
+
+# 3.4.2.3 Ensure default zone is set (Scored)
+cis_default_zone_set: yes
+cis_default_zone: public
