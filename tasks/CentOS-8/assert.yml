@@ -826,3 +826,11 @@
       - cis_firewall_package | length > 0
       - cis_firewall_package in ["firewalld", "nftables", "iptables"]
     quiet: yes
+
+# 3.4.2.1 Ensure firewalld service is enabled and running (Scored)
+- name: test if cis_firewalld_enabled_and_running is set correctly
+  assert:
+    that:
+      - cis_firewalld_enabled_and_running is defined
+      - cis_firewalld_enabled_and_running | type_debug == "bool"
+    quiet: yes

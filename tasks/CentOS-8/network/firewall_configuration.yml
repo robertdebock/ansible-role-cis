@@ -6,3 +6,10 @@
   when:
     - cis_firewall_package_installed | bool
 
+- name: 3.4.2.1 Ensure firewalld service is enabled and running (Scored)
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+  when:
+    - cis_firewalld_enabled_and_running | bool

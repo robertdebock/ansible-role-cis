@@ -34,3 +34,23 @@
         cis_firewall_package_installed_test_three is not changed
   when:
     - cis_firewall_package_installed | bool
+
+- name: 3.4.2.1 Ensure firewalld service is enabled and running (Scored)
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+  check_mode: yes
+  register: cis_firewalld_enabled_and_running_test_one
+  failed_when:
+    - cis_firewalld_enabled_and_running_test_one is changed
+  when:
+    - cis_firewalld_enabled_and_running | bool
+
+- name: 3.4.2.1 Ensure firewalld service is enabled and running (Scored)
+  command: firewall-cmd --state
+  register: cis_firewalld_enabled_and_running_test_two
+  failed_when:
+    - cis_firewalld_enabled_and_running_test_two.stdout != "running"
+  when:
+    - cis_firewalld_enabled_and_running | bool
