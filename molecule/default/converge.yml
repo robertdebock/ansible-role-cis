@@ -57,3 +57,7 @@
       # 3.3.1 Ensure DCCP is disabled (Scored)
       # can't load modules in a container.
       cis_dccp_disabled: no
+
+      # 3.3.2 Ensure SCTP is disabled (Scored)
+      # can't load modules in a container.
+      cis_sctp_disabled: no

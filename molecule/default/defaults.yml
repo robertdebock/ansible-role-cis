@@ -52,3 +52,7 @@ cis_selinux_state_enforcing: no
 # 3.3.1 Ensure DCCP is disabled (Scored)
 # can't load modules in a container.
 cis_dccp_disabled: no
+
+# 3.3.2 Ensure SCTP is disabled (Scored)
+# Error in container: No such file or directory: /lib/modules/$/modules.builtin
+cis_sctp_disabled: no
