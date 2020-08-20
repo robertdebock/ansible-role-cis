@@ -434,6 +434,12 @@ cis_tipc_disabled: yes
 # 3.4.1.1 Ensure a Firewall package is installed (Scored)
 cis_firewall_package_installed: yes
 cis_firewall_package: firewalld
+
+# 3.4.2.1 Ensure firewalld service is enabled and running (Scored)
+cis_firewalld_enabled_and_running: yes
+
+# 3.4.2.2 Ensure nftables is not enabled (Scored)
+cis_nftables_not_enabled: yes
 ```
 
 ## [Requirements](#requirements)

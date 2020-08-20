@@ -834,3 +834,11 @@
       - cis_firewalld_enabled_and_running is defined
       - cis_firewalld_enabled_and_running | type_debug == "bool"
     quiet: yes
+
+# 3.4.2.2 Ensure nftables is not enabled (Scored)
+- name: test if cis_nftables_not_enabled is set correctly
+  assert:
+    that:
+      - cis_nftables_not_enabled is defined
+      - cis_nftables_not_enabled | type_debug == "bool"
+    quiet: yes

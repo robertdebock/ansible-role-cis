@@ -13,3 +13,12 @@
     enabled: yes
   when:
     - cis_firewalld_enabled_and_running | bool
+
+- name: 3.4.2.2 Ensure nftables is not enabled (Scored)
+  service:
+    name: nftables
+    state: stopped
+    enabled: false
+    masked: yes
+  when:
+    - cis_nftables_not_enabled | bool

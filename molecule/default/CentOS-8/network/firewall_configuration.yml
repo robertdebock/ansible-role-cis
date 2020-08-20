@@ -54,3 +54,23 @@
     - cis_firewalld_enabled_and_running_test_two.stdout != "running"
   when:
     - cis_firewalld_enabled_and_running | bool
+
+- name: 3.4.2.2 Ensure nftables is not enabled (Scored)
+  command: systemctl is-enabled nftables
+  register: cis_nftables_not_enabled_test_one
+  failed_when:
+    - "'disabled' not in cis_nftables_not_enabled_test_one.stdout"
+    - "'masked' not in cis_nftables_not_enabled_test_one.stdout"
+  when:
+    - cis_nftables_not_enabled | bool
+
+- name: 3.4.2.2 Ensure nftables is not enabled (Scored)
+  service:
+    name: nftables
+    state: stopped
+    enabled: false
+  register: cis_nftables_not_enabled_test_two
+  failed_when:
+    - cis_nftables_not_enabled_test_two is changed
+  when:
+    - cis_nftables_not_enabled | bool
