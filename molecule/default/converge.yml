@@ -57,4 +57,3 @@
       # 3.3.1 Ensure DCCP is disabled (Scored)
       # can't load modules in a container.
       cis_dccp_disabled: no
-
