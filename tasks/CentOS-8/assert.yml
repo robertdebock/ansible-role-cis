@@ -810,3 +810,19 @@
       - cis_tipc_disabled | type_debug == "bool"
     quiet: yes
 
+# 3.4.1.1 Ensure a Firewall package is installed (Scored)
+- name: test if cis_firewall_package_installed is set correctly
+  assert:
+    that:
+      - cis_firewall_package_installed is defined
+      - cis_firewall_package_installed | type_debug == "bool"
+    quiet: yes
+
+# 3.4.1.1 Ensure a Firewall package is installed (Scored)
+- name: test if cis_firewall_package is set correctly
+  assert:
+    that:
+      - cis_firewall_package is defined
+      - cis_firewall_package | length > 0
+      - cis_firewall_package in ["firewalld", "nftables", "iptables"]
+    quiet: yes

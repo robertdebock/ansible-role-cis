@@ -1,0 +1,36 @@
+---
+- name: 3.4.1.1 Ensure a Firewall package is installed (Scored)
+  package:
+    name: firewalld
+    state: present
+  register: cis_firewall_package_installed_test_one
+  check_mode: yes
+  when:
+    - cis_firewall_package_installed: yes
+
+- name: 3.4.1.1 Ensure a Firewall package is installed (Scored)
+  package:
+    name: nftables
+    state: present
+  register: cis_firewall_package_installed_test_two
+  check_mode: yes
+  when:
+    - cis_firewall_package_installed: yes
+
+- name: 3.4.1.1 Ensure a Firewall package is installed (Scored)
+  package:
+    name: iptables
+    state: present
+  register: cis_firewall_package_installed_test_three
+  check_mode: yes
+  when:
+    - cis_firewall_package_installed: yes
+
+- name: 3.4.1.1 Ensure a Firewall package is installed (Scored)
+  assert:
+    that:
+      - cis_firewall_package_installed_test_one is not changed or
+        cis_firewall_package_installed_test_two is not changed or
+        cis_firewall_package_installed_test_three is not changed
+  when:
+    - cis_firewall_package_installed: yes

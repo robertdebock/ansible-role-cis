@@ -299,3 +299,7 @@ cis_rds_disabled: yes
 
 # 3.3.4 Ensure TIPC is disabled (Scored)
 cis_tipc_disabled: yes
+
+# 3.4.1.1 Ensure a Firewall package is installed (Scored)
+cis_firewall_package_installed: yes
+cis_firewall_package: firewalld

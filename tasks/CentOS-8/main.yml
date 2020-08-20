@@ -67,3 +67,7 @@
 # 3.3 Uncommon Network Protocols
 - name: include uncommon_network_protocols.yml
   include: network/uncommon_network_protocols.yml
+
+# 3.4 Firewall Configuration
+- name: include firewall_configuration.yml
+  include: network/firewall_configuration.yml
