@@ -6,7 +6,7 @@
   register: cis_firewall_package_installed_test_one
   check_mode: yes
   when:
-    - cis_firewall_package_installed: yes
+    - cis_firewall_package_installed | bool
 
 - name: 3.4.1.1 Ensure a Firewall package is installed (Scored)
   package:
@@ -15,7 +15,7 @@
   register: cis_firewall_package_installed_test_two
   check_mode: yes
   when:
-    - cis_firewall_package_installed: yes
+    - cis_firewall_package_installed | bool
 
 - name: 3.4.1.1 Ensure a Firewall package is installed (Scored)
   package:
@@ -24,7 +24,7 @@
   register: cis_firewall_package_installed_test_three
   check_mode: yes
   when:
-    - cis_firewall_package_installed: yes
+    - cis_firewall_package_installed | bool
 
 - name: 3.4.1.1 Ensure a Firewall package is installed (Scored)
   assert:
@@ -33,4 +33,4 @@
         cis_firewall_package_installed_test_two is not changed or
         cis_firewall_package_installed_test_three is not changed
   when:
-    - cis_firewall_package_installed: yes
+    - cis_firewall_package_installed | bool
