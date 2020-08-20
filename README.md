@@ -69,6 +69,18 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # 3.3.1 Ensure DCCP is disabled (Scored)
       # can't load modules in a container.
       cis_dccp_disabled: no
+
+      # 3.3.2 Ensure SCTP is disabled (Scored)
+      # can't load modules in a container.
+      cis_sctp_disabled: no
+
+      # 3.3.3 Ensure RDS is disabled (Scored)
+      # can't load modules in a container.
+      cis_rds_disabled: no
+
+      # 3.3.4 Ensure TIPC is disabled (Scored)
+      # can't load modules in a container.
+      cis_tipc_disabled: no
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
