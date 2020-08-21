@@ -917,3 +917,11 @@
       - cis_wireless_interface_disabled is defined
       - cis_wireless_interface_disabled | bool
     quiet: yes
+
+# 3.6 Disable IPv6 (Not Scored)
+- name: test if cis_disable_ipv6 is set correctly
+  assert:
+    that:
+      - cis_disable_ipv6 is defined
+      - cis_disable_ipv6 | bool
+    quiet: yes

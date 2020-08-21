@@ -73,3 +73,7 @@
 # 3.5 Ensure wireless interfaces are disabled (Scored)
 - name: include wireless_interfaces.yml
   include: network/wireless_interfaces.yml
+
+# 3.6 Disable IPv6 (Not Scored)
+- name: include disable_ipv6.yml
+  include: network/disable_ipv6.yml

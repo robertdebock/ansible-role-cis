@@ -342,3 +342,6 @@ cis_iptables_not_enabled: yes
 
 # 3.5 Ensure wireless interfaces are disabled (Scored)
 cis_wireless_interface_disabled: yes
+
+# 3.6 Disable IPv6 (Not Scored)
+cis_disable_ipv6: yes
