@@ -60,3 +60,13 @@
   when:
     - cis_unnecessary_services_ports_not_accepted | bool
     - cis_unnecessary_ports is defined
+
+- name: 3.4.2.6 Ensure iptables is not enabled (Scored)
+  service:
+    name: iptables
+    state: stopped
+    masked: yes
+    enabled: no
+  when:
+    - cis_iptables_not_enabled | bool
+    - services["iptables.service"] is defined

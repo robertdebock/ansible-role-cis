@@ -901,3 +901,11 @@
       - cis_unnecessary_ports is iterable
   when:
     - cis_unnecessary_ports is defined
+
+# 3.4.2.6 Ensure iptables is not enabled (Scored)
+- name: test if cis_iptables_not_enabled is set correctly
+  assert:
+    that:
+      - cis_iptables_not_enabled is defined
+      - cis_iptables_not_enabled | bool
+    quiet: yes

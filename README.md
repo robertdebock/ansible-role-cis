@@ -455,9 +455,11 @@ cis_firewalld_zone_interface_mapping:
 cis_unnecessary_services_ports_not_accepted: yes
 cis_unnecessary_services:
   - cockpit
-
 cis_unnecessary_ports:
   - 12345/tcp
+
+# 3.4.2.6 Ensure iptables is not enabled (Scored)
+cis_iptables_not_enabled: yes
 ```
 
 ## [Requirements](#requirements)
