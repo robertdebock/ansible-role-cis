@@ -345,3 +345,9 @@ cis_wireless_interface_disabled: yes
 
 # 3.6 Disable IPv6 (Not Scored)
 cis_disable_ipv6: yes
+
+# 4.1.1.1 Ensure auditd is installed (Scored)
+cis_auditd_installed: yes
+
+# 4.1.1.2 Ensure auditd service is enabled (Scored)
+cis_auditd_service_enabled: yes

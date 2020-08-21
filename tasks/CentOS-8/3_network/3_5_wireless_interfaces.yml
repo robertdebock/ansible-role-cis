@@ -16,7 +16,6 @@
 
 - name: 3.5 Ensure wireless interfaces are disabled (Scored)
   command: nmcli radio all
-  changed_when: no
   check_mode: no
   register: cis_wireless_interface_disabled_after
   changed_when:

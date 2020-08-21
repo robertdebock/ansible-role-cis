@@ -61,8 +61,8 @@
   include: 3_network/3_1_network_parameters.yml
 
 # 3.2 Network Parameters (Host and Router)
-- name: include 3_2_network_parameters_host_and_router.yml 
-  include: 3_network/3_2_network_parameters_host_and_router.yml 
+- name: include 3_2_network_parameters_host_and_router.yml
+  include: 3_network/3_2_network_parameters_host_and_router.yml
 
 # 3.3 Uncommon Network Protocols
 - name: include 3_3_uncommon_network_protocols.yml

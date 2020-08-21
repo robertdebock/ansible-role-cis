@@ -925,3 +925,19 @@
       - cis_disable_ipv6 is defined
       - cis_disable_ipv6 | type_debug == "bool"
     quiet: yes
+
+# 4.1.1.1 Ensure auditd is installed (Scored)
+- name: test if cis_auditd_installed is set correctly
+  assert:
+    that:
+      - cis_auditd_installed is defined
+      - cis_auditd_installed | type_debug == "bool"
+    quiet: yes
+
+# 4.1.1.2 Ensure auditd service is enabled (Scored)
+- name: test if cis_auditd_service_enabled is set correctly
+  assert:
+    that:
+      - cis_auditd_service_enabled is defined
+      - cis_auditd_service_enabled | type_debug == "bool"
+    quiet: yes
