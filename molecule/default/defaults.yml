@@ -68,3 +68,7 @@ cis_tipc_disabled: no
 # 3.5 Ensure wireless interfaces are disabled (Scored)
 # No NetworkManager in a container.
 cis_wireless_interface_disabled: no
+
+# 3.6 Disable IPv6 (Not Scored)
+# No grub in containers.
+cis_disable_ipv6: no
