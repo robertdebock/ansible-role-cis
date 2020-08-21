@@ -4,6 +4,6 @@
     path: /boot/grub2/grubenv
     regexp: '^kernelopts="((:?(?!ipv6\.disable=1).)*?)"$'
     replace: 'kernelopts="\1 ipv6.disable=1"'
-    mode: "0644"
+    mode: "0600"
   when:
     - cis_disable_ipv6 | bool
