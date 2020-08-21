@@ -89,8 +89,7 @@
     line: 'Options=\1,nodev'
     backrefs: yes
   notify:
-    - systemctl daemon-reload
-    - remount /tmp
+    - reboot
   when:
     - cis_tmp_nodev | bool
     - cis_tmp_nodev_output.rc == 1
@@ -113,8 +112,7 @@
     line: 'Options=\1,nosuid'
     backrefs: yes
   notify:
-    - systemctl daemon-reload
-    - remount /tmp
+    - reboot
   when:
     - cis_tmp_nosuid | bool
     - cis_tmp_nosuid_output.stdout | length < 1
@@ -140,8 +138,7 @@
     - cis_tmp_noexec | bool
     - cis_tmp_noexec_output.stdout | length < 1
   notify:
-    - systemctl daemon-reload
-    - remount /tmp
+    - reboot
 
 - name: 1.1.6 Ensure separate partition exists for /var (Scored)
   shell: set -o pipefail && mount | grep -E '\s/var\s'
