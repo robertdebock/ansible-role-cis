@@ -865,7 +865,7 @@
   assert:
     that:
       - cis_firewalld_network_interface_assigned_zones is defined
-      - cis_firewalld_network_interface_assigned_zones | bool
+      - cis_firewalld_network_interface_assigned_zones | type_debug == "bool"
     quiet: yes
 
 # 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
@@ -881,7 +881,7 @@
   assert:
     that:
       - cis_unnecessary_services_ports_not_accepted is defined
-      - cis_unnecessary_services_ports_not_accepted | bool
+      - cis_unnecessary_services_ports_not_accepted | type_debug == "bool"
     quiet: yes
 
 # 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
@@ -907,7 +907,7 @@
   assert:
     that:
       - cis_iptables_not_enabled is defined
-      - cis_iptables_not_enabled | bool
+      - cis_iptables_not_enabled | type_debug == "bool"
     quiet: yes
 
 # 3.5 Ensure wireless interfaces are disabled (Scored)
@@ -915,7 +915,7 @@
   assert:
     that:
       - cis_wireless_interface_disabled is defined
-      - cis_wireless_interface_disabled | bool
+      - cis_wireless_interface_disabled | type_debug == "bool"
     quiet: yes
 
 # 3.6 Disable IPv6 (Not Scored)
@@ -923,5 +923,5 @@
   assert:
     that:
       - cis_disable_ipv6 is defined
-      - cis_disable_ipv6 | bool
+      - cis_disable_ipv6 | type_debug == "bool"
     quiet: yes
