@@ -69,3 +69,7 @@
 # 3.4 Firewall Configuration
 - name: include firewall_configuration.yml
   include: network/firewall_configuration.yml
+
+# 3.5 Ensure wireless interfaces are disabled (Scored)
+- name: include wireless_interfaces.yml
+  include: network/wireless_interfaces.yml

@@ -81,6 +81,10 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # 3.3.4 Ensure TIPC is disabled (Scored)
       # can't load modules in a container.
       cis_tipc_disabled: no
+
+      # 3.5 Ensure wireless interfaces are disabled (Scored)
+      # No NetworkManager in a container.
+      cis_wireless_interface_disabled: no
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -460,6 +464,19 @@ cis_unnecessary_ports:
 
 # 3.4.2.6 Ensure iptables is not enabled (Scored)
 cis_iptables_not_enabled: yes
+
+# 3.4.3 Configure nftables
+# This section and all the subsection under 3.4.3 is skipped because section
+# 3.4.2 (Configure firewalld) and this section 3.4.3 (Configure nftables) are
+# mutually exclusive and firewalld is the default, which uses nft as a backend.
+
+# 3.4.4 Configure iptables
+# This section and all the subsection under 3.4.4 is skipped because section
+# 3.4.2 (Configure firewalld) and this section 3.4.4 (Configure iptables) are
+# mutually exclusive and firewalld is the default, which uses nft as a backend.
+
+# 3.5 Ensure wireless interfaces are disabled (Scored)
+cis_wireless_interface_disabled: yes
 ```
 
 ## [Requirements](#requirements)

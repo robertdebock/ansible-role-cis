@@ -64,3 +64,7 @@ cis_rds_disabled: no
 # 3.3.4 Ensure TIPC is disabled (Scored)
 # can't load modules in a container.
 cis_tipc_disabled: no
+
+# 3.5 Ensure wireless interfaces are disabled (Scored)
+# No NetworkManager in a container.
+cis_wireless_interface_disabled: no

@@ -909,3 +909,11 @@
       - cis_iptables_not_enabled is defined
       - cis_iptables_not_enabled | bool
     quiet: yes
+
+# 3.5 Ensure wireless interfaces are disabled (Scored)
+- name: test if cis_wireless_interface_disabled is set correctly
+  assert:
+    that:
+      - cis_wireless_interface_disabled is defined
+      - cis_wireless_interface_disabled | bool
+    quiet: yes
