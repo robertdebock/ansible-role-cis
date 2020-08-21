@@ -5,6 +5,10 @@
     name: tmp.mount
     state: restarted
     daemon_reload: yes
+  register: remount_tmp
+  retries: 3
+  until:
+    - remount_tmp is succeeded
 
 - name: remount /var/tmp
   mount:
