@@ -444,6 +444,13 @@ cis_nftables_not_enabled: yes
 # 3.4.2.3 Ensure default zone is set (Scored)
 cis_default_zone_set: yes
 cis_default_zone: public
+
+# 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not
+Scored)
+cis_firewalld_network_interface_assigned_zones: yes
+cis_firewalld_zone_interface_mapping:
+  - zone: public
+    interface: eth0
 ```
 
 ## [Requirements](#requirements)

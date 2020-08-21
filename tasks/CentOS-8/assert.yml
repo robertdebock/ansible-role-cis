@@ -859,3 +859,17 @@
       - cis_default_zone | length > 0
       - cis_default_zone in ["block", "dmz", "drop", "external", "home", "internal", "public", "trusted", "work"]
     quiet: yes
+
+# 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
+  assert:
+    that:
+      - cis_firewalld_network_interface_assigned_zones is defined
+      - cis_firewalld_network_interface_assigned_zones | bool
+    quiet: yes
+
+# 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
+  assert:
+    that:
+      - cis_firewalld_zone_interface_mapping is defined
+      - cis_firewalld_zone_interface_mapping | length > 0
+      - cis_firewalld_zone_interface_mapping is iterable
