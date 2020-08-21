@@ -40,3 +40,23 @@
   loop: "{{ cis_firewalld_zone_interface_mapping }}"
   when:
     - cis_firewalld_network_interface_assigned_zones | bool
+
+- name: 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: disabled
+  loop: "{{ cis_unnecessary_services }}"
+  when:
+    - cis_unnecessary_services_ports_not_accepted | bool
+    - cis_unnecessary_services is defined
+
+- name: 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
+  firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    state: disabled
+  loop: "{{ cis_unnecessary_ports }}"
+  when:
+    - cis_unnecessary_services_ports_not_accepted | bool
+    - cis_unnecessary_ports is defined

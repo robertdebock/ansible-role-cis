@@ -445,12 +445,19 @@ cis_nftables_not_enabled: yes
 cis_default_zone_set: yes
 cis_default_zone: public
 
-# 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not
-Scored)
+# 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
 cis_firewalld_network_interface_assigned_zones: yes
 cis_firewalld_zone_interface_mapping:
   - zone: public
     interface: eth0
+
+# 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
+cis_unnecessary_services_ports_not_accepted: yes
+cis_unnecessary_services:
+  - cockpit
+
+cis_unnecessary_ports:
+  - 12345/tcp
 ```
 
 ## [Requirements](#requirements)

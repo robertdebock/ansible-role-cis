@@ -861,6 +861,7 @@
     quiet: yes
 
 # 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
+- name: test if cis_firewalld_network_interface_assigned_zones is set correctly
   assert:
     that:
       - cis_firewalld_network_interface_assigned_zones is defined
@@ -868,8 +869,35 @@
     quiet: yes
 
 # 3.4.2.4 Ensure network interfaces are assigned to appropriate zone (Not Scored)
+- name: test if cis_firewalld_zone_interface_mapping is set correctly
   assert:
     that:
       - cis_firewalld_zone_interface_mapping is defined
       - cis_firewalld_zone_interface_mapping | length > 0
       - cis_firewalld_zone_interface_mapping is iterable
+
+# 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
+- name: test if cis_unnecessary_services_ports_not_accepted is set correctly
+  assert:
+    that:
+      - cis_unnecessary_services_ports_not_accepted is defined
+      - cis_unnecessary_services_ports_not_accepted | bool
+    quiet: yes
+
+# 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
+- name: test if cis_unnecessary_services is set correctly
+  assert:
+    that:
+      - cis_unnecessary_services | length > 0
+      - cis_unnecessary_services is iterable
+  when:
+    - cis_unnecessary_services is defined
+
+# 3.4.2.5 Ensure unnecessary services and ports are not accepted (Not Scored)
+- name: test if cis_unnecessary_ports is set correctly
+  assert:
+    that:
+      - cis_unnecessary_ports | length > 0
+      - cis_unnecessary_ports is iterable
+  when:
+    - cis_unnecessary_ports is defined
