@@ -57,7 +57,7 @@
     name: setroubleshoot
     state: absent
   when:
-   - cis_setroubleshoot_not_installed | bool
+    - cis_setroubleshoot_not_installed | bool
 
 - name: 1.7.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
   package:
