@@ -1,6 +1,6 @@
 ---
 - name: 1.2.1 Ensure GPG keys are configured (Not Scored)
-  command: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'  # noqa 303
+  command: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'  # noqa 303 Need a list of keys, not supported by module.
   args:
     warn: no
   register: cis_gpg_keys
