@@ -11,13 +11,13 @@
     state: remounted
 
 - name: remount /dev/shm with nodev
-  command: mount -o remount,nodev /dev/shm # noqa 303
+  command: mount -o remount,nodev /dev/shm  # noqa 303
 
 - name: remount /dev/shm with nosuid
-  command: mount -o remount,nosuid /dev/shm # noqa 303
+  command: mount -o remount,nosuid /dev/shm  # noqa 303
 
 - name: remount /dev/shm with noexec
-  command: mount -o remount,noexec /dev/shm # noqa 303
+  command: mount -o remount,noexec /dev/shm  # noqa 303
   args:
     warn: no
 
