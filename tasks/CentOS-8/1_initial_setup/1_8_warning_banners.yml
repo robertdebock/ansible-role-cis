@@ -40,7 +40,7 @@
     group: root
     owner: root
   when:
-   - cis_permissions_etc_issue | bool
+    - cis_permissions_etc_issue | bool
 
 - name: 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
   file:
