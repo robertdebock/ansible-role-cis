@@ -65,7 +65,7 @@
   command: sysctl kernel.randomize_va_space
   register: cis_aslr_enabled_test
   when:
-   - cis_aslr_enabled
+    - cis_aslr_enabled
 
 - name: 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Scored)
   assert:
@@ -73,4 +73,4 @@
       - cis_aslr_enabled_test.stdout == "kernel.randomize_va_space = 2"
     quiet: yes
   when:
-   - cis_aslr_enabled
+    - cis_aslr_enabled
