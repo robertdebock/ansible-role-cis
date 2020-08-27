@@ -6,7 +6,7 @@
   register: cis_time_synchronization_test
   failed_when:
     - cis_time_synchronization_test.rc != 0
-  when: 
+  when:
     - cis_time_synchronization | bool
 
 - name: 2.2.1.2 Ensure chrony is configured (Scored)
