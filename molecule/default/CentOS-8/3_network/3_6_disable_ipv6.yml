@@ -10,4 +10,3 @@
     - cis_disable_ipv6_test is changed
   when:
     - cis_disable_ipv6 | bool
-
