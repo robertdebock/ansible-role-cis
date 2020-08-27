@@ -12,5 +12,5 @@
   register: cis_ensure_crypto_policy_test
   failed_when:
     - cis_ensure_crypto_policy_test.stdout not in ["FUTURE", "FIPS"]
-  when: 
+  when:
     - cis_ensure_crypto_policy | bool
