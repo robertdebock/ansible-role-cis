@@ -72,7 +72,7 @@
     path: /etc/issue
   register: cis_permissions_etc_issue_test
   when:
-   - cis_permissions_etc_issue | bool
+    - cis_permissions_etc_issue | bool
 
 - name: 1.8.1.5 Ensure permissions on /etc/issue are configured (Scored)
   assert:
@@ -82,7 +82,7 @@
       - cis_permissions_etc_issue_test.stat.uid == 0
     quiet: yes
   when:
-   - cis_permissions_etc_issue | bool
+    - cis_permissions_etc_issue | bool
 
 - name: 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Scored)
   stat:
