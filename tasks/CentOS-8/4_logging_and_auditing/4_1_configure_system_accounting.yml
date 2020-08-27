@@ -4,7 +4,7 @@
     name: audit
     state: present
   when:
-   -  cis_auditd_installed | bool
+    -  cis_auditd_installed | bool
 
 - name: 4.1.1.2 Ensure auditd service is enabled (Scored)
   service:
