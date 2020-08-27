@@ -36,7 +36,7 @@
   register: cis_rds_disabled_test_one
   failed_when:
     - '"install /bin/true" not in cis_rds_disabled_test_one.stdout'
-  when: 
+  when:
     - cis_rds_disabled | bool
 
 - name: 3.3.3 Ensure RDS is disabled (Scored)
@@ -44,7 +44,7 @@
   register: cis_rds_disabled_test_two
   failed_when:
     - cis_rds_disabled_test_two.stdout_lines | length > 0
-  when: 
+  when:
     - cis_rds_disabled | bool
 
 - name: 3.3.4 Ensure TIPC is disabled (Scored)
@@ -52,7 +52,7 @@
   register: cis_tipc_disabled_test_one
   failed_when:
     - '"install /bin/true" not in cis_tipc_disabled_test_one.stdout'
-  when: 
+  when:
     - cis_tipc_disabled | bool
 
 - name: 3.3.4 Ensure TIPC is disabled (Scored)
@@ -60,5 +60,5 @@
   register: cis_tipc_disabled_test_two
   failed_when:
     - cis_tipc_disabled_test_two.stdout_lines | length > 0
-  when: 
+  when:
     - cis_tipc_disabled | bool
