@@ -7,7 +7,7 @@
   notify:
     - net.ipv4.route.flush
   when:
-   - cis_source_routed_packets_not_accepted | bool
+    - cis_source_routed_packets_not_accepted | bool
 
 - name: 3.2.1 Ensure source routed packets are not accepted (Scored)
   sysctl:
@@ -17,7 +17,7 @@
   notify:
     - net.ipv4.route.flush
   when:
-   - cis_source_routed_packets_not_accepted | bool
+    - cis_source_routed_packets_not_accepted | bool
 
 - name: 3.2.1 Ensure source routed packets are not accepted (Scored)
   sysctl:
@@ -27,7 +27,7 @@
   notify:
     - net.ipv6.route.flush
   when:
-   - cis_source_routed_packets_not_accepted | bool
+    - cis_source_routed_packets_not_accepted | bool
 
 - name: 3.2.1 Ensure source routed packets are not accepted (Scored)
   sysctl:
@@ -37,7 +37,7 @@
   notify:
     - net.ipv6.route.flush
   when:
-   - cis_source_routed_packets_not_accepted | bool
+    - cis_source_routed_packets_not_accepted | bool
 
 - name: 3.2.2 Ensure ICMP redirects are not accepted (Scored)
   sysctl:
