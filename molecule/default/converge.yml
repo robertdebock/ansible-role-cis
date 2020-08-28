@@ -77,3 +77,11 @@
       # 3.6 Disable IPv6 (Not Scored)
       # No grub in containers.
       cis_disable_ipv6: no
+
+      # 4.1.1.2 Ensure auditd service is enabled (Scored)
+      # For some reason auditd does not start.
+      cis_auditd_service_enabled: no
+
+      # 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
+      # No grub in containers.
+      cis_auditing_processes_prior_start: no
