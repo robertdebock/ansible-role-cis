@@ -45,3 +45,11 @@
     line: max_log_file = {{ cis_audit_log_storage_size }}
   when:
     - cis_audit_log_storage_size_configured | bool
+
+- name: 4.1.2.2 Ensure audit logs are not automatically deleted (Scored)
+  lineinfile:
+    path: /etc/audit/auditd.conf
+    regexp: '^max_log_file_action = '
+    line: ^max_log_file_action = keep_logs
+  when:
+    - cis_audit_logs_no_automatically_deleted | bool

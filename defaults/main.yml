@@ -360,3 +360,6 @@ cis_audit_backlog_limit_sufficient: yes
 # 4.1.2.1 Ensure audit log storage size is configured (Scored)
 cis_audit_log_storage_size_configured: yes
 cis_audit_log_storage_size: 128
+
+# 4.1.2.2 Ensure audit logs are not automatically deleted (Scored)
+cis_audit_logs_no_automatically_deleted: yes

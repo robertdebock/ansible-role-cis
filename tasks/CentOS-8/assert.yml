@@ -974,3 +974,11 @@
       - cis_audit_log_storage_size | int
       - cis_audit_log_storage_size | int > 0
     quiet: yes
+
+# 4.1.2.2 Ensure audit logs are not automatically deleted (Scored)
+- name: test if cis_audit_logs_no_automatically_deleted is set correctly
+  assert:
+    that:
+      - cis_audit_logs_no_automatically_deleted is defined
+      - cis_audit_logs_no_automatically_deleted | type_debug == "bool"
+    quiet: yes
