@@ -39,3 +39,8 @@
     - "'audit_backlog_limit=8192' not in cis_audit_backlog_limit_sufficient_test.stdout"
   when:
     - cis_audit_backlog_limit_sufficient | bool
+
+- name: 4.1.2.1 Ensure audit log storage size is configured (Scored)
+  command: grep "max_log_file = {{ cis_audit_log_storage_size }}" /etc/audit/auditd.conf
+  when:
+    -  cis_audit_log_storage_size_configured | bool

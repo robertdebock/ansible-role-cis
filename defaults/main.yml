@@ -356,3 +356,7 @@ cis_auditing_processes_prior_start: yes
 
 # 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
 cis_audit_backlog_limit_sufficient: yes
+
+# 4.1.2.1 Ensure audit log storage size is configured (Scored)
+cis_audit_log_storage_size_configured: yes
+cis_audit_log_storage_size: 128

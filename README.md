@@ -4,7 +4,7 @@ Apply and/or check recommendations from the CIS benchmarks.
 
 |Travis|GitHub|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-cis.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-cis)|[![github](https://github.com/robertdebock/ansible-role-cis/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cis/actions)|[![quality](https://img.shields.io/ansible/quality/49856)](https://galaxy.ansible.com/robertdebock/cis)|[![downloads](https://img.shields.io/ansible/role/d/49856)](https://galaxy.ansible.com/robertdebock/cis)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cis.svg)](https://github.com/robertdebock/ansible-role-cis/releases/)|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-cis.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-cis)|[![github](https://github.com/robertdebock/ansible-role-cis/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cis/actions)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/cis)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/cis)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-cis.svg)](https://github.com/robertdebock/ansible-role-cis/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -85,6 +85,22 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       # 3.5 Ensure wireless interfaces are disabled (Scored)
       # No NetworkManager in a container.
       cis_wireless_interface_disabled: no
+
+      # 3.6 Disable IPv6 (Not Scored)
+      # No grub in containers.
+      cis_disable_ipv6: no
+
+      # 4.1.1.2 Ensure auditd service is enabled (Scored)
+      # For some reason auditd does not start.
+      cis_auditd_service_enabled: no
+
+      # 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
+      # No grub in containers.
+      cis_auditing_processes_prior_start: no
+
+      # 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
+      # No grub in containers.
+      cis_audit_backlog_limit_sufficient: no
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -286,7 +302,6 @@ cis_mcs_translation_service_not_installed: yes
 cis_message_of_the_day_configured: yes
 cis_message_of_the_day: |
   UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
-  
   You must have explicit, authorized permission to access or configure this device. Unauthorized attempts and actions to access or use this system may result in civil and/or criminal penalties. All activities performed on this device are logged and monitored.
 
 # 1.8.1.2 Ensure local login warning banner is configured properly (Scored)
@@ -480,6 +495,22 @@ cis_wireless_interface_disabled: yes
 
 # 3.6 Disable IPv6 (Not Scored)
 cis_disable_ipv6: yes
+
+# 4.1.1.1 Ensure auditd is installed (Scored)
+cis_auditd_installed: yes
+
+# 4.1.1.2 Ensure auditd service is enabled (Scored)
+cis_auditd_service_enabled: yes
+
+# 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
+cis_auditing_processes_prior_start: yes
+
+# 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
+cis_audit_backlog_limit_sufficient: yes
+
+# 4.1.2.1 Ensure audit log storage size is configured (Scored)
+cis_audit_log_storage_size_configured: yes
+cis_audit_log_storage_size: 128
 ```
 
 ## [Requirements](#requirements)
