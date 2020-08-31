@@ -25,3 +25,16 @@
     - run grub2-mkconfig
   when:
     - cis_auditing_processes_prior_start | bool
+
+- name: 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
+  replace:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX="((:?(?!audit_backlog_limit=.*).)*?)"$'
+    replace: 'GRUB_CMDLINE_LINUX="\1 audit_backlog_limit=8192"'
+    validate: /bin/sh %s
+    mode: "0664"
+  notify:
+    - run grub2-mkconfig
+  when:
+    - cis_audit_backlog_limit_sufficient | bool
+

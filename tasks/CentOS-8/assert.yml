@@ -949,3 +949,11 @@
       - cis_auditing_processes_prior_start is defined
       - cis_auditing_processes_prior_start | type_debug == "bool"
     quiet: yes
+
+# 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
+- name: test if cis_audit_backlog_limit_sufficient is set correctly
+  assert:
+    that:
+      - cis_audit_backlog_limit_sufficient is defined
+      - cis_audit_backlog_limit_sufficient | type_debug == "bool"
+    quiet: yes

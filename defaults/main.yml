@@ -353,3 +353,6 @@ cis_auditd_service_enabled: yes
 
 # 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
 cis_auditing_processes_prior_start: yes
+
+# 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
+cis_audit_backlog_limit_sufficient: yes

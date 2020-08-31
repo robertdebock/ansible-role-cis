@@ -80,3 +80,7 @@ cis_auditd_service_enabled: no
 # 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
 # No grub in containers.
 cis_auditing_processes_prior_start: no
+
+# 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
+# No grub in containers.
+cis_audit_backlog_limit_sufficient: no

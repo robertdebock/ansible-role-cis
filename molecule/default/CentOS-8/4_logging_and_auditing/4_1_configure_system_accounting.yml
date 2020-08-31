@@ -31,3 +31,11 @@
     - "'audit=1' not in cis_auditing_processes_prior_start_test.stdout"
   when:
     - cis_auditing_processes_prior_start | bool
+
+- name: 4.1.1.4 Ensure audit_backlog_limit is sufficient (Scored)
+  command: grep -E 'kernelopts=(\S+\s+)*audit_backlog_limit=\S+\b' /boot/grub2/grubenv
+  register: cis_audit_backlog_limit_sufficient_test
+  failed_when:
+    - "'audit_backlog_limit=8192' not in cis_audit_backlog_limit_sufficient_test.stdout"
+  when:
+    - cis_audit_backlog_limit_sufficient | bool
