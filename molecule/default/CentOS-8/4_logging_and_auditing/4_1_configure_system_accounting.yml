@@ -49,3 +49,18 @@
   command: grep "max_log_file_action = keep_logs" /etc/audit/auditd.conf
   when:
     - cis_audit_logs_no_automatically_deleted | bool
+
+- name: 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
+  command: grep "space_left_action = email" /etc/audit/auditd.conf
+  when:
+    - cis_system_disabled_audit_logs_full | bool
+
+- name: 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
+  command: grep "action_mail_acct = root" /etc/audit/auditd.conf
+  when:
+    - cis_system_disabled_audit_logs_full | bool
+
+- name: 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
+  command: grep "admin_space_left_action = halt" /etc/audit/auditd.conf
+  when:
+    - cis_system_disabled_audit_logs_full | bool

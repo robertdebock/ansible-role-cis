@@ -982,3 +982,11 @@
       - cis_audit_logs_no_automatically_deleted is defined
       - cis_audit_logs_no_automatically_deleted | type_debug == "bool"
     quiet: yes
+
+# 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
+- name: test if cis_system_disabled_audit_logs_full is set correctly
+  assert:
+    that:
+      - cis_system_disabled_audit_logs_full is defined
+      - cis_system_disabled_audit_logs_full | type_debug == "bool"
+    quiet: yes

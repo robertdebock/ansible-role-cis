@@ -42,7 +42,9 @@
   lineinfile:
     path: /etc/audit/auditd.conf
     regexp: '^max_log_file = '
-    line: max_log_file = {{ cis_audit_log_storage_size }}
+    line: "max_log_file = {{ cis_audit_log_storage_size }}"
+  notify:
+    - restart auditd
   when:
     - cis_audit_log_storage_size_configured | bool
 
@@ -50,6 +52,38 @@
   lineinfile:
     path: /etc/audit/auditd.conf
     regexp: '^max_log_file_action = '
-    line: ^max_log_file_action = keep_logs
+    line: "max_log_file_action = keep_logs"
+  notify:
+    - restart auditd
   when:
     - cis_audit_logs_no_automatically_deleted | bool
+
+- name: 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
+  lineinfile:
+    path: /etc/audit/auditd.conf
+    regexp: '^space_left_action = '
+    line: "space_left_action = email"
+  notify:
+    - restart auditd
+  when:
+    - cis_system_disabled_audit_logs_full | bool
+
+- name: 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
+  lineinfile:
+    path: /etc/audit/auditd.conf
+    regexp: '^action_mail_acct = '
+    line: "action_mail_acct = root"
+  notify:
+    - restart auditd
+  when:
+    - cis_system_disabled_audit_logs_full | bool
+
+- name: 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
+  lineinfile:
+    path: /etc/audit/auditd.conf
+    regexp: '^admin_space_left_action = '
+    line: "admin_space_left_action = halt"
+  notify:
+    - restart auditd
+  when:
+    - cis_system_disabled_audit_logs_full | bool
