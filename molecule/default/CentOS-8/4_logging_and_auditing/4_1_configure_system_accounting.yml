@@ -64,3 +64,12 @@
   command: grep "admin_space_left_action = halt" /etc/audit/auditd.conf
   when:
     - cis_system_disabled_audit_logs_full | bool
+
+- name: 4.1.3 Ensure changes to system administration scope (sudoers) is collected (Scored)
+  command: grep scope /etc/audit/rules.d/*.rules
+  register: cis_changed_to_system_administrator_scope_collected_test
+  failed_when:
+    - "'-w /etc/sudoers -p wa -k scope' not in cis_changed_to_system_administrator_scope_collected_test.stdout or
+       '-w /etc/sudoers.d/ -p wa -k scope' not in cis_changed_to_system_administrator_scope_collected_test.stdout"
+  when:
+    - cis_changed_to_system_administrator_scope_collected | bool

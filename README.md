@@ -117,13 +117,13 @@ The machine may need to be prepared using `molecule/resources/prepare.yml`:
     - role: robertdebock.update
 ```
 
-For verification `molecule/resources/verify.yml` run after the role has been applied.
+For verification `molecule/resources/verify.yml` runs after the role has been applied.
 ```yaml
 ---
 - name: Verify
   hosts: all
   become: yes
-  gather_facts: yes
+  gather_facts: no
 
   tasks:
     # Molecules verifier does not load variables in default and vars. These
@@ -514,6 +514,12 @@ cis_audit_log_storage_size: 128
 
 # 4.1.2.2 Ensure audit logs are not automatically deleted (Scored)
 cis_audit_logs_no_automatically_deleted: yes
+
+# 4.1.2.3 Ensure system is disabled when audit logs are full (Scored)
+cis_system_disabled_audit_logs_full: yes
+
+# 4.1.3 Ensure changes to system administration scope (sudoers) is collected (Scored)
+cis_changed_to_system_administrator_scope_collected: yes
 ```
 
 ## [Requirements](#requirements)
