@@ -998,3 +998,11 @@
       - cis_changed_to_system_administrator_scope_collected is defined
       - cis_changed_to_system_administrator_scope_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.4 Ensure login and logout events are collected (Scored)
+- name: test if cis_login_and_login_events_collected is set correctly
+  assert:
+    that:
+      - cis_login_and_login_events_collected is defined
+      - cis_login_and_login_events_collected | type_debug == "bool"
+    quiet: yes

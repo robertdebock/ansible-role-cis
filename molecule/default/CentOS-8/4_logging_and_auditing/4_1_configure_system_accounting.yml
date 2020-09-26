@@ -73,3 +73,21 @@
        '-w /etc/sudoers.d/ -p wa -k scope' not in cis_changed_to_system_administrator_scope_collected_test.stdout"
   when:
     - cis_changed_to_system_administrator_scope_collected | bool
+
+- name: 4.1.4 Ensure login and logout events are collected (Scored)
+  command: grep logins /etc/audit/rules.d/*.rules
+  register: cis_login_and_login_events_collected_test_one
+  failed_when:
+    - "'-w /var/log/faillog -p wa -k logins' not in cis_login_and_login_events_collected_test_one.stdout"
+    - "'-w /var/log/lastlog -p wa -k logins' not in cis_login_and_login_events_collected_test_one.stdout"
+  when:
+    - cis_login_and_login_events_collected | bool
+
+- name: 4.1.4 Ensure login and logout events are collected (Scored)
+  command: auditctl -l | grep logins
+  register: cis_login_and_login_events_collected_test_two
+  failed_when:
+    - "'-w /var/log/faillog -p wa -k logins' not in cis_login_and_login_events_collected_test_two.stdout"
+    - "'-w /var/log/lastlog -p wa -k logins' not in cis_login_and_login_events_collected_test_two.stdout"
+  when:
+    - cis_login_and_login_events_collected | bool

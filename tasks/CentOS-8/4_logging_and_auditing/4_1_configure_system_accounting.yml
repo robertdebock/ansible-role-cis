@@ -99,3 +99,15 @@
     - reboot
   when:
     - cis_changed_to_system_administrator_scope_collected | bool
+
+- name: 4.1.4 Ensure login and logout events are collected (Scored)
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    line: "{{ item }}"
+  loop:
+    - -w /var/log/faillog -p wa -k logins
+    - -w /var/log/lastlog -p wa -k logins
+  notify:
+    - reboot
+  when:
+    - cis_login_and_login_events_collected | bool

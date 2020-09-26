@@ -369,3 +369,6 @@ cis_system_disabled_audit_logs_full: yes
 
 # 4.1.3 Ensure changes to system administration scope (sudoers) is collected (Scored)
 cis_changed_to_system_administrator_scope_collected: yes
+
+# 4.1.4 Ensure login and logout events are collected (Scored)
+cis_login_and_login_events_collected: yes
