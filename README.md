@@ -523,6 +523,9 @@ cis_changed_to_system_administrator_scope_collected: yes
 
 # 4.1.4 Ensure login and logout events are collected (Scored)
 cis_login_and_login_events_collected: yes
+
+# 4.1.5 Ensure session initiation information is collected (Scored)
+cis_session_initiation_information_collected: yes
 ```
 
 ## [Requirements](#requirements)

@@ -1006,3 +1006,11 @@
       - cis_login_and_login_events_collected is defined
       - cis_login_and_login_events_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.5 Ensure session initiation information is collected (Scored)
+- name: test if cis_session_initiation_information_collected is set correctly
+  assert:
+    that:
+      - cis_session_initiation_information_collected is defined
+      - cis_session_initiation_information_collected | type_debug == "bool"
+    quiet: yes
