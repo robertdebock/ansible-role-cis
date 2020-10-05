@@ -101,3 +101,27 @@
     - "'-w /var/run/btmp -p wa -k logins' not in cis_session_initiation_information_collected_test_one.stdout"
   when:
     - cis_session_initiation_information_collected | bool
+
+- name: 4.1.6 Ensure events that modify date and time information are collected (Scored)
+  command: grep -E '(session|logins)' /etc/audit/rules.d/*.rules
+  register: cis_events_modify_time_and_date_collected_test_one
+  failed_when:
+    - "'-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change' not in cis_events_modify_time_and_date_collected_test_one.stdout"
+    - "'-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change' not in cis_events_modify_time_and_date_collected_test_one.stdout"
+    - "'-a always,exit -F arch=b64 -S clock_settime -k time-change' not in cis_events_modify_time_and_date_collected_test_one.stdout"
+    - "'-a always,exit -F arch=b32 -S clock_settime -k time-change' not in cis_events_modify_time_and_date_collected_test_one.stdout"
+    - "'-w /etc/localtime -p wa -k time-change' not in cis_events_modify_time_and_date_collected_test_one.stdout"
+  when:
+    - cis_events_modify_time_and_date_collected | bool
+
+- name: 4.1.6 Ensure events that modify date and time information are collected (Scored)
+  shell: auditctl -l | grep time-change
+  register: cis_events_modify_time_and_date_collected_test_two
+  failed_when:
+    - "'-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change' not in cis_events_modify_time_and_date_collected_test_two.stdout"
+    - "'-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change' not in cis_events_modify_time_and_date_collected_test_two.stdout"
+    - "'-a always,exit -F arch=b64 -S clock_settime -k time-change' not in cis_events_modify_time_and_date_collected_test_two.stdout"
+    - "'-a always,exit -F arch=b32 -S clock_settime -k time-change' not in cis_events_modify_time_and_date_collected_test_two.stdout"
+    - "'-w /etc/localtime -p wa -k time-change' not in cis_events_modify_time_and_date_collected_test_two.stdout"
+  when:
+    - cis_events_modify_time_and_date_collected | bool

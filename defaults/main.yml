@@ -375,3 +375,6 @@ cis_login_and_login_events_collected: yes
 
 # 4.1.5 Ensure session initiation information is collected (Scored)
 cis_session_initiation_information_collected: yes
+
+# 4.1.6 Ensure events that modify date and time information are collected (Scored)
+cis_events_modify_time_and_date_collected: yes

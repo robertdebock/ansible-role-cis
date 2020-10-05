@@ -1014,3 +1014,11 @@
       - cis_session_initiation_information_collected is defined
       - cis_session_initiation_information_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.6 Ensure events that modify date and time information are collected (Scored)
+- name: test if cis_events_modify_time_and_date_collected is set correctly
+  assert:
+    that:
+      - cis_events_modify_time_and_date_collected is defined
+      - cis_events_modify_time_and_date_collected | type_debug == "bool"
+    quiet: yes

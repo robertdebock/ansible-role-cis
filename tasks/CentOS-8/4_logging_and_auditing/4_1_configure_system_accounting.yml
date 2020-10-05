@@ -124,3 +124,18 @@
     - reboot
   when:
     - cis_session_initiation_information_collected | bool
+
+- name: 4.1.6 Ensure events that modify date and time information are collected (Scored)
+  lineinfile:
+    path: /etc/audit/rules.d/time-change.rules
+    line: "{{ item }}"
+  loop:
+    - -a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change
+    - -a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change
+    - -a always,exit -F arch=b64 -S clock_settime -k time-change
+    - -a always,exit -F arch=b32 -S clock_settime -k time-change
+    - -w /etc/localtime -p wa -k time-change
+  notify:
+    - reboot
+  when:
+    - cis_events_modify_time_and_date_collected | bool
