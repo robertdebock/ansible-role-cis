@@ -1,6 +1,7 @@
 ---
 - name: include assert.yml
   include_tasks: assert.yml
+  run_once: yes
 
 # For now, only collect service_facts on non-Ubuntu due to:
 # https://github.com/ansible/ansible/issues/71140
