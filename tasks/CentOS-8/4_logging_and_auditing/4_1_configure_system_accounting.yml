@@ -139,3 +139,15 @@
     - reboot
   when:
     - cis_events_modify_time_and_date_collected | bool
+
+- name: 4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected (Scored)
+  lineinfile:
+    path: /etc/audit/rules.d/MAC-policy.rules
+    line: "{{ item }}"
+  loop:
+    - -w /etc/selinux/ -p wa -k MAC-policy
+    - -w /usr/share/selinux/ -p wa -k MAC-policy
+  notify:
+    - reboot
+  when:
+    - cis_events_modifying_mac_collected | bool
