@@ -40,8 +40,8 @@
 
 - name: 4.1.2.1 Ensure audit log storage size is configured (Scored)
   lineinfile:
-    path: /etc/audit/auditd.conf
-    create: yes
+    path: /etc/audit/auditd.confA
+    mode: "0640"
     regexp: '^max_log_file = '
     line: "max_log_file = {{ cis_audit_log_storage_size }}"
   notify:
@@ -93,6 +93,7 @@
   lineinfile:
     path: /etc/audit/rules.d/scope.rules
     create: yes
+    mode: "0600"
     line: "{{ item }}"
   loop:
     - -w /etc/sudoers -p wa -k scope
@@ -106,6 +107,7 @@
   lineinfile:
     path: /etc/audit/rules.d/audit.rules
     create: yes
+    mode: "0600"
     line: "{{ item }}"
   loop:
     - -w /var/log/faillog -p wa -k logins
@@ -119,6 +121,7 @@
   lineinfile:
     path: /etc/audit/rules.d/logins.rules
     create: yes
+    mode: "0600"
     line: "{{ item }}"
   failed_when:
     - -w /var/run/utmp -p wa -k session
@@ -133,6 +136,7 @@
   lineinfile:
     path: /etc/audit/rules.d/time-change.rules
     create: yes
+    mode: "0600"
     line: "{{ item }}"
   loop:
     - -a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change
@@ -149,6 +153,7 @@
   lineinfile:
     path: /etc/audit/rules.d/MAC-policy.rules
     create: yes
+    mode: "0600"
     line: "{{ item }}"
   loop:
     - -w /etc/selinux/ -p wa -k MAC-policy
