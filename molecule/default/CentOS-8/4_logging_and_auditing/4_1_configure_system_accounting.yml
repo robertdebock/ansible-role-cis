@@ -153,3 +153,29 @@
     - "'-w /usr/share/selinux/ -p wa -k MAC-policy' not in cis_events_modifying_mac_collected_test_two.stdout"
   when:
     - cis_events_modifying_mac_collected | bool
+
+- name: 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
+  command: grep system-locale /etc/audit/rules.d/*.rules
+  register: cis_events_modifying_systems_network_collected_test_one
+  failed_when:
+    - "'-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
+    - "'-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
+    - "'-w /etc/issue -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
+    - "'-w /etc/issue.net -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
+    - "'-w /etc/hosts -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
+    - "'-w /etc/sysconfig/network -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
+  when:
+    - cis_events_modifying_systems_network_collected | bool
+
+- name: 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
+  shell: auditctl -l | grep system-locale
+  register: cis_events_modifying_systems_network_collected_test_two
+  failed_when:
+    - "'-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
+    - "'-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
+    - "'-w /etc/issue -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
+    - "'-w /etc/issue.net -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
+    - "'-w /etc/hosts -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
+    - "'-w /etc/sysconfig/network -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
+  when:
+    - cis_events_modifying_systems_network_collected | bool

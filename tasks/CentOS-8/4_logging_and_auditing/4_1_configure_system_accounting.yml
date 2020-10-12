@@ -162,3 +162,21 @@
     - reboot
   when:
     - cis_events_modifying_mac_collected | bool
+
+- name: 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
+  lineinfile:
+    path: /etc/audit/rules.d/system-locale.rules
+    create: yes
+    mode: "0600"
+    line: "{{ item }}"
+  loop:
+    - -a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale
+    - -a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale
+    - -w /etc/issue -p wa -k system-locale
+    - -w /etc/issue.net -p wa -k system-locale
+    - -w /etc/hosts -p wa -k system-locale
+    - -w /etc/sysconfig/network -p wa -k system-locale
+  notify:
+    - reboot
+  when:
+    - cis_events_modifying_systems_network_collected | bool

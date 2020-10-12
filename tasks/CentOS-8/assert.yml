@@ -1030,3 +1030,11 @@
       - cis_events_modifying_mac_collected is defined
       - cis_events_modifying_mac_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
+- name: test if cis_events_modifying_systems_network_collected is set correctly
+  assert:
+    that:
+      - cis_events_modifying_systems_network_collected is defined
+      - cis_events_modifying_systems_network_collected | type_debug == "bool"
+    quiet: yes
