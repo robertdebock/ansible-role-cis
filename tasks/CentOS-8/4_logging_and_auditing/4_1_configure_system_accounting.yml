@@ -123,7 +123,7 @@
     create: yes
     mode: "0600"
     line: "{{ item }}"
-  failed_when:
+  loop:
     - -w /var/run/utmp -p wa -k session
     - -w /var/run/wtmp -p wa -k logins
     - -w /var/run/btmp -p wa -k logins
