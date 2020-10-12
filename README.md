@@ -123,7 +123,7 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
 - name: Verify
   hosts: all
   become: yes
-  gather_facts: no
+  gather_facts: yes
 
   tasks:
     # Molecules verifier does not load variables in default and vars. These
@@ -526,6 +526,15 @@ cis_login_and_login_events_collected: yes
 
 # 4.1.5 Ensure session initiation information is collected (Scored)
 cis_session_initiation_information_collected: yes
+
+# 4.1.6 Ensure events that modify date and time information are collected (Scored)
+cis_events_modify_time_and_date_collected: yes
+
+# 4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected (Scored)
+cis_events_modifying_mac_collected: yes
+
+# 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
+cis_events_modifying_systems_network_collected: yes
 ```
 
 ## [Requirements](#requirements)
