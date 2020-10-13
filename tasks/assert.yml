@@ -1,3 +1,4 @@
 ---
 - name: include distribution specific assertions
   include_tasks: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/assert.yml"
+  run_once: yes
