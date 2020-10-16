@@ -535,6 +535,9 @@ cis_events_modifying_mac_collected: yes
 
 # 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
 cis_events_modifying_systems_network_collected: yes
+
+# 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
+cis_dac_permission_modification_collected: yes
 ```
 
 ## [Requirements](#requirements)

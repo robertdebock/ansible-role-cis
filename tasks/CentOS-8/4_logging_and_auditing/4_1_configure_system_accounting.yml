@@ -180,3 +180,28 @@
     - reboot
   when:
     - cis_events_modifying_systems_network_collected | bool
+
+- name: 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
+  command: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
+  register: cis_dac_permission_modification_collected_test_one
+  when:
+    - cis_dac_permission_modification_collected | bool
+
+- name: 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
+  lineinfile:
+    path: /etc/audit/rules.d/perm-mod.rules
+    create: yes
+    mode: "0600"
+    line: "{{ item }}"
+  loop:
+    - -a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295  # noqa 204 This line is just very long.
+    - -k perm_mod
+  notify:
+    - reboot
+  when:
+    - cis_dac_permission_modification_collected | bool

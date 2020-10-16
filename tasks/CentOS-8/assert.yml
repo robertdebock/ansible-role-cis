@@ -1038,3 +1038,11 @@
       - cis_events_modifying_systems_network_collected is defined
       - cis_events_modifying_systems_network_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
+- name: test if cis_dac_permission_modification_collected is set correctly
+  assert:
+    that:
+      - cis_dac_permission_modification_collected is defined
+      - cis_dac_permission_modification_collected | type_debug == "bool"
+    quiet: yes

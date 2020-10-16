@@ -158,12 +158,12 @@
   command: grep system-locale /etc/audit/rules.d/*.rules
   register: cis_events_modifying_systems_network_collected_test_one
   failed_when:
-    - "'-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
-    - "'-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
-    - "'-w /etc/issue -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
-    - "'-w /etc/issue.net -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
-    - "'-w /etc/hosts -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
-    - "'-w /etc/sysconfig/network -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one"
+    - "'-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_one.stdout"
+    - "'-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_one.stdout"
+    - "'-w /etc/issue -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one.stdout"
+    - "'-w /etc/issue.net -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one.stdout"
+    - "'-w /etc/hosts -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one.stdout"
+    - "'-w /etc/sysconfig/network -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_one.stdout"
   when:
     - cis_events_modifying_systems_network_collected | bool
 
@@ -171,11 +171,45 @@
   shell: auditctl -l | grep system-locale
   register: cis_events_modifying_systems_network_collected_test_two
   failed_when:
-    - "'-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
-    - "'-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
-    - "'-w /etc/issue -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
-    - "'-w /etc/issue.net -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
-    - "'-w /etc/hosts -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
-    - "'-w /etc/sysconfig/network -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two"
+    - "'-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_two.stdout"
+    - "'-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_two.stdout"
+    - "'-w /etc/issue -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two.stdout"
+    - "'-w /etc/issue.net -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two.stdout"
+    - "'-w /etc/hosts -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two.stdout"
+    - "'-w /etc/sysconfig/network -p wa -k system-locale' not in cis_events_modifying_systems_network_collected_test_two.stdout"
   when:
     - cis_events_modifying_systems_network_collected | bool
+
+- name: 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
+  command: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
+  register: cis_dac_permission_modification_collected_test_one
+  when:
+    - cis_dac_permission_modification_collected | bool
+
+- name: 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
+  command: grep perm_mod /etc/audit/rules.d/*.rules
+  register: cis_dac_permission_modification_collected_test_two
+  failed_when:
+    - "'-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295' not in cis_dac_permission_modification_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-k perm_mod -a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295' not in cis_dac_permission_modification_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-k perm_mod' not in cis_dac_permission_modification_collected_test_two.stdout"
+  when:
+    - cis_dac_permission_modification_collected | bool
+
+- name: 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
+  command: auditctl -l | grep perm_mod
+  register: cis_dac_permission_modification_collected_test_three
+  failed_when:
+    - "'-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-k perm_mod -a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"
+  when:
+    - cis_dac_permission_modification_collected | bool
