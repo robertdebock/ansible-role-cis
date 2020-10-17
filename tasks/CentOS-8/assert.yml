@@ -1046,3 +1046,11 @@
       - cis_dac_permission_modification_collected is defined
       - cis_dac_permission_modification_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
+- name: test if cis_unsuccessful_files_access_collected is set correctly
+  assert:
+    that:
+      - cis_unsuccessful_files_access_collected is defined
+      - cis_unsuccessful_files_access_collected | type_debug == "bool"
+    quiet: yes

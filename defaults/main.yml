@@ -387,3 +387,6 @@ cis_events_modifying_systems_network_collected: yes
 
 # 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
 cis_dac_permission_modification_collected: yes
+
+# 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
+cis_unsuccessful_files_access_collected: yes
