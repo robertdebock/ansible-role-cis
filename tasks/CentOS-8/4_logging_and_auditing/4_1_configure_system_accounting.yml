@@ -199,8 +199,7 @@
     - -a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
     - -a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
     - -a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
-    - -a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295  # noqa 204 This line is just very long.
-    - -k perm_mod
+    - -a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
   notify:
     - reboot
   when:
