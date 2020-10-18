@@ -240,3 +240,27 @@
     - "'-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
   when:
     - cis_unsuccessful_files_access_collected | bool
+
+- name: 4.1.11 Ensure events that modify user/group information are collected (Scored)
+  command: grep identity /etc/audit/rules.d/*.rules
+  register: cis_events_modifying_user_group_collected_test_one
+  failed_when:
+    - "'-w /etc/passwd -p wa -k identity' not in cis_events_modifying_user_group_collected_test_one.stdout"
+    - "'-w /etc/group -p wa -k identity' not in cis_events_modifying_user_group_collected_test_one.stdout"
+    - "'-w /etc/gshadow -p wa -k identity' not in cis_events_modifying_user_group_collected_test_one.stdout"
+    - "'-w /etc/shadow -p wa -k identity' not in cis_events_modifying_user_group_collected_test_one.stdout"
+    - "'-w /etc/security/opasswd -p wa -k identity' not in cis_events_modifying_user_group_collected_test_one.stdout"
+  when:
+    - cis_events_modifying_user_group_collected | bool
+
+- name: 4.1.11 Ensure events that modify user/group information are collected (Scored)
+  shell: auditctl -l | grep identity
+  register: cis_events_modifying_user_group_collected_test_two
+  failed_when:
+    - "'-w /etc/passwd -p wa -k identity' not in cis_events_modifying_user_group_collected_test_two.stdout"
+    - "'-w /etc/group -p wa -k identity' not in cis_events_modifying_user_group_collected_test_two.stdout"
+    - "'-w /etc/gshadow -p wa -k identity' not in cis_events_modifying_user_group_collected_test_two.stdout"
+    - "'-w /etc/shadow -p wa -k identity' not in cis_events_modifying_user_group_collected_test_two.stdout"
+    - "'-w /etc/security/opasswd -p wa -k identity' not in cis_events_modifying_user_group_collected_test_two.stdout"
+  when:
+    - cis_events_modifying_user_group_collected | bool

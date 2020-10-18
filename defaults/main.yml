@@ -390,3 +390,6 @@ cis_dac_permission_modification_collected: yes
 
 # 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
 cis_unsuccessful_files_access_collected: yes
+
+# 4.1.11 Ensure events that modify user/group information are collected (Scored)
+cis_events_modifying_user_group_collected: yes
