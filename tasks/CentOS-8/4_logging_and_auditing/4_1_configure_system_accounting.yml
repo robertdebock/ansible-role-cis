@@ -206,16 +206,22 @@
     - cis_dac_permission_modification_collected | bool
 
 - name: 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
+  command: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
+  register: cis_unsuccessful_files_access_collected_test_one
+  when:
+    - cis_unsuccessful_files_access_collected | bool
+
+- name: 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
   lineinfile:
     path: /etc/audit/rules.d/access.rules
     create: yes
     mode: "0600"
     line: "{{ item }}"
   loop:
-    - -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
-    - -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
-    - -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
-    - -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
   notify:
     - reboot
   when:
@@ -235,3 +241,21 @@
     - -w /etc/security/opasswd -p wa -k identity
   when:
     - cis_events_modifying_user_group_collected | bool
+
+- name: 4.1.12 Ensure successful file system mounts are collected (Scored)
+  command: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
+  register: cis_successful_mounts_collected_test_one
+  when:
+    - cis_successful_mounts_collected | bool
+
+- name: 4.1.12 Ensure successful file system mounts are collected (Scored)
+  lineinfile:
+    path: /etc/audit/rules.d/mounts.rules
+    create: yes
+    mode: "0600"
+    line: "{{ item }}"
+  loop:
+    - -a always,exit -F arch=b64 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=4294967295 -k mounts
+    - -a always,exit -F arch=b32 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=4294967295 -k mounts
+  when:
+    - cis_successful_mounts_collected | bool

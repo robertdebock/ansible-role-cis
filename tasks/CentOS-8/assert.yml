@@ -1062,3 +1062,11 @@
       - cis_events_modifying_user_group_collected is defined
       - cis_events_modifying_user_group_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.12 Ensure successful file system mounts are collected (Scored)
+- name: test if cis_successful_mounts_collected is set correctly
+  assert:
+    that:
+      - cis_successful_mounts_collected is defined
+      - cis_successful_mounts_collected | type_debug == "bool"
+    quiet: yes

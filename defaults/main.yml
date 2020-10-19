@@ -393,3 +393,6 @@ cis_unsuccessful_files_access_collected: yes
 
 # 4.1.11 Ensure events that modify user/group information are collected (Scored)
 cis_events_modifying_user_group_collected: yes
+
+# 4.1.12 Ensure successful file system mounts are collected (Scored)
+cis_successful_mounts_collected: yes
