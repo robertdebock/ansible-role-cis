@@ -65,17 +65,26 @@
   when:
     - cis_system_disabled_audit_logs_full | bool
 
-# - name: 4.1.3 Ensure changes to system administration scope (sudoers) is collected (Scored)
-#   command: grep scope /etc/audit/rules.d/*.rules
-#   register: cis_changed_to_system_administrator_scope_collected_test
-#   failed_when:
-#     - "'-w /etc/sudoers -p wa -k scope' not in cis_changed_to_system_administrator_scope_collected_test.stdout or
-#        '-w /etc/sudoers.d/ -p wa -k scope' not in cis_changed_to_system_administrator_scope_collected_test.stdout"
-#   when:
-#     - cis_changed_to_system_administrator_scope_collected | bool
+- name: 4.1.3 Ensure changes to system administration scope (sudoers) is collected (Scored)
+  shell: grep scope /etc/audit/rules.d/*.rules
+  register: cis_changed_to_system_administrator_scope_collected_test_one
+  failed_when:
+    - "'-w /etc/sudoers -p wa -k scope' not in cis_changed_to_system_administrator_scope_collected_test_one.stdout or
+       '-w /etc/sudoers.d/ -p wa -k scope' not in cis_changed_to_system_administrator_scope_collected_test_one.stdout"
+  when:
+    - cis_changed_to_system_administrator_scope_collected | bool
+
+- name: 4.1.3 Ensure changes to system administration scope (sudoers) is collected (Scored)
+  shell: auditctl -l | grep scope
+  register: cis_changed_to_system_administrator_scope_collected_test_two
+  failed_when:
+    - "'-w /etc/sudoers -p wa -k scope' not in cis_changed_to_system_administrator_scope_collected_test_one.stdout or
+       '-w /etc/sudoers.d/ -p wa -k scope' not in cis_changed_to_system_administrator_scope_collected_test_one.stdout"
+  when:
+    - cis_changed_to_system_administrator_scope_collected | bool
 
 - name: 4.1.4 Ensure login and logout events are collected (Scored)
-  command: grep logins /etc/audit/rules.d/*.rules
+  shell: grep logins /etc/audit/rules.d/*.rules
   register: cis_login_and_login_events_collected_test_one
   failed_when:
     - "'-w /var/log/faillog -p wa -k logins' not in cis_login_and_login_events_collected_test_one.stdout"
@@ -84,7 +93,7 @@
     - cis_login_and_login_events_collected | bool
 
 - name: 4.1.4 Ensure login and logout events are collected (Scored)
-  command: auditctl -l | grep logins
+  shell: auditctl -l | grep logins
   register: cis_login_and_login_events_collected_test_two
   failed_when:
     - "'-w /var/log/faillog -p wa -k logins' not in cis_login_and_login_events_collected_test_two.stdout"
@@ -93,7 +102,7 @@
     - cis_login_and_login_events_collected | bool
 
 - name: 4.1.5 Ensure session initiation information is collected (Scored)
-  command: grep -E '(session|logins)' /etc/audit/rules.d/*.rules
+  shell: grep -E '(session|logins)' /etc/audit/rules.d/*.rules
   register: cis_session_initiation_information_collected_test_one
   failed_when:
     - "'-w /var/run/utmp -p wa -k session' not in cis_session_initiation_information_collected_test_one.stdout"
@@ -113,7 +122,7 @@
     - cis_session_initiation_information_collected | bool
 
 - name: 4.1.6 Ensure events that modify date and time information are collected (Scored)
-  command: grep -E '(session|logins)' /etc/audit/rules.d/*.rules
+  shell: grep -E '(session|logins)' /etc/audit/rules.d/*.rules
   register: cis_events_modify_time_and_date_collected_test_one
   failed_when:
     - "'-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change' not in cis_events_modify_time_and_date_collected_test_one.stdout"
@@ -137,7 +146,7 @@
     - cis_events_modify_time_and_date_collected | bool
 
 - name: 4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected (Scored)
-  command: grep MAC-policy /etc/audit/rules.d/*.rules
+  shell: grep MAC-policy /etc/audit/rules.d/*.rules
   register: cis_events_modifying_mac_collected_test_one
   failed_when:
     - "'-w /etc/selinux/ -p wa -k MAC-policy' not in cis_events_modifying_mac_collected_test_one.stdout"
@@ -155,7 +164,7 @@
     - cis_events_modifying_mac_collected | bool
 
 - name: 4.1.8 Ensure events that modify the system's network environment are collected (Scored)
-  command: grep system-locale /etc/audit/rules.d/*.rules
+  shell: grep system-locale /etc/audit/rules.d/*.rules
   register: cis_events_modifying_systems_network_collected_test_one
   failed_when:
     - "'-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' not in cis_events_modifying_systems_network_collected_test_one.stdout"
@@ -187,7 +196,7 @@
     - cis_dac_permission_modification_collected | bool
 
 - name: 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
-  command: grep perm_mod /etc/audit/rules.d/*.rules
+  shell: grep perm_mod /etc/audit/rules.d/*.rules
   register: cis_dac_permission_modification_collected_test_two
   failed_when:
     - "'-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_two.stdout"  # noqa 204 This line is just very long.
@@ -201,7 +210,7 @@
     - cis_dac_permission_modification_collected | bool
 
 - name: 4.1.9 Ensure discretionary access control permission modification events are collected (Scored)
-  command: auditctl -l | grep perm_mod
+  shell: auditctl -l | grep perm_mod
   register: cis_dac_permission_modification_collected_test_three
   failed_when:
     - "'-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
@@ -220,7 +229,7 @@
     - cis_unsuccessful_files_access_collected | bool
 
 - name: 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected (Scored)
-  command: grep access /etc/audit/rules.d/*.rules
+  shell: grep access /etc/audit/rules.d/*.rules
   register: cis_unsuccessful_files_access_collected_test_two
   failed_when:
     - "'-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
@@ -242,7 +251,7 @@
     - cis_unsuccessful_files_access_collected | bool
 
 - name: 4.1.11 Ensure events that modify user/group information are collected (Scored)
-  command: grep identity /etc/audit/rules.d/*.rules
+  shell: grep identity /etc/audit/rules.d/*.rules
   register: cis_events_modifying_user_group_collected_test_one
   failed_when:
     - "'-w /etc/passwd -p wa -k identity' not in cis_events_modifying_user_group_collected_test_one.stdout"
@@ -272,7 +281,7 @@
     - cis_successful_mounts_collected | bool
 
 - name: 4.1.12 Ensure successful file system mounts are collected (Scored)
-  command: grep mounts /etc/audit/rules.d/*.rules
+  shell: grep mounts /etc/audit/rules.d/*.rules
   register: cis_successful_mounts_collected_test_two
   failed_when:
     - "'-a always,exit -F arch=b64 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=4294967295 -k mounts' not in cis_successful_mounts_collected_test_two.stdout"  # noqa 204 This line is just very long.
@@ -281,7 +290,7 @@
     - cis_successful_mounts_collected | bool
 
 - name: 4.1.12 Ensure successful file system mounts are collected (Scored)
-  command: auditctl -l | grep mounts
+  shell: auditctl -l | grep mounts
   register: cis_successful_mounts_collected_test_three
   failed_when:
     - "'-a always,exit -F arch=b64 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=4294967295 -k mounts' not in cis_successful_mounts_collected_test_three.stdout"  # noqa 204 This line is just very long.
