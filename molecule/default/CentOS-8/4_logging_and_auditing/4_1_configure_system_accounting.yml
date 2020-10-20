@@ -232,10 +232,10 @@
   shell: grep access /etc/audit/rules.d/*.rules
   register: cis_unsuccessful_files_access_collected_test_two
   failed_when:
-    - "'-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
   when:
     - cis_unsuccessful_files_access_collected | bool
 
@@ -243,10 +243,10 @@
   shell: auditctl -l | grep access
   register: cis_unsuccessful_files_access_collected_test_two
   failed_when:
-    - "'-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=-1 -F key=access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=-1 -F key=access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=-1 -F key=access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=-1 -F key=access' not in cis_unsuccessful_files_access_collected_test_two.stdout"  # noqa 204 This line is just very long.
   when:
     - cis_unsuccessful_files_access_collected | bool
 
@@ -293,7 +293,7 @@
   shell: auditctl -l | grep mounts
   register: cis_successful_mounts_collected_test_three
   failed_when:
-    - "'-a always,exit -F arch=b64 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=4294967295 -k mounts' not in cis_successful_mounts_collected_test_three.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b32 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=4294967295 -k mounts' not in cis_successful_mounts_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=-1 -F key=mounts' not in cis_successful_mounts_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=-1 -F key=mounts' not in cis_successful_mounts_collected_test_three.stdout"  # noqa 204 This line is just very long.
   when:
     - cis_successful_mounts_collected | bool
