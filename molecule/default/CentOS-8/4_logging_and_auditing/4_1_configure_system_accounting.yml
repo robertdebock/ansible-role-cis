@@ -158,8 +158,8 @@
   shell: auditctl -l | grep MAC-policy
   register: cis_events_modifying_mac_collected_test_two
   failed_when:
-    - "'-w /etc/selinux/ -p wa -k MAC-policy' not in cis_events_modifying_mac_collected_test_two.stdout"
-    - "'-w /usr/share/selinux/ -p wa -k MAC-policy' not in cis_events_modifying_mac_collected_test_two.stdout"
+    - "'-w /etc/selinux -p wa -k MAC-policy' not in cis_events_modifying_mac_collected_test_two.stdout"
+    - "'-w /usr/share/selinux -p wa -k MAC-policy' not in cis_events_modifying_mac_collected_test_two.stdout"
   when:
     - cis_events_modifying_mac_collected | bool
 
