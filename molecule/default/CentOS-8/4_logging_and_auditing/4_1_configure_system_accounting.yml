@@ -213,12 +213,12 @@
   shell: auditctl -l | grep perm_mod
   register: cis_dac_permission_modification_collected_test_three
   failed_when:
-    - "'-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b64 -S chown,fchown,fchownat,lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b32 -S chown,fchown,fchownat,lchown -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
-    - "'-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
-    - "'-k perm_mod -a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=-1 -F key=perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=-1 -F key=perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S chown,fchown,lchown,fchownat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=-1 -F key=perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S lchown,fchown,chown,fchownat -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=-1 -F key=perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=-1 -F key=perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=-1 -F key=perm_mod' not in cis_dac_permission_modification_collected_test_three.stdout"  # noqa 204 This line is just very long.
   when:
     - cis_dac_permission_modification_collected | bool
 
