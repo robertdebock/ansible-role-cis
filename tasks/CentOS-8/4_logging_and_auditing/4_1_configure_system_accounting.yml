@@ -99,7 +99,7 @@
     - -w /etc/sudoers -p wa -k scope
     - -w /etc/sudoers.d/ -p wa -k scope
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_changed_to_system_administrator_scope_collected | bool
 
@@ -113,7 +113,7 @@
     - -w /var/log/faillog -p wa -k logins
     - -w /var/log/lastlog -p wa -k logins
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_login_and_login_events_collected | bool
 
@@ -128,7 +128,7 @@
     - -w /var/run/wtmp -p wa -k logins
     - -w /var/run/btmp -p wa -k logins
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_session_initiation_information_collected | bool
 
@@ -145,7 +145,7 @@
     - -a always,exit -F arch=b32 -S clock_settime -k time-change
     - -w /etc/localtime -p wa -k time-change
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_events_modify_time_and_date_collected | bool
 
@@ -159,7 +159,7 @@
     - -w /etc/selinux/ -p wa -k MAC-policy
     - -w /usr/share/selinux/ -p wa -k MAC-policy
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_events_modifying_mac_collected | bool
 
@@ -177,7 +177,7 @@
     - -w /etc/hosts -p wa -k system-locale
     - -w /etc/sysconfig/network -p wa -k system-locale
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_events_modifying_systems_network_collected | bool
 
@@ -202,7 +202,7 @@
     - -a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
     - -a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>={{ cis_dac_permission_modification_collected_test_one.stdout }} -F auid!=4294967295 -k perm_mod  # noqa 204 This line is just very long.
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_dac_permission_modification_collected | bool
 
@@ -225,7 +225,7 @@
     - -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access  # noqa 204 This line is just very long.
     - -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access  # noqa 204 This line is just very long.
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_unsuccessful_files_access_collected | bool
 
@@ -242,7 +242,7 @@
     - -w /etc/shadow -p wa -k identity
     - -w /etc/security/opasswd -p wa -k identity
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_events_modifying_user_group_collected | bool
 
@@ -263,7 +263,7 @@
     - -a always,exit -F arch=b64 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=4294967295 -k mounts
     - -a always,exit -F arch=b32 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=4294967295 -k mounts
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_successful_mounts_collected | bool
 
@@ -305,6 +305,6 @@
     - -a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>={{ cis_file_deletion_users_collected_test_one.stdout }} -F auid!=4294967295 -k delete  # noqa 204 This line is just very long.
     - -a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>={{ cis_file_deletion_users_collected_test_one.stdout }} -F auid!=4294967295 -k delete  # noqa 204 This line is just very long.
   notify:
-    - reboot
+    - run augenrules
   when:
     - cis_file_deletion_users_collected | bool
