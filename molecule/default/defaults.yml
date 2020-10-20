@@ -1,6 +1,10 @@
 ---
 # Variables for verifier, overwriting variables set in `defaults/main.yml`.
 
+# 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
+# In IC, the kernel running has a different version that the one installed.
+cis_cramfs_disabled: no
+
 # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
 # `noexec` can't be set in a container.
 cis_tmp_noexec: no
