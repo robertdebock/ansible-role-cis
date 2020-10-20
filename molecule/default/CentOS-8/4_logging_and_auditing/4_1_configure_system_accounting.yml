@@ -297,3 +297,22 @@
     - "'-a always,exit -F arch=b32 -S mount -F auid>={{ cis_successful_mounts_collected_test_one.stdout }} -F auid!=-1 -F key=mounts' not in cis_successful_mounts_collected_test_three.stdout"  # noqa 204 This line is just very long.
   when:
     - cis_successful_mounts_collected | bool
+
+- name: 4.1.13 Ensure use of privileged commands is collected (Scored)
+  command: awk '/^\s*UID_MIN/{print $2}' /etc/login.defs
+  register: cis_privileged_commands_collected_test_one
+  when:
+    - cis_privileged_commands_collected | bool
+
+- name: 4.1.13 Ensure use of privileged commands is collected (Scored)
+  command: find {{ item }} -xdev \( -perm -4000 -o -perm -2000 \) -type f
+  register: cis_privileged_commands_collected_test_two
+  loop: "{{ cis_privileged_commands_collected_partitions }}"
+  when:
+    - cis_privileged_commands_collected | bool
+
+- name: 4.1.13 Ensure use of privileged commands is collected (Scored)
+  include_tasks: 4_1_13.yml
+  loop: "{{ cis_privileged_commands_collected_test_two.results }}"
+  loop_control:
+    label: "{{ item.stdout }}"

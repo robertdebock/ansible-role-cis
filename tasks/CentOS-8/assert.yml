@@ -1070,3 +1070,20 @@
       - cis_successful_mounts_collected is defined
       - cis_successful_mounts_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.13 Ensure use of privileged commands is collected (Scored)
+- name: test if cis_privileged_commands_collected is set correctly
+  assert:
+    that:
+      - cis_privileged_commands_collected is defined
+      - cis_privileged_commands_collected | type_debug == "bool"
+    quiet: yes
+
+# 4.1.13 Ensure use of privileged commands is collected (Scored)
+- name: test if cis_privileged_commands_collected_partitions is set correctly
+  assert:
+    that:
+      - cis_privileged_commands_collected_partitions is defined
+      - cis_privileged_commands_collected_partitions | length > 0
+      - cis_privileged_commands_collected_partitions is iterable
+    quiet: yes
