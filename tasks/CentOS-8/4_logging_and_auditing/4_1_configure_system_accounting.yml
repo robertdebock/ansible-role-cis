@@ -218,10 +218,10 @@
     mode: "0600"
     line: "{{ item }}"
   loop:
-    - -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
-    - -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
-    - -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
-    - -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access' not in cis_unsuccessful_files_access_collected_test_two.stdout  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access  # noqa 204 This line is just very long.
+    - -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>={{ cis_unsuccessful_files_access_collected_test_one.stdout }} -F auid!=4294967295 -k access  # noqa 204 This line is just very long.
   notify:
     - reboot
   when:

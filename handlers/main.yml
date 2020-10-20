@@ -58,6 +58,13 @@
     name: net.ipv6.route.flush
     value: "1"
 
+- name: run augenrules
+  command: augenrules
+  notify: load rules
+
+- name: load rules
+  command: augenrules --load
+
 - name: restart auditd
   service:
     name: auditd
