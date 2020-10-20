@@ -403,3 +403,6 @@ cis_privileged_commands_collected: yes
 # that could contain executables.
 cis_privileged_commands_collected_partitions:
   - /
+
+# 4.1.14 Ensure file deletion events by users are collected (Scored)
+cis_file_deletion_users_collected: yes

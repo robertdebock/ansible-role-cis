@@ -1087,3 +1087,11 @@
       - cis_privileged_commands_collected_partitions | length > 0
       - cis_privileged_commands_collected_partitions is iterable
     quiet: yes
+
+# 4.1.14 Ensure file deletion events by users are collected (Scored)
+- name: test if cis_file_deletion_users_collected is set correctly
+  assert:
+    that:
+      - cis_file_deletion_users_collected is defined
+      - cis_file_deletion_users_collected | type_debug == "bool"
+    quiet: yes

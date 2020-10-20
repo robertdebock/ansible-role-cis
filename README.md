@@ -544,6 +544,19 @@ cis_unsuccessful_files_access_collected: yes
 
 # 4.1.11 Ensure events that modify user/group information are collected (Scored)
 cis_events_modifying_user_group_collected: yes
+
+# 4.1.12 Ensure successful file system mounts are collected (Scored)
+cis_successful_mounts_collected: yes
+
+# 4.1.13 Ensure use of privileged commands is collected (Scored)
+cis_privileged_commands_collected: yes
+# A list of partitions that will be checked. Extend this with all partitions
+# that could contain executables.
+cis_privileged_commands_collected_partitions:
+  - /
+
+# 4.1.14 Ensure file deletion events by users are collected (Scored)
+cis_file_deletion_users_collected: yes
 ```
 
 ## [Requirements](#requirements)
