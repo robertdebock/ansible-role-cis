@@ -362,3 +362,18 @@
     - "'-a always,exit -F arch=b64 -S init_module -S delete_module -k modules' not in cis_kernel_module_loading_unloading_collected_test_two.stdout"  # noqa 204 This line is just very long.
   when:
     - cis_kernel_module_loading_unloading_collected | bool
+
+# - name: 4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)
+#   # There commands described in the CIS_CentOS_Linux_8_Benchmark_v1.0.0 do now work.
+#   # Sudo is not configured to use syslog, syslog is not configured to save details
+#   # to /var/log/sudo.log.
+#   when:
+#     - cis_system_administrator_actions_collected | bool
+
+- name: 4.1.17 Ensure the audit configuration is immutable (Scored)
+  command: tail -1 /etc/audit/audit.rules
+  register: cis_audit_configuration_immutable_test_one
+  failed_when:
+    - "'-e 2' not in cis_audit_configuration_immutable_test_one.stdout"
+  when:
+    - cis_audit_configuration_immutable | bool

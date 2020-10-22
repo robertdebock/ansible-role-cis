@@ -557,6 +557,15 @@ cis_privileged_commands_collected_partitions:
 
 # 4.1.14 Ensure file deletion events by users are collected (Scored)
 cis_file_deletion_users_collected: yes
+
+# 4.1.15 Ensure kernel module loading and unloading is collected (Scored)
+cis_kernel_module_loading_unloading_collected: yes
+
+# 4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)
+cis_system_administrator_actions_collected: yes
+
+# 4.1.17 Ensure the audit configuration is immutable (Scored)
+cis_audit_configuration_immutable: yes
 ```
 
 ## [Requirements](#requirements)

@@ -1103,3 +1103,19 @@
       - cis_kernel_module_loading_unloading_collected is defined
       - cis_kernel_module_loading_unloading_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)
+- name: test if cis_system_administrator_actions_collected is set correctly
+  assert:
+    that:
+      - cis_system_administrator_actions_collected is defined
+      - cis_system_administrator_actions_collected | type_debug == "bool"
+    quiet: yes
+
+# 4.1.17 Ensure the audit configuration is immutable (Scored)
+- name: test if cis_audit_configuration_immutable is set correctly
+  assert:
+    that:
+      - cis_audit_configuration_immutable is defined
+      - cis_audit_configuration_immutable | type_debug == "bool"
+    quiet: yes
