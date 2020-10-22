@@ -1095,3 +1095,11 @@
       - cis_file_deletion_users_collected is defined
       - cis_file_deletion_users_collected | type_debug == "bool"
     quiet: yes
+
+# 4.1.15 Ensure kernel module loading and unloading is collected (Scored)
+- name: test if cis_kernel_module_loading_unloading_collected is set correctly
+  assert:
+    that:
+      - cis_kernel_module_loading_unloading_collected is defined
+      - cis_kernel_module_loading_unloading_collected | type_debug == "bool"
+    quiet: yes

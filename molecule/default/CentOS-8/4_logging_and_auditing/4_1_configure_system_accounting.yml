@@ -340,3 +340,25 @@
     - "'-a always,exit -F arch=b32 -S unlink,rename,unlinkat,renameat -F auid>={{ cis_file_deletion_users_collected_test_one.stdout }} -F auid!=-1 -F key=delete' not in cis_file_deletion_users_collected_test_three.stdout"  # noqa 204 This line is just very long.
   when:
     - cis_file_deletion_users_collected | bool
+
+- name: 4.1.15 Ensure kernel module loading and unloading is collected (Scored)
+  shell: grep modules /etc/audit/rules.d/*.rules
+  register: cis_kernel_module_loading_unloading_collected_test_one
+  failed_when:
+    - "'-w /sbin/insmod -p x -k modules' not in cis_kernel_module_loading_unloading_collected_test_one.stdout"  # noqa 204 This line is just very long.
+    - "'-w /sbin/rmmod -p x -k modules' not in cis_kernel_module_loading_unloading_collected_test_one.stdout"  # noqa 204 This line is just very long.
+    - "'-w /sbin/modprobe -p x -k modules' not in cis_kernel_module_loading_unloading_collected_test_one.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S init_module -S delete_module -k modules' not in cis_kernel_module_loading_unloading_collected_test_one.stdout"  # noqa 204 This line is just very long.
+  when:
+    - cis_kernel_module_loading_unloading_collected | bool
+
+- name: 4.1.15 Ensure kernel module loading and unloading is collected (Scored)
+  shell: auditctl -l | grep modules
+  register: cis_kernel_module_loading_unloading_collected_test_two
+  failed_when:
+    - "'-w /sbin/insmod -p x -k modules' not in cis_kernel_module_loading_unloading_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-w /sbin/rmmod -p x -k modules' not in cis_kernel_module_loading_unloading_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-w /sbin/modprobe -p x -k modules' not in cis_kernel_module_loading_unloading_collected_test_two.stdout"  # noqa 204 This line is just very long.
+    - "'-a always,exit -F arch=b64 -S init_module -S delete_module -k modules' not in cis_kernel_module_loading_unloading_collected_test_two.stdout"  # noqa 204 This line is just very long.
+  when:
+    - cis_kernel_module_loading_unloading_collected | bool

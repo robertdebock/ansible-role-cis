@@ -406,3 +406,6 @@ cis_privileged_commands_collected_partitions:
 
 # 4.1.14 Ensure file deletion events by users are collected (Scored)
 cis_file_deletion_users_collected: yes
+
+# 4.1.15 Ensure kernel module loading and unloading is collected (Scored)
+cis_kernel_module_loading_unloading_collected: yes
