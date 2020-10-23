@@ -20,7 +20,7 @@
     regexp: '^GRUB_CMDLINE_LINUX="((:?(?!audit=1).)*?)"$'
     replace: 'GRUB_CMDLINE_LINUX="\1 audit=1"'
     validate: /bin/sh %s
-    mode: "0664"
+    mode: "0644"
   notify:
     - run grub2-mkconfig
   when:
@@ -32,7 +32,7 @@
     regexp: '^GRUB_CMDLINE_LINUX="((:?(?!audit_backlog_limit=.*).)*?)"$'
     replace: 'GRUB_CMDLINE_LINUX="\1 audit_backlog_limit=8192"'
     validate: /bin/sh %s
-    mode: "0664"
+    mode: "0644"
   notify:
     - run grub2-mkconfig
   when:

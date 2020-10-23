@@ -8,24 +8,24 @@
     - cis_selinux_installed | bool
 
 - name: 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
-  lineinfile:
+  replace:
     path: /etc/default/grub
     mode: "0644"
-    regexp: '^(.*)(selinux=0)(.*)'
-    line: '\1 \3'
-    backrefs: true
+    regexp: '^GRUB_CMDLINE_LINUX="((:?(?!selinux=1).)*?)"$'
+    replace: 'GRUB_CMDLINE_LINUX="\1 selinux=1"'
+    validate: /bin/sh %s
   when:
     - cis_selinux_not_disabled | bool
   notify:
     - run grub2-mkconfig
 
 - name: 1.7.1.2 Ensure SELinux is not disabled in bootloader configuration (Scored)
-  lineinfile:
+  replace:
     path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX="((:?(?!enforcing=1).)*?)"$'
+    replace: 'GRUB_CMDLINE_LINUX="\1 enforcing=1"'
     mode: "0644"
-    regexp: '^(.*)(enforcing=0)(.*)'
-    line: '\1 \3'
-    backrefs: true
+    validate: /bin/sh %s
   when:
     - cis_selinux_not_disabled | bool
   notify:
@@ -37,6 +37,7 @@
     mode: "0644"
     regexp: '^SELINUXTYPE='
     line: "SELINUXTYPE={{ cis_selinux_policy }}"
+    validate: /bin/sh %s
   when:
     - cis_selinux_policy_configured | bool
   notify:
