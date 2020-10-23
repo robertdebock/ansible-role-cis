@@ -70,3 +70,8 @@
     name: auditd
     state: restarted
     use: service  # systemctl can't restart auditd, service can: https://access.redhat.com/solutions/2664811
+
+- name: restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted

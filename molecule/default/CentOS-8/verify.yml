@@ -81,3 +81,7 @@
 # 4.1 Configure System Accounting (auditd)
 - name: include 4_1_configure_system_accounting.yml
   include: 4_logging_and_auditing/4_1_configure_system_accounting.yml
+
+# 4.2 Configure Logging
+- name: include 4_2_configure_logging.yml
+  include: 4_logging_and_auditing/4_2_configure_logging.yml
