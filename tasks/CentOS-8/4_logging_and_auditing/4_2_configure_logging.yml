@@ -39,4 +39,4 @@
   notify:
     - restart rsyslog
   when:
-    - cis_logging_configured: yes
+    - cis_logging_configured | bool
