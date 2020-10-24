@@ -19,8 +19,24 @@
     path: /etc/rsyslog.d/filecreatemode.conf
     line: "$FileCreateMode 0640"
     regexp: '^\$FileCreateMode'
+    mode: "0640"
     create: yes
   notify:
     - restart rsyslog
   when:
     - cis_rsyslog_file_permissions_configured | bool
+
+- name: 4.2.1.4 Ensure logging is configured (Not Scored)
+  lineinfile:
+    path: /etc/rsyslog.d/rules.conf
+    line: '{{ item.rule }} {{ item.destination }}'
+    regex: '^{{ item.rule }}'
+    mode: "0640"
+    create: yes
+  loop: "{{ cis_logging_site_policy }}"
+  loop_control:
+    label: "{{ item.rule }}"
+  notify:
+    - restart rsyslog
+  when:
+    - cis_logging_configured: yes

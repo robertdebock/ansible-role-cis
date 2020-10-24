@@ -566,6 +566,57 @@ cis_system_administrator_actions_collected: yes
 
 # 4.1.17 Ensure the audit configuration is immutable (Scored)
 cis_audit_configuration_immutable: yes
+
+# 4.2.1.1 Ensure rsyslog is installed (Scored)
+cis_syslog_installed: yes
+
+# 4.2.1.2 Ensure rsyslog Service is enabled (Scored)
+cis_rsyslog_enabled: yes
+
+# 4.2.1.3 Ensure rsyslog default file permissions configured (Scored)
+cis_rsyslog_file_permissions_configured: yes
+
+# 4.2.1.4 Ensure logging is configured (Not Scored)
+cis_logging_configured: yes
+
+cis_logging_site_policy:
+  - rule: |-
+      '*.emerg'
+    destination: |-
+      ':omusrmsg:*'
+  - rule: 'auth,authpriv.*'
+    destination: '/var/log/secure'
+  - rule: 'mail.*'
+    destination: '-/var/log/mail'
+  - rule: 'mail.info'
+    destination: '-/var/log/mail.info'
+  - rule: 'mail.warning'
+    destination: '-/var/log/mail.warn'
+  - rule: 'mail.err'
+    destination: '/var/log/mail.err'
+  - rule: 'news.crit'
+    destination: '-/var/log/news/news.crit'
+  - rule: 'news.err'
+    destination: '-/var/log/news/news.err'
+  - rule: 'news.notice'
+    destination: '-/var/log/news/news.notice'
+  - rule: |-
+      '*.=warning;*.=err'
+    destination: '-/var/log/warn'
+  - rule: |-
+      '*.crit'
+    destination: '/var/log/warn'
+  - rule: |-
+      '*.*;mail.none;news.none'
+    destination: '-/var/log/messages'
+  - rule: 'local0,local1.*'
+    destination: '-/var/log/localmessages'
+  - rule: 'local2,local3.*'
+    destination: '-/var/log/localmessages'
+  - rule: 'local4,local5.*'
+    destination: '-/var/log/localmessages'
+  - rule: 'local6,local7.*'
+    destination: '-/var/log/localmessages'
 ```
 
 ## [Requirements](#requirements)
