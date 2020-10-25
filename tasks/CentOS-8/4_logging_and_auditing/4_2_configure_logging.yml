@@ -49,4 +49,4 @@
     mode: "0640"
     create: yes
   when:
-   - cis_rsyslog_configured_remote_log_host | bool
+    - cis_rsyslog_configured_remote_log_host | bool

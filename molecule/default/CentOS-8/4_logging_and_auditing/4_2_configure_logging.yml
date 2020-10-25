@@ -46,4 +46,4 @@
     "grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf"
   register: cis_rsyslog_configured_remote_log_host_test_one
   when:
-   - cis_rsyslog_configured_remote_log_host | bool
+    - cis_rsyslog_configured_remote_log_host | bool
