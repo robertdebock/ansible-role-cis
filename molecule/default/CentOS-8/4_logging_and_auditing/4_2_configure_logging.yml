@@ -40,3 +40,10 @@
     label: "{{ item.rule }}"
   when:
     - cis_logging_configured: yes
+
+- name: 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
+  shell: |-
+    "grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf"
+  register: cis_rsyslog_configured_remote_log_host_test_one
+  when:
+   - cis_rsyslog_configured_remote_log_host | bool

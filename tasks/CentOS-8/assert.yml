@@ -1160,3 +1160,18 @@
       - cis_logging_site_policy | length > 0
       - cis_logging_site_policy is iterable
     quiet: yes
+
+# 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
+- name: test if cis_rsyslog_configured_remote_log_host is set correctly
+  assert:
+    that:
+      - cis_rsyslog_configured_remote_log_host is defined
+      - cis_rsyslog_configured_remote_log_host | type_debug == "bool"
+    quiet: yes
+
+- name: test if cis_rsyslog_site_policy_host is set correctly
+  assert:
+    that:
+      - cis_rsyslog_site_policy_host is defined
+      - cis_rsyslog_site_policy_host | length > 0
+    quiet: yes
