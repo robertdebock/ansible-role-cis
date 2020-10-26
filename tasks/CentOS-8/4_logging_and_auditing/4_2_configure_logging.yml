@@ -44,8 +44,10 @@
 - name: 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
   lineinfile:
     path: /etc/rsyslog.d/remote_host.conf
-    line: '*.* @@{{ cis_rsyslog_site_policy_host }}'
-    regex: '^*.*'
+    line: |-
+      "*.* @@{{ cis_rsyslog_site_policy_host }}"
+    regex: |-
+      "^\*\.\*"
     mode: "0640"
     create: yes
   when:
