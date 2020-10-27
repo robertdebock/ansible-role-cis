@@ -586,7 +586,8 @@ cis_logging_site_policy:
       ':omusrmsg:*'
   - rule: 'auth,authpriv.*'
     destination: '/var/log/secure'
-  - rule: 'mail.*'
+  - rule: |-
+      'mail.*'
     destination: '-/var/log/mail'
   - rule: 'mail.info'
     destination: '-/var/log/mail.info'
@@ -609,14 +610,22 @@ cis_logging_site_policy:
   - rule: |-
       '*.*;mail.none;news.none'
     destination: '-/var/log/messages'
-  - rule: 'local0,local1.*'
+  - rule: |-
+      'local0,local1.*'
     destination: '-/var/log/localmessages'
   - rule: 'local2,local3.*'
     destination: '-/var/log/localmessages'
-  - rule: 'local4,local5.*'
+  - rule: |-
+      'local4,local5.*'
     destination: '-/var/log/localmessages'
-  - rule: 'local6,local7.*'
+  - rule: |-
+      'local6,local7.*'
     destination: '-/var/log/localmessages'
+
+# 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
+cis_rsyslog_configured_remote_log_host: yes
+
+cis_rsyslog_site_policy_host: loghost.example.com
 ```
 
 ## [Requirements](#requirements)
