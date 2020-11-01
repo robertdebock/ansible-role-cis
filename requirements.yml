@@ -1,4 +1,5 @@
 ---
-- robertdebock.bootstrap
-- robertdebock.cron
-- robertdebock.update
+roles:
+  - name: robertdebock.bootstrap
+  - name: robertdebock.cron
+  - name: robertdebock.update
