@@ -103,7 +103,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       cis_audit_backlog_limit_sufficient: no
 ```
 
-The machine may need to be prepared using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -116,33 +116,7 @@ The machine may need to be prepared using `molecule/resources/prepare.yml`:
     - role: robertdebock.cron
     - role: robertdebock.update
 ```
-
-For verification `molecule/resources/verify.yml` runs after the role has been applied.
-```yaml
----
-- name: Verify
-  hosts: all
-  become: yes
-  gather_facts: yes
-
-  tasks:
-    # Molecules verifier does not load variables in default and vars. These
-    # tasks load the variables explicitly.
-    - name: load vars/main.yml
-      include_vars: ../../vars/main.yml
-
-    - name: load defaults/main.yml
-      include_vars: ../../defaults/main.yml
-
-    # In verify (in CI), certain overwrites must occur because not all resources
-    # are available in a container, like kernel modules or partitions.
-    - name: load verifier overwrites
-      include_vars: defaults.yml
-
-    - name: include distribution specific version
-      include: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/verify.yml"
 ```
-
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
 ## [Role Variables](#role-variables)
@@ -633,15 +607,13 @@ cis_rsyslog_site_policy_host: loghost.example.com
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
 
-The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
+## [Status of requirements](#status-of-requirements)
 
-```yaml
----
-- robertdebock.bootstrap
-- robertdebock.cron
-- robertdebock.update
-
-```
+| Requirement | Travis | GitHub |
+|-------------|--------|--------|
+| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status Travis](https://travis-ci.com/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) |
+| [robertdebock.cron](https://galaxy.ansible.com/robertdebock/cron) | [![Build Status Travis](https://travis-ci.com/robertdebock/ansible-role-cron.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-cron) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-cron/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-cron/actions) |
+| [robertdebock.update](https://galaxy.ansible.com/robertdebock/update) | [![Build Status Travis](https://travis-ci.com/robertdebock/ansible-role-update.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-update) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-update/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-update/actions) |
 
 ## [Context](#context)
 
