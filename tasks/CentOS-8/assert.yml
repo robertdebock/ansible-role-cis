@@ -1169,9 +1169,18 @@
       - cis_rsyslog_configured_remote_log_host | type_debug == "bool"
     quiet: yes
 
+# 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
 - name: test if cis_rsyslog_site_policy_host is set correctly
   assert:
     that:
       - cis_rsyslog_site_policy_host is defined
       - cis_rsyslog_site_policy_host | length > 0
+    quiet: yes
+
+# 4.2.2.1 Ensure journald is configured to send logs to rsyslog (Scored)
+- name: test if cis_journald_send_to_rsyslog is set correctly
+  assert:
+    that:
+      - cis_journald_send_to_rsyslog is defined
+      - cis_journald_send_to_rsyslog | type_debug == "bool"
     quiet: yes

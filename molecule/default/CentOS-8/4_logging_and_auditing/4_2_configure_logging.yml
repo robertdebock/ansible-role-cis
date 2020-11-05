@@ -45,5 +45,16 @@
   shell: |-
     "grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf"
   register: cis_rsyslog_configured_remote_log_host_test_one
+  failed_when:
+    - "cis_rsyslog_site_policy_host not in cis_rsyslog_configured_remote_log_host_test_one"
   when:
     - cis_rsyslog_configured_remote_log_host | bool
+
+- name: 4.2.2.1 Ensure journald is configured to send logs to rsyslog (Scored)
+  shell: |-
+    "grep -e ^\s*ForwardToSyslog /etc/systemd/journald.conf"
+  register: cis_journald_send_to_rsyslog_test_one
+  failed_when:
+    - "'yes' not in cis_journald_send_to_rsyslog_test_one"
+  when:
+    - cis_journald_send_to_rsyslog | bool
