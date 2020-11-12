@@ -61,3 +61,12 @@
     mode: "0644"
   when:
     - cis_journald_send_to_rsyslog | bool
+
+- name: 4.2.2.2 Ensure journald is configured to compress large log files (Scored)
+  lineinfile:
+    path: /etc/systemd/journald.conf
+    line: "Compress=yes"
+    regex: "^Compress"
+    mode: "0644"
+  when:
+    - cis_journald_compless_log_files | bool

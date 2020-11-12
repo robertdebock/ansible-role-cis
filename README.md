@@ -599,7 +599,17 @@ cis_logging_site_policy:
 # 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
 cis_rsyslog_configured_remote_log_host: yes
 
+# 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (Scored)
 cis_rsyslog_site_policy_host: loghost.example.com
+
+# 4.2.1.6 Ensure remote rsyslog messages are only accepted on designated log hosts. (Not Scored)
+# This item is not implemented because it would need to run on another host.
+
+# 4.2.2.1 Ensure journald is configured to send logs to rsyslog (Scored)
+cis_journald_send_to_rsyslog: yes
+
+# 4.2.2.2 Ensure journald is configured to compress large log files (Scored)
+cis_journald_compless_log_files: yes
 ```
 
 ## [Requirements](#requirements)
