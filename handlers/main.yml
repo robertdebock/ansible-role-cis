@@ -45,9 +45,22 @@
   command: update-crypto-policies
 
 - name: restart chronyd
-  service:
-    name: chronyd
-    state: restarted
+  block:
+    - name: restart chronyd
+      service:
+        name: chronyd
+        state: restarted
+  rescue:
+    - name: collect information
+      command: "{{ item }}"
+      register: cis_collect_information
+      loop:
+        - journalxtl -xe
+        - systemctl status chronyd
+    - name: show information
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ cis_collect_information.results }}"
   when:
     - not ansible_check_mode | bool
 
