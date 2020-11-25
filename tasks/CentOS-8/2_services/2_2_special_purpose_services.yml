@@ -11,7 +11,8 @@
     path: /etc/chrony.conf
     mode: "0644"
     line: server {{ item }}
-  notify: restart chronyd
+  notify:
+    - restart chronyd
   loop: "{{ cis_chrony_servers }}"
   when:
     - cis_time_synchronization | bool
@@ -22,7 +23,8 @@
     path: /etc/chrony.conf
     mode: "0644"
     line: pool {{ item.name }} {{ item.options }}
-  notify: restart chronyd
+  notify:
+    - restart chronyd
   loop: "{{ cis_chrony_pools }}"
   loop_control:
     label: "{{ item.name }}"
