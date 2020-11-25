@@ -6,6 +6,11 @@
 
   roles:
     - role: ansible-role-cis
+
+      # 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
+      # Modprobe does not work in containers.
+      cis_cramfs_disabled: yes
+
       # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
       # `noexec` can't be set in a container.
       cis_tmp_noexec: no

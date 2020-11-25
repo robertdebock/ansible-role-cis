@@ -18,6 +18,11 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.cis
+
+      # 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
+      # Modprobe does not work in containers.
+      cis_cramfs_disabled: yes
+
       # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
       # `noexec` can't be set in a container.
       cis_tmp_noexec: no
@@ -611,7 +616,7 @@ cis_journald_send_to_rsyslog: yes
 # 4.2.2.2 Ensure journald is configured to compress large log files (Scored)
 cis_journald_compless_log_files: yes
 
-4.2.2.3 Ensure journald is configured to write logfiles to persistent disk (Scored)
+# 4.2.2.3 Ensure journald is configured to write logfiles to persistent disk (Scored)
 cis_journald_write_logfiles_to_disk: yes
 ```
 
