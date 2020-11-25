@@ -67,3 +67,12 @@
     - "'Compress=yes' not in cis_journald_compless_log_files_test_one.stdout"
   when:
     - cis_journald_compless_log_files | bool
+
+- name: 4.2.2.3 Ensure journald is configured to write logfiles to persistent disk (Scored)
+  command: |-
+    "grep -e ^\s*Storage /etc/systemd/journald.conf"
+  register: cis_journald_write_logfiles_to_disk_test_one
+  failed_when:
+    - "'Storage=persistent' not in cis_journald_write_logfiles_to_disk_test_one.stdout"
+  when:
+    - cis_journald_write_logfiles_to_disk | bool
