@@ -79,3 +79,33 @@
     mode: "0644"
   when:
     - cis_journald_write_logfiles_to_disk | bool
+
+- name: 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+  command: find /var/log -type f -perm /037
+  register: cis_permissions_on_logfiles_files
+  when:
+    - cis_permissions_on_logfiles | bool
+
+- name: 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+  command: find /var/log -type d -perm /026
+  register: cis_permissions_on_logfiles_directories
+  when:
+    - cis_permissions_on_logfiles | bool
+
+- name: 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+  file:
+    path: "{{ item }}"
+    mode: "g=-wx,o=rwx"
+  loop: "{{ cis_permissions_on_logfiles_files.stdout_lines }}"
+  when:
+    - cis_permissions_on_logfiles_files is defined
+    - cis_permissions_on_logfiles_files | length > 0
+
+- name: 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+  file:
+    path: "{{ item }}"
+    mode: "g=-w,o=rwx"
+  loop: "{{ cis_permissions_on_logfiles_directories.stdout_lines }}"
+  when:
+    - cis_permissions_on_logfiles_directories is defined
+    - cis_permissions_on_logfiles_directories | length > 0

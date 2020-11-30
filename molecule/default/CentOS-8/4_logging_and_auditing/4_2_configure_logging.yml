@@ -76,3 +76,11 @@
     - "'Storage=persistent' not in cis_journald_write_logfiles_to_disk_test_one.stdout"
   when:
     - cis_journald_write_logfiles_to_disk | bool
+
+- name: 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+  shell: find /var/log -type f -perm /037 -ls -o -type d -perm /026 -ls
+  register: cis_permissions_on_logfiles_test_one
+  failed_when:
+    - cis_permissions_on_logfiles_test_one | length > 0
+  when:
+    - cis_permissions_on_logfiles | bool

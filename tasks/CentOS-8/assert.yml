@@ -1200,3 +1200,11 @@
       - cis_journald_write_logfiles_to_disk is defined
       - cis_journald_write_logfiles_to_disk is boolean
     quiet: yes
+
+# 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+- name: test if cis_permissions_on_logfiles is set correctly
+  assert:
+    that:
+      - cis_permissions_on_logfiles is defined
+      - cis_permissions_on_logfiles is boolean
+    quiet: yes
