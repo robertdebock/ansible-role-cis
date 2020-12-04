@@ -21,7 +21,19 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
       # 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Scored)
       # Modprobe does not work in containers.
-      cis_cramfs_disabled: yes
+      cis_cramfs_disabled: no
+
+      # 1.1.1.2 Ensure mounting of vFAT filesystems is limited (Not Scored)
+      # Modprobe does not work in containers.
+      cis_vfat_disabled: no
+
+      # 1.1.1.3 Ensure mounting of squashfs filesystems is disabled (Scored)
+      # Modprobe does not work in containers.
+      cis_squashfs_disabled: no
+
+      # 1.1.1.4 Ensure mounting of udf filesystems is disabled (Scored)
+      # Modprobe does not work in containers.
+      cis_udf_disabled: no
 
       # 1.1.5 Ensure noexec option set on /tmp partition (Scored)
       # `noexec` can't be set in a container.
@@ -618,6 +630,9 @@ cis_journald_compless_log_files: yes
 
 # 4.2.2.3 Ensure journald is configured to write logfiles to persistent disk (Scored)
 cis_journald_write_logfiles_to_disk: yes
+
+# 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+cis_permissions_on_logfiles: yes
 ```
 
 ## [Requirements](#requirements)
