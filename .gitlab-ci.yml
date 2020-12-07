@@ -11,9 +11,17 @@ variables:
 molecule:
   script:
     - image=${image} tag=${tag} molecule test
+  rules:
+    - if: $CI_COMMIT_TAG == null
   parallel:
     matrix:
       - image: "centos"
         tag: "latest"
       - image: "ubuntu"
         tag: "latest"
+
+galaxy:
+  script:
+    - ansible-galaxy role import --api-key ${GALAXY_API_KEY} ${CI_PROJECT_NAMESPACE} ${CI_PROJECT_NAME}
+  rules:
+    - if: $CI_COMMIT_TAG != null
