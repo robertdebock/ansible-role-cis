@@ -1208,3 +1208,30 @@
       - cis_permissions_on_logfiles is defined
       - cis_permissions_on_logfiles is boolean
     quiet: yes
+
+# 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+- name: test if cis_logrotate_configured is set correctly
+  assert:
+    that:
+      - cis_logrotate_configured is defined
+      - cis_logrotate_configured is boolean
+    quiet: yes
+
+# 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+- name: test if cis_logrotate_policy is set correctly
+  assert:
+    that:
+      - cis_logrotate_configured is defined
+      - cis_logrotate_configured is iterable
+    quiet: yes
+
+# 4.2.3 Ensure permissions on all logfiles are configured (Scored)
+- name: test if item in cis_logrotate_policy is set correctly
+  assert:
+    that:
+      - item.name is defined
+      - item.name is string
+    quiet: yes
+  loop: "{{ cis_logrotate_policy }}"
+  loop_control:
+    label: "{{ item.name }}"

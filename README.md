@@ -633,6 +633,11 @@ cis_journald_write_logfiles_to_disk: yes
 
 # 4.2.3 Ensure permissions on all logfiles are configured (Scored)
 cis_permissions_on_logfiles: yes
+
+# 4.3 Ensure logrotate is configured (Not Scored)
+cis_logrotate_configured: yes
+cis_logrotate_policy:
+  - name: dnf
 ```
 
 ## [Requirements](#requirements)

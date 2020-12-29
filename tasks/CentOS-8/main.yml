@@ -87,3 +87,7 @@
 # 4.2 Configure Logging
 - name: include 4_2_configure_logging.yml
   include: 4_logging_and_auditing/4_2_configure_logging.yml
+
+# 4.3 Ensure logrotate is configured (Not Scored)
+- name: include 4_3_logrotate_configured.yml
+  include: 4_logging_and_auditing/4_3_logrotate_configured.yml
