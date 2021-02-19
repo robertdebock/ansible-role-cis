@@ -4,5 +4,4 @@ roles:
   - name: robertdebock.cron
   - name: robertdebock.update
 collections:
-  - name: ansible.builtin
   - name: ansible.posix
