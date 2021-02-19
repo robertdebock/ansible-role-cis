@@ -1221,8 +1221,8 @@
 - name: test if cis_logrotate_policy is set correctly
   assert:
     that:
-      - cis_logrotate_configured is defined
-      - cis_logrotate_configured is iterable
+      - cis_logrotate_policy is defined
+      - cis_logrotate_policy is iterable
     quiet: yes
 
 # 4.2.3 Ensure permissions on all logfiles are configured (Scored)

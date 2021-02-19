@@ -2,12 +2,12 @@
 # handlers file for cis
 
 - name: remount /var/tmp
-  mount:
+  ansible.posix.mount:
     path: /var/tmp
     state: remounted
 
 - name: remount /home
-  mount:
+  ansible.posix.mount:
     path: /home
     state: remounted
 
@@ -23,7 +23,7 @@
     warn: no
 
 - name: copy aide.db.new.gz to aide.db.gz
-  copy:
+  ansible.builtin.copy:
     src: /var/lib/aide/aide.db.new.gz
     dest: /var/lib/aide/aide.db.gz
     mode: "0600"
@@ -33,11 +33,11 @@
   command: grub2-mkconfig -o /boot/grub2/grub.cfg
 
 - name: systemctl daemon-reload
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: yes
 
 - name: reboot
-  reboot:
+  ansible.builtin.reboot:
   when:
     - ansible_connection != "docker"
 
@@ -65,12 +65,12 @@
     - not ansible_check_mode | bool
 
 - name: net.ipv4.route.flush
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.route.flush
     value: "1"
 
 - name: net.ipv6.route.flush
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv6.route.flush
     value: "1"
 
@@ -82,7 +82,7 @@
   command: augenrules --load
 
 - name: restart auditd
-  service:
+  ansible.builtin.service:
     name: auditd
     state: restarted
     use: service  # systemctl can't restart auditd, service can: https://access.redhat.com/solutions/2664811
@@ -90,7 +90,7 @@
     - not ansible_check_mode | bool
 
 - name: restart rsyslog
-  service:
+  ansible.builtin.service:
     name: rsyslog
     state: restarted
   when:
