@@ -47,7 +47,7 @@
 - name: restart chronyd
   block:
     - name: restart chronyd
-      service:
+      ansible.builtin.service:
         name: chronyd
         state: restarted
   rescue:
@@ -58,7 +58,7 @@
         - journalxtl -xe
         - systemctl status chronyd
     - name: show information
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
       loop: "{{ cis_collect_information.results }}"
   when:
