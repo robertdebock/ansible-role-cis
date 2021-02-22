@@ -12,13 +12,13 @@
     state: remounted
 
 - name: remount /dev/shm with nodev
-  command: mount -o remount,nodev /dev/shm  # noqa 303 Remounting not in module
+  ansible.builtin.command: mount -o remount,nodev /dev/shm  # noqa 303 Remounting not in module
 
 - name: remount /dev/shm with nosuid
-  command: mount -o remount,nosuid /dev/shm  # noqa 303 Remounting not in module
+  ansible.builtin.command: mount -o remount,nosuid /dev/shm  # noqa 303 Remounting not in module
 
 - name: remount /dev/shm with noexec
-  command: mount -o remount,noexec /dev/shm  # noqa 303 Remounting not in module
+  ansible.builtin.command: mount -o remount,noexec /dev/shm  # noqa 303 Remounting not in module
   args:
     warn: no
 
@@ -30,7 +30,7 @@
     remote_src: yes
 
 - name: run grub2-mkconfig
-  command: grub2-mkconfig -o /boot/grub2/grub.cfg
+  ansible.builtin.command: grub2-mkconfig -o /boot/grub2/grub.cfg
 
 - name: systemctl daemon-reload
   ansible.builtin.systemd:
@@ -42,7 +42,7 @@
     - ansible_connection != "docker"
 
 - name: update-crypto-policies
-  command: update-crypto-policies
+  ansible.builtin.command: update-crypto-policies
 
 - name: restart chronyd
   block:
@@ -52,7 +52,7 @@
         state: restarted
   rescue:
     - name: collect information
-      command: "{{ item }}"
+      ansible.builtin.command: "{{ item }}"
       register: cis_collect_information
       loop:
         - journalxtl -xe
@@ -75,11 +75,11 @@
     value: "1"
 
 - name: run augenrules
-  command: augenrules
+  ansible.builtin.command: augenrules
   notify: load rules
 
 - name: load rules
-  command: augenrules --load
+  ansible.builtin.command: augenrules --load
 
 - name: restart auditd
   ansible.builtin.service:
