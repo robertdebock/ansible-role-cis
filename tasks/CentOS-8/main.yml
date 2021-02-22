@@ -2,7 +2,7 @@
 # This task should be moved to `tasks/main.yml`, but due to an issue on Ubuntu
 # it's called here, just for CentOS.
 - name: populate service facts
-  service_facts:
+  ansible.builtin.service_facts:
 
 # 1.1 Filesystem Configuration
 - name: include 1_1_filesystem_configuration.yml

@@ -9,7 +9,7 @@
 # For now, only collect service_facts on non-Ubuntu due to:
 # https://github.com/ansible/ansible/issues/71140
 # - name: populate service facts
-#   service_facts:
+#   ansible.builtin.service_facts:
 
 - name: gather the rpm package facts
   ansible.builtin.package_facts:
