@@ -1,0 +1,9 @@
+---
+
+- name: 5.1.1 Ensure cron daemon is enabled (Scored)
+  command: systemctl is-enabled crond
+  register: cis_cron_enabled_test_one
+  failed_when:
+    - cis_cron_enabled_test_one.stdout != "enabled"
+  when:
+    - cis_cron_enabled

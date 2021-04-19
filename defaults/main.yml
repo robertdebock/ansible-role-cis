@@ -496,3 +496,6 @@ cis_permissions_on_logfiles: yes
 cis_logrotate_configured: yes
 cis_logrotate_policy:
   - name: dnf
+
+# 5.1.1 Ensure cron daemon is enabled (Scored)
+cis_cron_enabled: yes

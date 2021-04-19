@@ -1,0 +1,9 @@
+---
+
+- name: 5.1.1 Ensure cron daemon is enabled (Scored)
+  service:
+    name: crond
+    state: started
+    enabled: yes
+  when:
+    - cis_cron_enabled
