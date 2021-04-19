@@ -11,7 +11,7 @@ on:
       - '*'
   pull_request:
   schedule:
-    - cron: '3 3 3 * *'
+    - cron: '5 3 3 * *'
 
 jobs:
   lint:
@@ -34,8 +34,6 @@ jobs:
       matrix:
         config:
           - image: "centos"
-            tag: "latest"
-          - image: "ubuntu"
             tag: "latest"
     steps:
       - name: checkout

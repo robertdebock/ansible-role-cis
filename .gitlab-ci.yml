@@ -18,8 +18,6 @@ molecule:
     matrix:
       - image: "centos"
         tag: "latest"
-      - image: "ubuntu"
-        tag: "latest"
 
 galaxy:
   script:
