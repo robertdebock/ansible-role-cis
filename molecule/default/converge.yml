@@ -4,5 +4,8 @@
   become: yes
   gather_facts: yes
 
+  vars_files:
+    - defaults.yml
+
   roles:
     - role: ansible-role-cis
