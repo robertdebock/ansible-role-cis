@@ -1240,6 +1240,6 @@
 - name: test if cis_cron_enabled is set correctly
   assert:
     that:
-      - cis_cron_enabled is definded
+      - cis_cron_enabled is defined
       - cis_cron_enabled is boolean
     quiet: yes
