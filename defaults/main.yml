@@ -499,3 +499,6 @@ cis_logrotate_policy:
 
 # 5.1.1 Ensure cron daemon is enabled (Scored)
 cis_cron_enabled: yes
+
+# 5.1.2 Ensure permissions on /etc/crontab are configured (Scored)
+cis_cron_permissions_configured: yes

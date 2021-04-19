@@ -7,3 +7,18 @@
     enabled: yes
   when:
     - cis_cron_enabled
+
+- name: 5.1.2 Ensure permissions on /etc/crontab are configured (Scored)
+  stat:
+    path: /etc/crontab
+    owner: root
+    group: root
+    mode: "og-rwx"
+  when:
+    - cis_cron_permissions_configured
+  register: cis_etc_crontab
+  failed_when:
+    - cis_etc_crontab.stat.uid != 0 or
+      cis_etc_crontab.stat.gid != 0 or
+      cis_etc_crontab.stat.wgrp or
+      cis_etc_crontab.stat.woth

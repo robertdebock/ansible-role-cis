@@ -1243,3 +1243,11 @@
       - cis_cron_enabled is defined
       - cis_cron_enabled is boolean
     quiet: yes
+
+# 5.1.2 Ensure permissions on /etc/crontab are configured (Scored)
+- name: test if cis_cron_permissions_configured is set correctly
+  assert:
+    that:
+      - cis_cron_permissions_configured is defined
+      - cis_cron_permissions_configured is boolean
+    quiet: yes
