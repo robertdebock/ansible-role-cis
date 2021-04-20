@@ -16,13 +16,13 @@
     mode: "og-rwx"
   when:
     - cis_cron_permissions_configured
-  register: cis_etc_crontab
-  failed_when:
-    - cis_etc_crontab.stat.uid != 0 or
-      cis_etc_crontab.stat.gid != 0 or
-      cis_etc_crontab.stat.wgrp or
-      cis_etc_crontab.stat.woth
 
 - name: 5.1.3 Ensure permissions on /etc/cron.hourly are configured (Scored)
+  file:
+    path: /etc/cron.hourly
+    state: directory
+    owner: root
+    group: root
+    mode: "og-rwx"
   when:
     - cis_cron_hourly_permissions_configured is set correctly
