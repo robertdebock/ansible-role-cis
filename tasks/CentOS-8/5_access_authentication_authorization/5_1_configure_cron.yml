@@ -13,7 +13,6 @@
     path: /etc/crontab
     owner: root
     group: root
-    mode: "og-rwx"
   when:
     - cis_cron_permissions_configured
   register: cis_etc_crontab
