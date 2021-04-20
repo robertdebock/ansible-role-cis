@@ -25,4 +25,4 @@
     group: root
     mode: "og-rwx"
   when:
-    - cis_cron_hourly_permissions_configured is set correctly
+    - cis_cron_hourly_permissions_configured
