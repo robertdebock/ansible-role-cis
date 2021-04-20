@@ -31,3 +31,39 @@
       cis_etc_cron_hourly.stat.gid != 0 or
       cis_etc_cron_hourly.stat.wgrp or
       cis_etc_cron_hourly.stat.woth
+
+- name: 5.1.4 Ensure permissions on /etc/cron.daily are configured (Scored)
+  stat:
+    path: /etc/cron.daily
+  when:
+    - cis_cron_daily_permissions_configured
+  register: cis_etc_cron_daily
+  failed_when:
+    - cis_etc_cron_daily.stat.uid != 0 or
+      cis_etc_cron_daily.stat.gid != 0 or
+      cis_etc_cron_daily.stat.wgrp or
+      cis_etc_cron_daily.stat.woth
+
+- name: 5.1.5 Ensure permissions on /etc/cron.weekly are configured (Scored)
+  stat:
+    path: /etc/cron.weekly
+  when:
+    - cis_cron_weekly_permissions_configured
+  register: cis_etc_cron_weekly
+  failed_when:
+    - cis_etc_cron_weekly.stat.uid != 0 or
+      cis_etc_cron_weekly.stat.gid != 0 or
+      cis_etc_cron_weekly.stat.wgrp or
+      cis_etc_cron_weekly.stat.woth
+
+- name: 5.1.6 Ensure permissions on /etc/cron.monthly are configured (Scored)
+  stat:
+    path: /etc/cron.monthly
+  when:
+    - cis_cron_monthly_permissions_configured
+  register: cis_etc_cron_monthly
+  failed_when:
+    - cis_etc_cron_monthly.stat.uid != 0 or
+      cis_etc_cron_monthly.stat.gid != 0 or
+      cis_etc_cron_monthly.stat.wgrp or
+      cis_etc_cron_monthly.stat.woth
