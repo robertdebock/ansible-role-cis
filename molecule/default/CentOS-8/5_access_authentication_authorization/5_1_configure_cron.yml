@@ -67,3 +67,19 @@
       cis_etc_cron_monthly.stat.gid != 0 or
       cis_etc_cron_monthly.stat.wgrp or
       cis_etc_cron_monthly.stat.woth
+
+- name: 5.1.7 Ensure permissions on /etc/cron.d are configured (Scored)
+  stat:
+    path: /etc/cron.d
+  when:
+    - cis_cron_d_permissions_configured
+  register: cis_cron_d
+  failed_when:
+    - cis_cron_d.stat.uid != 0 or
+      cis_cron_d.stat.gid != 0 or
+      cis_cron_d.stat.rgrp or
+      cis_cron_d.stat.roth or
+      cis_cron_d.stat.wgrp or
+      cis_cron_d.stat.woth or
+      cis_cron_d.stat.xgrp or
+      cis_cron_d.stat.xoth
