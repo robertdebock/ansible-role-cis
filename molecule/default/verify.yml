@@ -22,4 +22,5 @@
         file: defaults.yml
 
     - name: include distribution specific version
-      include: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/verify.yml"
+      ansible.builtin.include_tasks:
+        file: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/verify.yml"
