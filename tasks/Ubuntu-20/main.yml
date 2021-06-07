@@ -1,4 +1,4 @@
 ---
 - name: include initial_setup.yml
-  include_tasks:
+  ansible.builtin.include_tasks:
     file: initial_setup.yml
