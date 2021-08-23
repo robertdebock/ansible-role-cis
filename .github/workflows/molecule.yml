@@ -33,7 +33,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - image: "rockylinux"
+          - image: "centos"
             tag: "latest"
     steps:
       - name: checkout
