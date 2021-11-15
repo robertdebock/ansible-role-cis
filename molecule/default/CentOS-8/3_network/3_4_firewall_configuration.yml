@@ -68,7 +68,7 @@
   service:
     name: nftables
     state: stopped
-    enabled: false
+    enabled: no
   register: cis_nftables_not_enabled_test_two
   failed_when:
     - cis_nftables_not_enabled_test_two is changed
