@@ -45,7 +45,8 @@
     - cis_selinux_policy_configured
 
 - name: 1.7.1.3 Ensure SELinux policy is configured (Scored)
-  shell: set -o pipefail && sestatus | grep Loaded
+  shell:
+    cmd: set -o pipefail && sestatus | grep Loaded
   register: cis_selinux_policy_configured_test_two
   when:
     - cis_selinux_policy_configured

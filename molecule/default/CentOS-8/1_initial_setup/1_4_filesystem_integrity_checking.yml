@@ -7,7 +7,8 @@
     - cis_aide_installed | bool
 
 - name: 1.4.2 Ensure filesystem integrity is regularly checked (Scored)
-  shell: crontab -u root -l | grep aide
+  shell:
+    cmd: crontab -u root -l | grep aide
   failed_when: no
   register: cis_filesystem_integrity_checked_test_one
   when:
