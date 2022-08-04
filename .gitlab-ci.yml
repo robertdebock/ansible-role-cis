@@ -18,7 +18,7 @@ molecule:
   parallel:
     matrix:
       - image: "centos"
-        tag: "latest"
+        tag: "8"
 
 galaxy:
   script:

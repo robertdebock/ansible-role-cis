@@ -30,7 +30,7 @@ jobs:
       matrix:
         config:
           - image: "centos"
-            tag: "latest"
+            tag: "8"
     steps:
       - name: checkout
         uses: actions/checkout@v3
