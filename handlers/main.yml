@@ -85,7 +85,8 @@
 - name: Run augenrules
   ansible.builtin.command:
     cmd: augenrules
-  notify: load rules
+  notify:
+    - Load rules
 
 - name: Load rules
   ansible.builtin.command:
