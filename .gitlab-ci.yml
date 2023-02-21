@@ -12,7 +12,7 @@ molecule:
     - if: $CI_COMMIT_REF_NAME == "master"
   parallel:
     matrix:
-      - image: "centos"
+      - image: "enterpriselinux"
         tag: "8"
 
 galaxy:
