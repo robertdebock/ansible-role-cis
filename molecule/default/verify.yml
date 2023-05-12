@@ -7,20 +7,20 @@
   tasks:
     # Molecules verifier does not load variables in default and vars. These
     # tasks load the variables explicitly.
-    - name: load vars/main.yml
+    - name: Load vars/main.yml
       ansible.builtin.include_vars:
         file: ../../vars/main.yml
 
-    - name: load defaults/main.yml
+    - name: Load defaults/main.yml
       ansible.builtin.include_vars:
         file: ../../defaults/main.yml
 
     # In verify (in CI), certain overwrites must occur because not all resources
     # are available in a container, like kernel modules or partitions.
-    - name: load verifier overwrites
+    - name: Load verifier overwrites
       ansible.builtin.include_vars:
         file: defaults.yml
 
-    - name: include distribution specific version
+    - name: Include distribution specific version
       ansible.builtin.include_tasks:
         file: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/verify.yml"
