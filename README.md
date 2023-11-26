@@ -1,4 +1,4 @@
-# Ansible role [cis](#cis)
+# [Ansible role cis](#cis)
 
 Apply and/or check recommendations from the CIS benchmarks.
 
