@@ -8,4 +8,4 @@
     - defaults.yml
 
   roles:
-    - role: ansible-role-cis
+    - role: robertdebock.cis
