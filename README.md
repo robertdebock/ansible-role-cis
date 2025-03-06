@@ -21,7 +21,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     - defaults.yml
 
   roles:
-    - role: robertdebock.cis
+    - role: ansible-role-cis
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-cis/blob/master/molecule/default/prepare.yml):
