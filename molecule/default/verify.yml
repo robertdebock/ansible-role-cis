@@ -23,4 +23,4 @@
 
     - name: Include distribution specific version
       ansible.builtin.include_tasks:
-        file: "{{ ansible_distribution ~ '-' ~ ansible_distribution_major_version }}/verify.yml"
+        file: "{{ ansible_facts['distribution'] ~ '-' ~ ansible_facts['distribution_major_version'] }}/verify.yml"
